@@ -2,47 +2,73 @@
 The following experiment calculates all possible direct, transitive, and combined techniques.
 """
 import os
-from typing import Tuple, Optional
+from typing import Optional, Tuple
 
 import click
 
-from api.constants.paths import PATH_TO_TECHNIQUE_SOURCE_DATA, PATH_TO_NOTRACES_INTERMEDIARY, \
-    PATH_TO_WITHTRACES_INTERMEDIARY, PATH_TO_DATA_PROCESSED, NOTRACES_ID, WITHTRACES_ID, TECHNIQUES_ID
-from api.constants.processing import TRANSITIVE_TRACE_TYPE_COLNAME, DIRECT_ALGEBRAIC_MODEL_COLNAME, \
-    ALGEBRAIC_MODEL_COLNAME, TECHNIQUE_AGGREGATION_COLNAME, TRANSITIVE_AGGREGATION_COLNAME, \
-    TRANSITIVE_SCALING_COLNAME, TECHNIQUE_TYPE_COLNAME
-from api.constants.techniques import UNDEFINED_TECHNIQUE, DIRECT_ID, COMBINED_ID, TRANSITIVE_ID
-from api.experiment.cache import Cache
-from api.metrics.models import Table
+from api.constants.paths import (
+    NOTRACES_ID,
+    PATH_TO_BEST_INTERMEDIARY,
+    PATH_TO_BEST_PROCESSED,
+    PATH_TO_DATA_PROCESSED,
+    PATH_TO_GAIN_INTERMEDIARY,
+    PATH_TO_GAIN_PROCESSED,
+    PATH_TO_RQ1_INTERMEDIATE,
+    PATH_TO_RQ2_INTERMEDIATE,
+    PATH_TO_TECHNIQUE_SOURCE_DATA,
+    TECHNIQUES_ID,
+    WITHTRACES_ID,
+)
+from api.constants.processing import (
+    ALGEBRAIC_MODEL_COLNAME,
+    DIRECT_ALGEBRAIC_MODEL_COLNAME,
+    TECHNIQUE_AGGREGATION_COLNAME,
+    TECHNIQUE_TYPE_COLNAME,
+    TRANSITIVE_AGGREGATION_COLNAME,
+    TRANSITIVE_SCALING_COLNAME,
+    TRANSITIVE_TRACE_TYPE_COLNAME,
+)
+from api.constants.techniques import (
+    COMBINED_ID,
+    DIRECT_ID,
+    TRANSITIVE_ID,
+    UNDEFINED_TECHNIQUE,
+)
+from api.extension.cache import Cache
+from api.extension.experiment_types import ExperimentTraceType
+from api.tables.metric_table import MetricTable
+from api.tables.table import Table
 from api.technique.definitions.combined.technique import COMBINED_COMMAND_SYMBOL
 from api.technique.definitions.direct.definition import DIRECT_COMMAND_SYMBOL
 from api.technique.definitions.transitive.definition import TRANSITIVE_COMMAND_SYMBOL
-from api.technique.variationpoints.aggregation.aggregation_method import AggregationMethod
+from api.technique.variationpoints.aggregation.aggregation_method import (
+    AggregationMethod,
+)
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
 from api.technique.variationpoints.tracetype.trace_type import TraceType
 from api.tracer import Tracer
-from src.analysis.common_operations import update_aggregate, setup_for_graph, create_graph_metrics
-from src.analysis.techniques.best_technique import export_best_techniques
-from src.analysis.techniques.gain import export_gain
 from src.runner.experiment import Experiment
 from src.runner.progress_bar_factory import create_bar
-from src.runner.types import ExperimentTraceType
 
-RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION = "This experiment calculates all direct, transitive, and combined " \
-                                             "technique for some given dataset. For each technique accuracy metrics" \
-                                             " are created and stored in table alonside identifying information of " \
-                                             "each technique."
+RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION = (
+    "This experiment calculates all direct, transitive, and combined "
+    "technique for some given dataset. For each technique accuracy metrics"
+    " are created and stored in table alonside identifying information of "
+    "each technique."
+)
 
 RETRIEVAL_TECHNIQUES_ID = "RETRIEVAL_TECHNIQUES"
 
 EXPERIMENT_LOADING_MESSAGE = "...calculating techniques..."
-TechniqueID = Tuple[Optional[AlgebraicModel],  # direct algebraic model
-                    Optional[ExperimentTraceType],  # transitive experiment trace type
-                    Optional[AlgebraicModel],  # transitive algebraic model
-                    Optional[ScalingMethod],  # transitive scaling type
-                    Optional[AggregationMethod],  # transitive aggregation method
-                    Optional[AggregationMethod]]  # technique aggregation
+TechniqueID = Tuple[
+    Optional[AlgebraicModel],  # direct algebraic model
+    Optional[ExperimentTraceType],  # transitive experiment trace type
+    Optional[AlgebraicModel],  # transitive algebraic model
+    Optional[ScalingMethod],  # transitive scaling type
+    Optional[AggregationMethod],  # transitive aggregation method
+    Optional[AggregationMethod],
+]  # technique aggregation
 
 
 class RetrievalTechniques:
@@ -62,10 +88,17 @@ class RetrievalTechniques:
             for t_am in AlgebraicModel:
                 for t_scaling in ScalingMethod:
                     for transitive_aggregation in AggregationMethod:
-                        t_id = (None, trace_type, t_am, t_scaling, transitive_aggregation, None)
-                        yield format_transitive_technique(t_am, t_scaling, transitive_aggregation,
-                                                          trace_type), create_entry(
-                            t_id)
+                        t_id = (
+                            None,
+                            trace_type,
+                            t_am,
+                            t_scaling,
+                            transitive_aggregation,
+                            None,
+                        )
+                        yield format_transitive_technique(
+                            t_am, t_scaling, transitive_aggregation, trace_type
+                        ), create_entry(t_id)
 
         # combined
         for trace_type in ExperimentTraceType:  # pylint: disable=too-many-nested-blocks
@@ -77,9 +110,16 @@ class RetrievalTechniques:
                         for transitive_aggregation in AggregationMethod:
                             for technique_aggregation in AggregationMethod:
                                 t_id = (
-                                    direct_am, trace_type, t_am, t_scaling, transitive_aggregation,
-                                    technique_aggregation)
-                                yield format_combined_technique(t_id), create_entry(t_id)
+                                    direct_am,
+                                    trace_type,
+                                    t_am,
+                                    t_scaling,
+                                    transitive_aggregation,
+                                    technique_aggregation,
+                                )
+                                yield format_combined_technique(t_id), create_entry(
+                                    t_id
+                                )
 
     def __len__(self):
         return get_n_direct() + get_n_transitive() + get_n_combined()
@@ -96,7 +136,9 @@ def calculate_technique_metric_table(dataset: str) -> Table:
     metric_table = Table()
 
     techniques = RetrievalTechniques()
-    with create_bar(EXPERIMENT_LOADING_MESSAGE, techniques, length=len(techniques)) as techniques:
+    with create_bar(
+        EXPERIMENT_LOADING_MESSAGE, techniques, length=len(techniques)
+    ) as techniques:
         for t_name, t_entry in techniques:
             t_metrics = tracer.get_metrics(dataset, t_name)
             metric_table.add(t_metrics, t_entry)
@@ -108,15 +150,26 @@ def get_n_combined():
     """
     :return: int - the number of combined techniques
     """
-    return len(AlgebraicModel) * len(ExperimentTraceType) * \
-           len(AlgebraicModel) * len(ScalingMethod) * len(AggregationMethod) * len(AggregationMethod)
+    return (
+        len(AlgebraicModel)
+        * len(ExperimentTraceType)
+        * len(AlgebraicModel)
+        * len(ScalingMethod)
+        * len(AggregationMethod)
+        * len(AggregationMethod)
+    )
 
 
 def get_n_transitive():
     """
     :return: int - the number of transitive techniques
     """
-    return len(ExperimentTraceType) * len(AlgebraicModel) * len(ScalingMethod) * len(AggregationMethod)
+    return (
+        len(ExperimentTraceType)
+        * len(AlgebraicModel)
+        * len(ScalingMethod)
+        * len(AggregationMethod)
+    )
 
 
 def get_n_direct():
@@ -151,14 +204,19 @@ def format_direct_technique(algebraic_model: AlgebraicModel):
     :param algebraic_model: the algebraic model used to directly compare artifacts
     :return: str - the technique definition
     """
-    technique_definition = "(%s (%s NT) (0 2))" % (DIRECT_COMMAND_SYMBOL, algebraic_model.value)
+    technique_definition = "(%s (%s NT) (0 2))" % (
+        DIRECT_COMMAND_SYMBOL,
+        algebraic_model.value,
+    )
     return technique_definition
 
 
-def format_transitive_technique(transitive_algebraic_model: AlgebraicModel,
-                                scaling_method: ScalingMethod,
-                                transitive_aggregation: AggregationMethod,
-                                trace_type: ExperimentTraceType):
+def format_transitive_technique(
+    transitive_algebraic_model: AlgebraicModel,
+    scaling_method: ScalingMethod,
+    transitive_aggregation: AggregationMethod,
+    trace_type: ExperimentTraceType,
+):
     """
     Creates code for transitive technique by embedding direct components between top/middle
     and middle/bottom artifact layers.
@@ -170,14 +228,24 @@ def format_transitive_technique(transitive_algebraic_model: AlgebraicModel,
     """
     a_trace, b_trace = get_component_trace_types(trace_type)
     upper_component = "(%s (%s %s) (0 1))" % (
-        DIRECT_COMMAND_SYMBOL, transitive_algebraic_model.value, a_trace.value)
+        DIRECT_COMMAND_SYMBOL,
+        transitive_algebraic_model.value,
+        a_trace.value,
+    )
 
     lower_component = "(%s (%s %s) (1 2))" % (
-        DIRECT_COMMAND_SYMBOL, transitive_algebraic_model.value, b_trace.value)
+        DIRECT_COMMAND_SYMBOL,
+        transitive_algebraic_model.value,
+        b_trace.value,
+    )
 
     transitive = "(%s (%s %s) (%s %s))" % (
-        TRANSITIVE_COMMAND_SYMBOL, transitive_aggregation.value, scaling_method.value, upper_component,
-        lower_component)
+        TRANSITIVE_COMMAND_SYMBOL,
+        transitive_aggregation.value,
+        scaling_method.value,
+        upper_component,
+        lower_component,
+    )
     return transitive
 
 
@@ -191,12 +259,14 @@ def format_combined_technique(t_id: TechniqueID):
     d_am, trace_type, t_am, t_scaling, t_aggregation, technique_aggregation = t_id
 
     direct = format_direct_technique(d_am)
-    transitive = format_transitive_technique(t_am,
-                                             t_scaling,
-                                             t_aggregation,
-                                             trace_type)
+    transitive = format_transitive_technique(t_am, t_scaling, t_aggregation, trace_type)
 
-    return "(%s (%s) (%s %s))" % (COMBINED_COMMAND_SYMBOL, technique_aggregation.value, direct, transitive)
+    return "(%s (%s) (%s %s))" % (
+        COMBINED_COMMAND_SYMBOL,
+        technique_aggregation.value,
+        direct,
+        transitive,
+    )
 
 
 def create_entry(t_id: TechniqueID) -> dict:
@@ -214,13 +284,22 @@ def create_entry(t_id: TechniqueID) -> dict:
         technique_type = COMBINED_ID
     return {
         TECHNIQUE_TYPE_COLNAME: technique_type,
-        DIRECT_ALGEBRAIC_MODEL_COLNAME: UNDEFINED_TECHNIQUE if d_am is None else d_am.value,
+        DIRECT_ALGEBRAIC_MODEL_COLNAME: UNDEFINED_TECHNIQUE
+        if d_am is None
+        else d_am.value,
         ALGEBRAIC_MODEL_COLNAME: UNDEFINED_TECHNIQUE if t_am is None else t_am.value,
-        TRANSITIVE_SCALING_COLNAME: UNDEFINED_TECHNIQUE if t_scaling is None else t_scaling.value,
-        TRANSITIVE_AGGREGATION_COLNAME: UNDEFINED_TECHNIQUE if transitive_agg is None else transitive_agg.value,
-        TECHNIQUE_AGGREGATION_COLNAME: UNDEFINED_TECHNIQUE if technique_agg is None else
-        technique_agg.value,
-        TRANSITIVE_TRACE_TYPE_COLNAME: UNDEFINED_TECHNIQUE if trace_type is None else trace_type.value
+        TRANSITIVE_SCALING_COLNAME: UNDEFINED_TECHNIQUE
+        if t_scaling is None
+        else t_scaling.value,
+        TRANSITIVE_AGGREGATION_COLNAME: UNDEFINED_TECHNIQUE
+        if transitive_agg is None
+        else transitive_agg.value,
+        TECHNIQUE_AGGREGATION_COLNAME: UNDEFINED_TECHNIQUE
+        if technique_agg is None
+        else technique_agg.value,
+        TRANSITIVE_TRACE_TYPE_COLNAME: UNDEFINED_TECHNIQUE
+        if trace_type is None
+        else trace_type.value,
     }
 
 
@@ -241,37 +320,68 @@ def get_component_trace_types(experiment_trace_type: ExperimentTraceType):
     return a_trace, b_trace
 
 
-def post_processing(dataset: str, metric_table: Table):
+def post_processing(dataset: str, metric_table: MetricTable):
     """
     Post processing steps:
-    1. Rank the techniques
+    1. Calculate percent best
     2. Calculate gain on direct best technique
-    3. Export intermediate table
-    :param dataset:
-    :param metric_table:
-    :return:
+    3. Create RQ1 and RQ2 tables
+    :param dataset: the dataset the metric table is calculated for
+    :param metric_table: MetricTable containing technique identifying information and accuracy scores
+    :return: None
     """
+    # paths
+    best_export_path = os.path.join(PATH_TO_BEST_INTERMEDIARY, dataset + ".csv")
+    gain_export_path = os.path.join(PATH_TO_GAIN_INTERMEDIARY, dataset + ".csv")
+    rq1_agg_export_path = os.path.join(
+        PATH_TO_DATA_PROCESSED, TECHNIQUES_ID, NOTRACES_ID + ".csv"
+    )
+    rq2_agg_export_path = os.path.join(
+        PATH_TO_DATA_PROCESSED, TECHNIQUES_ID, WITHTRACES_ID + ".csv"
+    )
+    rq1_export_path = os.path.join(PATH_TO_RQ1_INTERMEDIATE, dataset + ".csv")
+    rq2_export_path = os.path.join(PATH_TO_RQ2_INTERMEDIATE, dataset + ".csv")
+
+    # 1. percent best
+    path_to_best_agg = os.path.join(PATH_TO_BEST_PROCESSED, "Best.csv")
+    metric_table.calculate_percent_best().format_table().save(best_export_path)
+    Table.aggregate_intermediate_files(PATH_TO_BEST_INTERMEDIARY).format_table().save(
+        path_to_best_agg
+    )
+
+    # 2. calculate gain
+    path_to_gain_agg = os.path.join(PATH_TO_GAIN_PROCESSED, "Gain.csv")
+    metric_table.calculate_gain().save(gain_export_path)
+    Table.aggregate_intermediate_files(PATH_TO_GAIN_INTERMEDIARY).format_table().save(
+        path_to_gain_agg
+    )
+
+    # 3. Split into RQ1 and RQ2 tables
     metric_table_values = metric_table.table
+    direct_mask = (
+        metric_table_values[TRANSITIVE_TRACE_TYPE_COLNAME]
+        == ExperimentTraceType.DIRECT.value
+    )
+    none_mask = (
+        metric_table_values[TRANSITIVE_TRACE_TYPE_COLNAME]
+        == ExperimentTraceType.NONE.value
+    )
+    rq1_mask = none_mask | direct_mask
+    rq2_mask = (~none_mask) | direct_mask
+    rq1_df, rq2_df = metric_table.split(left=rq1_mask, right=rq2_mask)
 
-    export_best_techniques(metric_table.table, dataset)
-    export_gain(create_graph_metrics(metric_table.table), dataset)
+    MetricTable(rq1_df).setup_for_graph().save(rq1_export_path)
+    MetricTable(rq2_df).setup_for_graph().save(rq2_export_path)
 
-    direct_mask = metric_table_values[TRANSITIVE_TRACE_TYPE_COLNAME] == ExperimentTraceType.DIRECT.value
-    none_mask = metric_table_values[TRANSITIVE_TRACE_TYPE_COLNAME] == ExperimentTraceType.NONE.value
-    rq1_df = metric_table_values[none_mask | direct_mask]
-    rq2_df = metric_table_values[(~none_mask) | direct_mask]
+    Table.aggregate_intermediate_files(PATH_TO_RQ1_INTERMEDIATE).format_table().save(
+        rq1_agg_export_path
+    )
+    Table.aggregate_intermediate_files(PATH_TO_RQ2_INTERMEDIATE).format_table().save(
+        rq2_agg_export_path
+    )
 
-    setup_for_graph(rq1_df).to_csv(os.path.join(PATH_TO_NOTRACES_INTERMEDIARY, dataset + '.csv'), index=False)
-    setup_for_graph(rq2_df).to_csv(os.path.join(PATH_TO_WITHTRACES_INTERMEDIARY, dataset + '.csv'), index=False)
-
-    no_traces_agg_path = os.path.join(PATH_TO_DATA_PROCESSED, TECHNIQUES_ID, NOTRACES_ID + '.csv')
-    with_traces_agg_path = os.path.join(PATH_TO_DATA_PROCESSED, TECHNIQUES_ID, WITHTRACES_ID + '.csv')
-
-    update_aggregate(PATH_TO_NOTRACES_INTERMEDIARY, no_traces_agg_path)
-    update_aggregate(PATH_TO_WITHTRACES_INTERMEDIARY, with_traces_agg_path)
-
-    print("No traces aggregate exported to: ", no_traces_agg_path)
-    print("With traces aggregate exported to:", with_traces_agg_path)
+    print("RQ1 aggregate path: %s" % rq1_agg_export_path)
+    print("RQ2 aggregate path: %s" % rq2_agg_export_path)
 
 
 class RetrievalTechniquesExperiment(Experiment):

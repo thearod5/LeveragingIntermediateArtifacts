@@ -5,7 +5,7 @@ of this projects experiments in one place.
 """
 from abc import ABC, abstractmethod
 
-from api.metrics.models import Table
+from api.tables.table import Table
 
 
 class Experiment(ABC):

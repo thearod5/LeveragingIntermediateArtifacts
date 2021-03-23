@@ -7,21 +7,27 @@ metrics.
 from api.technique.variationpoints.algebraicmodel.AlgebraicModel import AlgebraicModel
 from api.technique.variationpoints.scalers.ScalingMethod import ScalingMethod
 
-from api.technique.variationpoints.aggregation.aggregation_method import AggregationMethod
+from api.extension.experiment_types import ExperimentTraceType
+from api.technique.variationpoints.aggregation.aggregation_method import (
+    AggregationMethod,
+)
 from api.tracer import Tracer
-from src.runner.types import ExperimentTraceType
 from src.techniques.retrieval_techniques import format_transitive_technique
 
 if __name__ == "__main__":
     dataset_name = "TrainController"
-    t1 = format_transitive_technique(AlgebraicModel.VSM,
-                                     ScalingMethod.INDEPENDENT,
-                                     AggregationMethod.MAX,
-                                     ExperimentTraceType.NONE)
-    t2 = format_transitive_technique(AlgebraicModel.VSM,
-                                     ScalingMethod.GLOBAL,
-                                     AggregationMethod.MAX,
-                                     ExperimentTraceType.NONE)
+    t1 = format_transitive_technique(
+        AlgebraicModel.VSM,
+        ScalingMethod.INDEPENDENT,
+        AggregationMethod.MAX,
+        ExperimentTraceType.NONE,
+    )
+    t2 = format_transitive_technique(
+        AlgebraicModel.VSM,
+        ScalingMethod.GLOBAL,
+        AggregationMethod.MAX,
+        ExperimentTraceType.NONE,
+    )
 
     technique_names = [t1, t2]
 

@@ -10,7 +10,8 @@ import pandas as pd
 from api.constants.paths import PATH_TO_DATA
 from api.constants.processing import LAG_COLNAME, LAG_NORMALIZED_COLNAME
 from api.constants.techniques import DIRECT_ID, TRANSITIVE_ID, COMBINED_ID
-from api.metrics.models import Metrics, Table
+from api.tables.metric_table import Metrics
+from api.tables.table import Table
 from api.technique.definitions.combined.technique import create_technique_by_name, \
     CombinedTechnique
 from api.technique.definitions.direct.technique import DirectTechnique
@@ -72,6 +73,6 @@ if __name__ == "__main__":
                            new_col_name=LAG_NORMALIZED_COLNAME,
                            drop_old=True,
                            inverted=True)
-    metric_table.export(EXPORT_PATH, melt_data=False)
-    metric_table.export(MELTED_EXPORT_PATH, melt_data=True)
+    metric_table.save(EXPORT_PATH, melt_data=False)
+    metric_table.save(MELTED_EXPORT_PATH, melt_data=True)
     print("done")

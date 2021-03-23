@@ -2,11 +2,22 @@ import random
 
 import pandas as pd
 
-from api.constants.processing import CORRELATION_COLNAME, P_VALUE_COLNAME, AP_COLNAME, \
-    PERCENT_COLNAME, VALUE_COLNAME, METRIC_COLNAME, DF_METRICS, AUC_COLNAME, LAG_COLNAME
-from src.analysis.sampling.correlation_helper import create_correlation_matrix, \
-    create_gain_correlation_table
-from src.runner.types import SamplingExperiment
+from api.constants.processing import (
+    AP_COLNAME,
+    AUC_COLNAME,
+    CORRELATION_COLNAME,
+    DF_METRICS,
+    LAG_COLNAME,
+    METRIC_COLNAME,
+    PERCENT_COLNAME,
+    P_VALUE_COLNAME,
+    VALUE_COLNAME,
+)
+from api.extension.experiment_types import SamplingExperiment
+from src.analysis.sampling.correlation_helper import (
+    create_correlation_matrix,
+    create_gain_correlation_table,
+)
 from tests.res.test_technique_helper import TestTechniqueHelper
 
 
@@ -22,7 +33,7 @@ def create_sample_data():
                 entry = {
                     METRIC_COLNAME: metric,
                     VALUE_COLNAME: random.uniform(percent - 1, percent + 1),
-                    PERCENT_COLNAME: percent
+                    PERCENT_COLNAME: percent,
                 }
                 data = data.append(entry, ignore_index=True)
     return data
@@ -32,11 +43,14 @@ class TestCorrelationHelper(TestTechniqueHelper):
     """
     create_correlation_matrix
     """
+
     data = create_sample_data()
 
     def test_create_correlation_matrix(self):
         corr_df = create_correlation_matrix(self.data)
-        self.assertTrue(all([col in corr_df for col in [CORRELATION_COLNAME, P_VALUE_COLNAME]]))
+        self.assertTrue(
+            all([col in corr_df for col in [CORRELATION_COLNAME, P_VALUE_COLNAME]])
+        )
         corr_df = corr_df.set_index(METRIC_COLNAME)
 
         self.assertGreater(corr_df.loc[AP_COLNAME][CORRELATION_COLNAME], 0)
@@ -52,10 +66,14 @@ class TestCorrelationHelper(TestTechniqueHelper):
 
     def test_create_gain_correlation_table_with_artifacts(self):
         correlation_df = create_correlation_matrix(self.data)
-        gain_correlation_df = create_gain_correlation_table("EasyClinic", SamplingExperiment.ARTIFACTS, correlation_df)
+        gain_correlation_df = create_gain_correlation_table(
+            "EasyClinic", SamplingExperiment.ARTIFACTS, correlation_df
+        )
         self.assertFalse(any(gain_correlation_df.isna().any()))
 
     def test_create_gain_correlation_table_with_traces(self):
         correlation_df = create_correlation_matrix(self.data)
-        gain_correlation_df = create_gain_correlation_table("EasyClinic", SamplingExperiment.TRACES, correlation_df)
+        gain_correlation_df = create_gain_correlation_table(
+            "EasyClinic", SamplingExperiment.TRACES, correlation_df
+        )
         self.assertFalse(any(gain_correlation_df.isna().any()))

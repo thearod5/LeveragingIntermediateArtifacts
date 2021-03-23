@@ -6,7 +6,7 @@ import os
 
 from api.constants.paths import PATH_TO_DATA
 from api.constants.processing import DATASET_COLUMN_ORDER, LAG_COLNAME
-from api.metrics.models import Table, Metrics
+from api.tables.metric_table import Metrics, MetricTable
 from api.tracer import Tracer
 
 
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     possible_paths = [(0, 1, 2), (1, 0, 2), (2, 1, 0)]
     tracer = Tracer()
 
-    metric_table = Table()
+    metric_table = MetricTable()
     index_col_name = 'query_index'
     for dataset_name in DATASET_COLUMN_ORDER:
         for path in possible_paths:
@@ -75,13 +75,13 @@ if __name__ == "__main__":
             # delta
             delta_metrics = list(map(lambda m: m[1] - m[0], zip(direct_metrics, transitive_metrics)))
 
-    metric_table.scale_col(LAG_COLNAME, by=['dataset'], inverted=True, drop_old=True)
-    metric_table.melt_metrics()
+    scaled_df = metric_table.scale_col(LAG_COLNAME, group_by_cols=['dataset'], inverted=True, drop_old=True)
+    melted_df = metric_table.create_melted_metrics()
 
     cols = ['dataset', 'path', 'direct', 'transitive', 'metric', 'score']
-    pivot_df = metric_table.table.pivot(index=['dataset', 'path', 'metric', index_col_name],
-                                        columns=['type'],
-                                        values=['score']).reset_index()
+    pivot_df = melted_df.table.pivot(index=['dataset', 'path', 'metric', index_col_name],
+                                     columns=['type'],
+                                     values=['score']).reset_index()
 
     pivot_df.columns = ['dataset', 'path', 'metric', 'query_index', 'direct', 'transitive']
     pivot_df = pivot_df[['dataset', 'path', 'metric', 'query_index', 'transitive', 'direct']]

@@ -13,12 +13,14 @@ from api.technique.variationpoints.scalers.ScalingMethod import ScalingMethod
 
 from api.constants.processing import n_sig_figs
 from api.datasets.dataset import Dataset
+from api.extension.experiment_types import ExperimentTraceType
 from api.technique.definitions.combined.technique import CombinedTechniqueData
 from api.technique.definitions.transitive.calculator import TransitiveTechniqueData
-from api.technique.variationpoints.aggregation.aggregation_method import AggregationMethod
+from api.technique.variationpoints.aggregation.aggregation_method import (
+    AggregationMethod,
+)
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.tracer import Tracer
-from src.runner.types import ExperimentTraceType
 from src.techniques import retrieval_techniques
 
 if __name__ == "__main__":
@@ -38,50 +40,58 @@ if __name__ == "__main__":
 
     # direct technique
     direct_technique_name = retrieval_techniques.format_direct_technique(direct_am)
-    direct_technique_data = tracer.get_technique_data(dataset_name, direct_technique_name)
+    direct_technique_data = tracer.get_technique_data(
+        dataset_name, direct_technique_name
+    )
     direct_scoring_table = direct_technique_data.get_scoring_table()
     direct_scores = direct_scoring_table.values
 
     # transitive technique
-    transitive_technique_name = retrieval_techniques.format_transitive_technique(transitive_am,
-                                                                                 transitive_scaling,
-                                                                                 transitive_aggregation,
-                                                                                 trace_type)
-    transitive_technique_data: TransitiveTechniqueData = tracer.get_technique_data(dataset_name,
-                                                                                   transitive_technique_name)
+    transitive_technique_name = retrieval_techniques.format_transitive_technique(
+        transitive_am, transitive_scaling, transitive_aggregation, trace_type
+    )
+    transitive_technique_data: TransitiveTechniqueData = tracer.get_technique_data(
+        dataset_name, transitive_technique_name
+    )
     transitive_scoring_table = transitive_technique_data.get_scoring_table()
     transitive_scores = transitive_scoring_table.values
 
     # combined technique
-    combined_technique_name = retrieval_techniques.format_combined_technique(direct_am,
-                                                                             transitive_am,
-                                                                             transitive_scaling,
-                                                                             transitive_aggregation,
-                                                                             technique_aggregation,
-                                                                             trace_type)
-    combined_technique_data: CombinedTechniqueData = tracer.get_technique_data(dataset_name, combined_technique_name)
+    combined_technique_name = retrieval_techniques.format_combined_technique(
+        direct_am,
+        transitive_am,
+        transitive_scaling,
+        transitive_aggregation,
+        technique_aggregation,
+        trace_type,
+    )
+    combined_technique_data: CombinedTechniqueData = tracer.get_technique_data(
+        dataset_name, combined_technique_name
+    )
     combined_scoring_table = combined_technique_data.get_scoring_table()
     combined_scores = combined_scoring_table.values
 
     # create dataframe
     df = pd.DataFrame()
-    df['direct'] = direct_scores[:, 0]
-    df['transitive'] = transitive_scores[:, 0]
-    df['combined'] = combined_scores[:, 0]
-    df['delta'] = combined_scores[:, 0] - direct_scores[:, 0]
-    df['traced?'] = direct_scores[:, 1]
+    df["direct"] = direct_scores[:, 0]
+    df["transitive"] = transitive_scores[:, 0]
+    df["combined"] = combined_scores[:, 0]
+    df["delta"] = combined_scores[:, 0] - direct_scores[:, 0]
+    df["traced?"] = direct_scores[:, 1]
     df = df.reset_index()
 
     """
     How much was the maximum help the transitive technique provided?
     """
-    traced_df = df[df['traced?'] == 1]
-    example_item = traced_df.iloc[traced_df['delta'].argmax()]
-    example_item_idx = example_item['index']
-    example_score_delta = example_item['delta']
-    example_technique_scores = (("direct", example_item['direct']),
-                                ("transitive", example_item['transitive']),
-                                ("combined", example_item['combined']))
+    traced_df = df[df["traced?"] == 1]
+    example_item = traced_df.iloc[traced_df["delta"].argmax()]
+    example_item_idx = example_item["index"]
+    example_score_delta = example_item["delta"]
+    example_technique_scores = (
+        ("direct", example_item["direct"]),
+        ("transitive", example_item["transitive"]),
+        ("combined", example_item["combined"]),
+    )
 
     """
     What artifact pair benefited the most from the transitive technique?
@@ -103,13 +113,19 @@ if __name__ == "__main__":
     upper = transitive_technique_data.transitive_matrices[0]
     lower = transitive_technique_data.transitive_matrices[1]
 
-    intermediate_scores = pd.Series(upper[top_artifact_idx, :] * lower[:, bottom_artifact_idx])
-    sorted_intermediate_scores = intermediate_scores.sort_values().iloc[::-1].reset_index(drop=True)
-    sorted_intermediate_idx = intermediate_scores.argsort().iloc[::-1].reset_index(drop=True)
+    intermediate_scores = pd.Series(
+        upper[top_artifact_idx, :] * lower[:, bottom_artifact_idx]
+    )
+    sorted_intermediate_scores = (
+        intermediate_scores.sort_values().iloc[::-1].reset_index(drop=True)
+    )
+    sorted_intermediate_idx = (
+        intermediate_scores.argsort().iloc[::-1].reset_index(drop=True)
+    )
 
     top_n_intermediate_idx = sorted_intermediate_idx[:n_top_intermediate_artifacts]
     top_intermediate_artifacts = intermediate_artifacts.iloc[top_n_intermediate_idx]
-    best_intermediate_ids = list(top_intermediate_artifacts['id'])
+    best_intermediate_ids = list(top_intermediate_artifacts["id"])
     best_intermediate_scores = sorted_intermediate_scores[:n_top_intermediate_artifacts]
 
     best_intermediate_artifacts = zip(best_intermediate_ids, best_intermediate_scores)
@@ -117,12 +133,17 @@ if __name__ == "__main__":
     """
     Print Results
     """
-    techniques = [("direct", direct_technique_name),
-                  ("transitive", transitive_technique_name),
-                  ("combined", combined_technique_name)]
+    techniques = [
+        ("direct", direct_technique_name),
+        ("transitive", transitive_technique_name),
+        ("combined", combined_technique_name),
+    ]
     for t in techniques:
         print("%s: %s" % (t[0], t[1]))
-    print("\nThe query that benefited the most was %s -> %s" % (top_artifact['id'], bottom_artifact['id']))
+    print(
+        "\nThe query that benefited the most was %s -> %s"
+        % (top_artifact["id"], bottom_artifact["id"])
+    )
     print("\nTechnique similarity scores:")
     for technique_score in example_technique_scores:
         print("%s: %f" % (technique_score[0], technique_score[1]))
