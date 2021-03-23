@@ -14,7 +14,7 @@ PATH_TO_ROOT = os.path.join(Path(__file__).parent.absolute())
 sys.path.append(os.path.join(PATH_TO_ROOT, ".."))
 sys.path.append(os.path.join(PATH_TO_ROOT, "..", "Tracer", "src"))
 
-from runner.Experiment import Experiment
+from runner.experiment import Experiment
 from techniques.retrieval_techniques import RetrievalTechniquesExperiment
 
 REGISTERED_EXPERIMENTS: List[Type[Experiment]] = [RetrievalTechniquesExperiment]
