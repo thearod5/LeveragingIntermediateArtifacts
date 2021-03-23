@@ -1,0 +1,14 @@
+{
+	"artifacts": {
+		"0": "Originals/Definitions/requirements.txt",
+		"1": "Originals/Definitions/designdefinitions.txt",
+		"2": "Originals/Definitions/Classes_Raw.csv",
+		"3": "Originals/Definitions/tasks.txt"
+	},
+	"traces": {
+		"0-1": "Originals/TraceMatrices/reqs2DDmatrix.txt",
+		"1-2": "Originals/TraceMatrices/dd2codematrix.txt",
+		"3-2": "Originals/TraceMatrices/task2codematrix.txt",
+		"1-3": "Originals/TraceMatrices/dd2taskmatrix.txt"
+	}
+}

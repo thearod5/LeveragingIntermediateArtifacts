@@ -1,0 +1,100 @@
+id,text
+DD-11,client regist flight rout event client regist ui middlewar receiv flight rout event notif flight rout creat modifi delet
+DD-19,client regist uav configur event client regist ui middlewar receiv notif new uav type configur creat modifi delet
+DD-21,client regist uav activ event client regist ui middlewar receiv notif uav instanc activ deactiv
+DD-23,coordin specif waypoint specifi use degre longitud latitud use decim degre format
+DD-26,activ state onground uav initi activ ground onground state
+DD-30,transit onground awaitingtakeoffclear flight plan assign uav onground state transit awaitingtakeoffclear state
+DD-32,transit takingoff fli uav takingoff state achiev target altitud transit fli state
+DD-75,upload extern creat flight rout flight rout creat extern upload dronolog ui middlewar
+DD-84,default sequenc ua vs flight plan default pend flight plansof ua vs servic fcf order
+DD-87,remov flight plan queue flight plan unassign uav remov ua vs flight plan queue
+DD-113,state activ ua vs state batteri level speed current coordin uav display
+DD-118,load save map scale load map scale specifi configur
+DD-121,updat uav locat frequenc uav locat updat map current defin uiuavrefreshr
+DD-168,exist rout load ui request exist rout ui middlewar ui middlewar respond request ui display exist rout
+DD-213,log gc relat event command sent messag receiv cgc log dedic gc log file
+DD-352,transmit new rout assign ui middlewar rout assign uav request sent ui middlewar updat assign dronolog
+DD-361,gc connect gc middlewar step gc announc gc middlewar provid uniqu id
+DD-421,chang color first waypoint waypoint flight rout color differenti start waypoint end waypoint remain intermedi waypoint
+DD-445,monitor api dronolog runtim monitor allow publish arbitrari monitor messag subscrib certain messag type
+DD-498,mission plan support synchron wait uav execut flight plan reach synchron point follow delay task wait proceed delay specifi second expir
+DD-502,specifi flight rout standard format flight rout specifi standard xml flight rout format
+DD-506,save flight rout flight rout upload dronolog flight rout manag save uniqu xml file
+DD-509,takeoff altitud tag flight rout xml format includ option takeoff altitud tag
+DD-512,coordin system convers nvector request coordin system transform coordin transform default represent nvector
+DD-514,coordin system convers nvector request coordin transform nvector default represent
+DD-518,locat accuraci distanc comput coordin accur meter distanc meter
+DD-520,return home singl waypoint uav command return home current flight plan remov new flight plan creat contain singl waypoint repres origin launch coordin
+DD-524,waypoint direct hover place uav hover place mode waypoint direct uav sent gc
+DD-527,send first waypoint start flight plan start flight plan system send first target waypoint ua vs gc
+DD-529,determin waypoint reach comput distanc uav target waypoint thresholdwaypointdist waypoint consid reach
+DD-532,check flight plan takeoff altitud takeoff command issu flight schedul execut check prespecifi altitud flight plan
+DD-534,use default altitud provid flight plan takeoff altitud prescrib flight plan assign uav current ground systemwid default altitud use target takeoff altitud
+DD-536,order list rout mission plan individu uav includ mission plan order flight rout assign
+DD-538,wait synchron point uav execut flight plan reach synchron point wait proceed ua vs share same synchron point reach point
+DD-542,mission plan predefin flight pattern includ mission plan expand prior use set waypoint synchron point particip ua vs
+DD-544,synchron land flight pattern synchron land direct uav synchron final waypoint preced rout ascend descend uniqu altitud synchron fli longitud latitud home coordin synchron descend land altitud
+DD-548,flight plan schedul flight rout schedul execut waypoint takeoff altitud identifi use instanti new flight plan
+DD-552,automat flight plan assign flight plan assign specif uav flight plan schedul automat assign next avail uav
+DD-554,assign next flight plan complet flight flight plan queue uav reach final waypoint current flight plan next flight plan remov queue set current execut flight plan
+DD-557,execut flight plan uav uav store current execut flight plan id
+DD-560,reassign abort flight plan abort flight plan reassign uav
+DD-564,continu origin destin uav receiv evas direct longer close proxim object object avoid system stop send direct uav continu destin
+DD-566,onboard obstacl avoid object avoid system retriev state ua vs onboard object avoid statu
+DD-568,uav distanc object avoid system comput pairwis distanc ua vs
+DD-571,uav type specif assign virtual physic drone associ predefin uavtyp defin basic attribut
+DD-573,simul ua vs assign uniqu ds intern simul uav instanti id uniqu ds current activ ua vs
+DD-577,support intern simul ua vs system support intern simul ua vs
+DD-579,transit inair land uav inair state receiv command land transit land state
+DD-583,reject duplic request uav activ present uavid repres current activ uav gc middlewar notifi addit activ perform
+DD-585,reject non regist uav present uavid doe repres current regist uav uav activ manag reject activ notifi gc middlewar
+DD-588,deactiv physic ua vs uav deactiv schedul flight plan remov ua vs flightplan pool
+DD-599,simul takeoff intern simul given takeoff command intern simul infinit acceler uav takeoff altitud correspond current longitud latitud
+DD-601,simul travel target respond goto command intern simul continu move step target coordin target reach
+DD-603,simul batteri drain simpl simul simul uav flight intern simul reduc batteri second simulatorbatterydrainvolt
+DD-606,simul goto nvec simul given goto command nvec simul comput next coordin base normal vector altitud current posit normal vector altitud destin simul uav infinit acceler use numer method hone next coordin simulationsteps meter current posit travel path
+DD-608,simul land nvec simul given land command nvec simul immedi chang ua vs current altitud ground altitud
+DD-612,creat log event initi flight plan flight plan initi log event creat includ rout uav assign initi time stamp
+DD-614,creat log event uav reach waypoint uav reach waypoint execut flight plan log event creat includ coordin waypoint uav flight plan assign flight plan id timestamp
+DD-617,log command sent gc command sent gc gc middlewar log
+DD-619,log state monitor messag log level hwtrace activ state monitor messag log
+DD-622,ui middlewar handl control lock request ui middlewar forward control request ui client hold control lock uav
+DD-624,ui middlewar handl control heartbeat ui middlewar monitor live client hold control lock individu ua vs
+DD-627,ui middlewar list current activ ua vs ui middlewar return uav proxi object contain inform activ ua vs includ locat batteri level ground speed health statu
+DD-631,ui middlewar forward hover place command client dronolog ui middlewar accept hover place command associ uniqu uavid forward dronolog
+DD-633,ui middlewar forward return home command client dronolog ui middlewar accept return home command associ uniqu uav id forward dronolog
+DD-636,ui middlewar support flight rout modif request ui client ui middlewar support modif exist flight rout given id
+DD-640,ui forward mission plan request dronolog ui middlewar forward mission plan request dronolog
+DD-647,assign rout uav user select uav assign rout avail rout
+DD-650,transmit rout remov ui middlewar rout assign remov uav request sent ui middlewar remov assign dronolog
+DD-654,ui request pend flight plan ui middlewar user request flight plan assign uav ui request pend flight plan uav flight info object display
+DD-658,delet rout flight plan assign uav execut delet select rout click deselect button
+DD-661,request ui middlewar cancel pend flight user press cancel pend flight plan button request sent ui middlewar cancel flight
+DD-667,valid rout altitud speed altitud speed valu exceed current maximum uavmaxaltitud uavmaxgroundspe set system
+DD-671,persist rout rout inform repres use standard rout xml format transmit ui middlewar
+DD-674,creat modifi rout visual mode rout creation ui support rout creation modif visual mode allow user click locat order creat modifi delet waypoint
+DD-676,multipl rout select user multipl rout display simultan map
+DD-682,request uav state load load ui request inform activ ua vs ui middlewar ui middlewar respond request ui current activ ua vs
+DD-684,map ui real time flight ui load map display default zoom level center coordin specifi configur file
+DD-686,differenti uav type differ type ua vs differ icon
+DD-688,period updat uav locat ui period request current locat regist ua vs ui middlewar updat locat map
+DD-692,uav oper oper includ rtl takeoff hoverinplac resend command
+DD-696,initi follow mode ui follow mode initi map automat zoom pan select ua vs center activ rout constitut
+DD-699,emerg batteri notif ua vs batteri level drop predefin threshold uav health indic activ
+DD-704,hierarch organ monitor topic topic organ hierarch manner mean client subscrib messag messag certain gc uav properti
+DD-707,publish monitor messag monitor messag contain hierarch identifi describ topic messag type timestamp arbitrari serializ data attach messag
+DD-711,establish conneciton gct middlewar gc middlewar accept connect multipl gc
+DD-713,uniqu id gc gc connect gc middlewar identifi uniqu groundstationid
+DD-716,gc uav announc step gc announc current set recogn ua vs gc middlewar
+DD-719,activ request result gc inform result activ request
+DD-721,activ request deni activ request deni gc middlewar send predefin activ deni messag gc
+DD-724,uav state messag uav state messag format json object contain mandatori option element
+DD-728,uav set state messag frequenc command gc middlewar abl handl send set state frequenc command respect gc contain desir frequenc ms
+DD-731,uav movement command type movement command specifi follow command type gotowaypoint setgroundspe setveloc takeoff land hover
+DD-733,uav set groundspe command setgroundspe command specifi ground speed meter second
+DD-735,uav takeoff command takeoff command specifi target altitud
+DD-740,forward command uav gc transform command vehicl specif format
+DD-743,default messag frequenc default messag frequenc uav state messag uavmessagestatefrequ
+DD-745,adjust messag frequenc command gc receiv set frequenc command gc middlewar adjust messang frequenc accordingli
+DD-748,close connect incorrect uav registr gc receiv notif uav

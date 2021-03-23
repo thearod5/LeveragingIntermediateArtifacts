@@ -1,0 +1,31 @@
+id,text
+RE-8,uav state transit request vehicl core transit uav state accord allow state transit depict uav state transit diagram
+RE-25,uav identif vehicl core assign uniqu id activ uav
+RE-28,uav flight plan execut singl uav flight plan schedul execut flight plan time uav
+RE-36,instanc regist drone activ time uav activ manag ensur instanc regist drone activ time
+RE-77,waypoint definit waypoint specifi use coordin includ longitud latitud altitud
+RE-80,visit waypoint flight plan flight plan execut vehicl core send next waypoint uav
+RE-86,manag flight plan queue singl uav flight plan schedul maintain manag pend flight plan uav
+RE-100,remov plan flight request singl uav flight plan schedul unassign flight plan assign uav await execut
+RE-101,assign new flight plan complet previou flight uav pend flight plan reach final waypoint current flight plan singl uav flight plan schedul execut next assign flight plan
+RE-114,map ui real time flight ui load map display
+RE-120,real time flight ui real time flight ui locat activ ua vs icon map
+RE-424,return home detour return home command issu flight manag return uav origin launch locat issu addit waypoint rout command
+RE-501,flight rout defin waypoint flight rout manag defin flight rout order sequenc waypoint first waypoint repres first target locat final waypoint repres final target locat
+RE-505,flight rout persist flight rout manag persist flight rout
+RE-508,specifi takeoff altitud flight rout requir custom takeoff altitud differ system default takeoff altitud specifi flight rout
+RE-510,coordin system convers request coordin system transform coordin altern format
+RE-516,calcul distanc given coordin coordin system comput distanc
+RE-541,predefin flight pattern mission planner manag predefin flight pattern
+RE-547,flight plan schedul request singl uav flight plan schedul schedul rout execut
+RE-551,automat flight plan assign schedul flight manual assign uav singl uav flight plan schedul assign rout automat uav
+RE-558,cancel activ plan request singl uav flight plan schedul abort current execut flight plan uav
+RE-576,support intern simul ua vs vehicl core support virtual ua vs
+RE-587,deactiv physic ua vs uav deactiv uav activ manag cancel current schedul flight plan
+RE-594,simul takeoff given takeoff command intern simul uav takeoff altitud correspond current longitud latitud
+RE-595,simul goto given goto command intern simul updat locat uav increment simulationsteps meter move target destin destin reach
+RE-596,simul land given land command intern simul uav ground altitud correspond current longitud latitud
+RE-597,simul batteri intern simul approxim state batteri
+RE-611,log flight plan relat event activ logger log flight plan relat event
+RE-616,log gc relat event activ logger log command sent messag receiv cg
+RE-626,ui middlewar list current

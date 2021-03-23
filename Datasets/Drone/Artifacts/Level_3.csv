@@ -1,0 +1,31 @@
+id,text
+ST-185,load default zoom level configur file
+ST-182,design incorpor altitud info flight rout activ flight ui
+ST-132,creat ui configur singleton follow exampl httpsgist github comkimmelljbddcfd creat singleton class ui paramet search java singleton singleton exampl current paramet includ projectnam mapcenterlan mapcenterlon mapdefaultzoom futur use class configur paramet
+ST-216,request exist rout dronolog
+ST-178,class hold latitud longitud altitud lla coordin need immut class hold doubl latitud longitud altitud lla class follow data member latitud angl north equat degre neg angl defin latitud southern hemispher longitud angl east prime meridian degre neg angl defin longitud western hemispher altitud distanc sea level precis distanc surfac wg refer ellipsoid project need distanc meter tradit aviat distanc measur feet care use class class follow method pvec take argument map lla coordin wg refer frame nvec take argument map lla coordin defin nvector plu altitud nvector normal vector surfac wg refer ellipsoid ellipsoid defin posit sea level everywher earth pair altitud precis defin posit nvector nice properti make dead reckon easier accur dead reckon process calcul drone current posit use previous determin posit advanc posit base known estim speed elaps time cours see httpsen wikipedia orgwiki deadreckon info learn nice properti nvector see articl httpwww navlab net public nonsingular horizont posit represent pdf journal navig coordin java modifi lla coordin class need
+ST-278,make replac simul integr nvector posit reckon nvec interpol doe posit reckon wg replac simul use need creat movement simul batteri simul replic base function simpl simul
+ST-259,nvector lla need robust latitud need calcul use atan see equat httpwww navlab net public nonsingular horizont posit represent pdf
+ST-262,replac exist coordin implement new lla coordin replac exist coordin implement new lla coordin requir updat flight simul work doubl valu instead long ui adapt coordin correctli addit function modifi waypoint lla coordin immut
+ST-245,add icon waypoint activ flight
+ST-336,assign rout select implement select rout behavior ignor note mockup file use select rout lefthand side automat select match rout righthand side show rout map select rout righthand side autoselect rout lefthand side
+ST-337,assign rout movereord implement movereord function specifi mockup file read callout note mockup file
+ST-279,provid remot interfac rout assign
+ST-384,prevent user assign rout user attempt assign rout uav tri rout right side panel left side prevent rout assign popup notif say waypoint defin rout assign rout uav
+ST-369,add style assign multipl rout ui
+ST-396,check input valu altitud speed check user input altitud speed place popup window creat new waypoint tabl edit mode save button popup window check mark button tabl click input altitud andor speed float number popup notif say altitud andor transit speed number save input valu
+ST-373,rout descript add rout descript rout meta info bar doubl click rout descript chang textfield edit similar behavior field creat new rout add text area ad rout descript
+ST-227,remov waypoint tabl add trashcan button right row tabl click button popup window show sure want delet waypoint button ye user click window close happen user click ye remov waypoint row tabl remov waypoint map close window
+ST-199,creat tabl grid waypoint ad map tabl map tabl sync map tabl rout map chang
+ST-173,add new waypoint flight rout user click map new waypoint creat shown map newli ad waypoint first line ad new previou
+ST-175,waypoint exist waypoint select map drag locat
+ST-226,waypoint contextu ui mous click waypoint instead remov directli show window next waypoint includ inform lat lon altitud approach speed button say remov waypoint click button remov waypoint
+ST-349,stop manag pin polylin separ ui map manag pin polylin map manag get rid privat polylin new array privat pin new array instead use map get compon iter retriev pin polylin
+ST-215,request activ ua vs dronolog
+ST-221,refresh drone imform dronolog ui
+ST-224,show ua vs map
+ST-304,chang color select focus ua vs appli icon line map default ua vs use droneicon png flight rout line color select ua vs ua vs checkbox check use droneiconselect png chang line color focus uav uav user click use droneiconfocus png chagn line color
+ST-444,takeoff altitud
+ST-218,style appli style emerg control
+ST-282,follow uav add compon emerg oper call map oper add button call follow select ua vs map ua vs map uav select button follow select ua vs disabl uav select button enabl click follow select ua vs automat zoom pan map select ua vs rectangl bound select ua vs center map constitut click ua vs zoom pan map ua vs plan rout rectangl bound ua vs plan rout center map constitut
+ST-357,follow mode indic ui follow ua vs show border map
