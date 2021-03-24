@@ -36,7 +36,7 @@ from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
 from api.technique.variationpoints.tracetype.trace_type import TraceType
 from api.tracer import Tracer
 from experiments.constants import (
-    PATH_TO_DATASET_METRIC_TABLES,
+    PATH_TO_METRIC_TABLES,
     PATH_TO_METRIC_TABLE_AGGREGATE,
 )
 from src.experiments.experiment import Experiment
@@ -49,7 +49,7 @@ RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION = (
     "each technique."
 )
 
-RETRIEVAL_TECHNIQUES_ID = "METRIC_TABLE"
+RETRIEVAL_TECHNIQUES_ID = "metric_table"
 
 EXPERIMENT_LOADING_MESSAGE = "...calculating techniques..."
 TechniqueID = Tuple[
@@ -74,18 +74,11 @@ class CalculateMetricTable(Experiment):
         """
         dataset_name = prompt_for_dataset()
         metric_table = calculate_technique_metric_table(dataset_name)
-        metric_table.save(create_export_path(dataset_name))
-        Table.aggregate_intermediate_files(PATH_TO_DATASET_METRIC_TABLES).save(
+        metric_table.sort_cols().save(create_export_path(dataset_name))
+        Table.aggregate_intermediate_files(PATH_TO_METRIC_TABLES).sort_cols().save(
             PATH_TO_METRIC_TABLE_AGGREGATE
         )
         return metric_table
-
-    @property
-    def description(self) -> str:
-        """
-        :return: a description of what this experiments
-        """
-        return RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION
 
     @staticmethod
     def name() -> str:
@@ -105,7 +98,7 @@ class RetrievalTechniques:
         # direct
         for t_am in AlgebraicModel:
             t_id = (t_am, ExperimentTraceType.DIRECT, None, None, None, None)
-            yield format_direct_technique(t_am), create_entry(t_id)
+            yield create_direct_definition(t_am), create_entry(t_id)
 
         # transitive
         for trace_type in ExperimentTraceType:
@@ -120,7 +113,7 @@ class RetrievalTechniques:
                             transitive_aggregation,
                             None,
                         )
-                        yield format_transitive_technique(
+                        yield create_transitive_definition(
                             t_am, t_scaling, transitive_aggregation, trace_type
                         ), create_entry(t_id)
 
@@ -141,7 +134,7 @@ class RetrievalTechniques:
                                     transitive_aggregation,
                                     technique_aggregation,
                                 )
-                                yield format_combined_technique(t_id), create_entry(
+                                yield create_combined_definition(t_id), create_entry(
                                     t_id
                                 )
 
@@ -208,7 +201,7 @@ def create_export_path(dataset: str):
     :param dataset: the dataset being experimented on
     :return: the export path for retrieval techniques experiment when applying it to given dataset
     """
-    export_path: str = os.path.join(PATH_TO_DATASET_METRIC_TABLES, dataset + ".csv")
+    export_path: str = os.path.join(PATH_TO_METRIC_TABLES, dataset + ".csv")
     return export_path
 
 
@@ -222,7 +215,7 @@ def prompt_for_dataset() -> str:
     return dataset
 
 
-def format_direct_technique(algebraic_model: AlgebraicModel):
+def create_direct_definition(algebraic_model: AlgebraicModel):
     """
     Creates technique definition for direct technique using specified algebraic model
     :param algebraic_model: the algebraic model used to directly compare artifacts
@@ -235,7 +228,7 @@ def format_direct_technique(algebraic_model: AlgebraicModel):
     return technique_definition
 
 
-def format_transitive_technique(
+def create_transitive_definition(
     transitive_algebraic_model: AlgebraicModel,
     scaling_method: ScalingMethod,
     transitive_aggregation: AggregationMethod,
@@ -273,7 +266,7 @@ def format_transitive_technique(
     return transitive
 
 
-def format_combined_technique(t_id: TechniqueID):
+def create_combined_definition(t_id: TechniqueID):
     """
     Creates the code required to construct technique with given parameters:
     :param t_id: tuple - containing all identifying information for given technique
@@ -282,8 +275,10 @@ def format_combined_technique(t_id: TechniqueID):
 
     d_am, trace_type, t_am, t_scaling, t_aggregation, technique_aggregation = t_id
 
-    direct = format_direct_technique(d_am)
-    transitive = format_transitive_technique(t_am, t_scaling, t_aggregation, trace_type)
+    direct = create_direct_definition(d_am)
+    transitive = create_transitive_definition(
+        t_am, t_scaling, t_aggregation, trace_type
+    )
 
     return "(%s (%s) (%s %s))" % (
         COMBINED_COMMAND_SYMBOL,

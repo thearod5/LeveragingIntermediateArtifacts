@@ -14,11 +14,11 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
 )
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.tracer import Tracer
-from src.techniques.retrieval_techniques import format_combined_technique
+from experiments.calculate_metric_table import create_combined_definition
 
 if __name__ == "__main__":
     dataset_name = "EasyClinic"
-    technique_name = format_combined_technique(
+    technique_name = create_combined_definition(
         AlgebraicModel.VSM,
         AlgebraicModel.VSM,
         ScalingMethod.INDEPENDENT,

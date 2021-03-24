@@ -15,10 +15,6 @@ class CreateBestTechnique(Experiment):
         best_table.sort_cols().save(PATH_TO_BEST_AGGREGATE)
         return best_table
 
-    @property
-    def description(self) -> str:
-        return "Updates the best.csv table."
-
     @staticmethod
     def name() -> str:
         return "best_table"

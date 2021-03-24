@@ -12,17 +12,17 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
     AggregationMethod,
 )
 from api.tracer import Tracer
-from src.techniques.retrieval_techniques import format_transitive_technique
+from experiments.calculate_metric_table import create_transitive_definition
 
 if __name__ == "__main__":
     dataset_name = "TrainController"
-    t1 = format_transitive_technique(
+    t1 = create_transitive_definition(
         AlgebraicModel.VSM,
         ScalingMethod.INDEPENDENT,
         AggregationMethod.MAX,
         ExperimentTraceType.NONE,
     )
-    t2 = format_transitive_technique(
+    t2 = create_transitive_definition(
         AlgebraicModel.VSM,
         ScalingMethod.GLOBAL,
         AggregationMethod.MAX,

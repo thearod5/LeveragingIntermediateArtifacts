@@ -20,11 +20,11 @@ class Experiment(ABC):
         """
 
     @property
-    @abstractmethod
     def description(self) -> str:
         """
         :return: str - the description for this experiment
         """
+        return self.__doc__
 
     @staticmethod
     @abstractmethod

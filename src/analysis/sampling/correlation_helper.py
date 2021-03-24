@@ -1,12 +1,8 @@
-import os
-
 import pandas as pd
 from scipy.stats import spearmanr
 
-from api.constants.paths import PATH_TO_GAIN_INTERMEDIARY
 from api.constants.processing import (
     CORRELATION_COLNAME,
-    DATASET_COLNAME,
     Data,
     METRIC_COLNAME,
     N_SIG_FIGS,
@@ -49,22 +45,19 @@ def create_correlation_matrix(data: Data):
 
 
 def create_gain_correlation_table(
-    dataset_name: str, sampling_type: str, correlation_df: Data
+    gain_df: Data, correlation_df: Data, sampling_method: str
 ):
     experiment_label = (
         ExperimentTraceType.ALL.value
-        if sampling_type == SamplingExperiment.TRACES.value
+        if sampling_method == SamplingExperiment.TRACES.value
         else ExperimentTraceType.NONE.value
     )
 
-    path_to_gain_df = os.path.join(PATH_TO_GAIN_INTERMEDIARY, dataset_name + ".csv")
-    gain_df = pd.read_csv(path_to_gain_df)
     trace_mask = gain_df[TRANSITIVE_TRACE_TYPE_COLNAME] == experiment_label
     gain_for_trace_df = (
         gain_df[trace_mask]
         .reset_index(drop=True)
         .drop(TRANSITIVE_TRACE_TYPE_COLNAME, axis=1)
     )
-    correlation_df[DATASET_COLNAME] = dataset_name
     gain_correlation_df = pd.merge(left=gain_for_trace_df, right=correlation_df)
     return gain_correlation_df

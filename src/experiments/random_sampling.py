@@ -9,7 +9,11 @@ from api.extension.experiment_types import SamplingExperiment
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
 from api.tracer import Tracer
-from experiments.constants import PATH_TO_SAMPLED_METRIC_TABLES
+from experiments.constants import (
+    PATH_TO_ARTIFACT_SAMPLING_AGG,
+    PATH_TO_SAMPLED_METRIC_TABLES,
+    PATH_TO_TRACES_SAMPLING_AGG,
+)
 from src.experiments.experiment import Experiment
 from src.experiments.progress_bar_factory import create_bar
 
@@ -78,90 +82,47 @@ def create_sampled_metric_table(dataset_name: str, sampling_method: str) -> Metr
     return metric_table
 
 
+def prompt_user():
+    dataset_name = click.prompt(
+        "Please select a dataset: ",
+        type=click.Choice(DATASET_COLUMN_ORDER, case_sensitive=False),
+    )
+    sampling_method = click.prompt(
+        "Please select a sampling method: ",
+        type=click.Choice(SAMPLING_METHODS, case_sensitive=False),
+    )
+    return dataset_name, sampling_method
+
+
 class SampledMetricTable(Experiment):
     """
     Contains the experiment interface for sampling techniques.
     """
 
     def run(self) -> Table:
-        dataset_name = click.prompt(
-            "Please select a dataset: ",
-            type=click.Choice(DATASET_COLUMN_ORDER, case_sensitive=False),
+        dataset_name, sampling_method = prompt_user()
+        path_to_intermediate_files = os.path.join(
+            PATH_TO_SAMPLED_METRIC_TABLES, sampling_method
         )
-        sampling_method = click.prompt(
-            "Please select a sampling method: ",
-            type=click.Choice(SAMPLING_METHODS, case_sensitive=False),
+        run_export_path = os.path.join(
+            path_to_intermediate_files, dataset_name + ".csv"
         )
-        metric_table = create_sampled_metric_table(dataset_name, sampling_method)
-        export_path = os.path.join(
-            PATH_TO_SAMPLED_METRIC_TABLES, sampling_method, dataset_name + ".csv"
+        aggregate_file_path = (
+            PATH_TO_ARTIFACT_SAMPLING_AGG
+            if sampling_method in PATH_TO_ARTIFACT_SAMPLING_AGG
+            else PATH_TO_TRACES_SAMPLING_AGG
         )
-        metric_table.sort_cols().save(export_path)
-        return metric_table
 
-    @property
-    def description(self) -> str:
-        return EXPERIMENT_DESCRIPTION
+        metric_table = create_sampled_metric_table(dataset_name, sampling_method)
+        metric_table.sort_cols().save(run_export_path)
+        Table.aggregate_intermediate_files(path_to_intermediate_files).sort_cols().save(
+            aggregate_file_path
+        )
+        return metric_table
 
     @staticmethod
     def name() -> str:
         return EXPERIMENT_NAME
-
-
-#
-# def post_processing(init_data: (str, str), metric_table: Table):
-#     dataset, experiment_type = init_data
-#
-#     aggregate_file_path = os.path.join(
-#         PATH_TO_SAMPLING_PROCESSED, "%s_sampling.csv" % experiment_type
-#     )
-#     component_folder = os.path.join(PATH_TO_SAMPLING_INTERMEDIARY, experiment_type)
-#
-#     processed_df = metric_table.setup_for_graph()
-#
-#     intermediary_path = os.path.join(component_folder, dataset + ".csv")
-#     processed_df.to_csv(intermediary_path, index=False)
-#     Table.aggregate_intermediate_files(component_folder).format_table().save(
-#         aggregate_file_path
-#     )
-#
-#     # calculate Spearman's correlation
-#     data_processed_without_lag = processed_df[
-#         processed_df[METRIC_COLNAME] != LAG_COLNAME
-#     ]
-#     correlation_df = create_correlation_matrix(data_processed_without_lag).round(
-#         n_sig_figs
-#     )
-#
-#     # combine with gain table and export
-#     gain_correlation_df = create_gain_correlation_table(
-#         dataset, experiment_type, correlation_df
-#     ).round(n_sig_figs)
-#     correlation_base_folder = os.path.join(
-#         PATH_TO_CORRELATION_INTERMEDIARY, experiment_type
-#     )
-#     correlation_export_path = os.path.join(correlation_base_folder, dataset + ".csv")
-#     gain_correlation_df.to_csv(correlation_export_path, index=False)
-#
-#     # update aggregate gain-correlation table
-#     correlation_agg_path = os.path.join(
-#         PATH_TO_CORRELATION_PROCESSED,
-#         experiment_type,
-#         "%s_gain_correlation.csv" % experiment_type,
-#     )
-#     Table.aggregate_intermediate_files(correlation_base_folder).format_table().save(
-#         correlation_agg_path
-#     )
-
-
-# def run_post_processing():
-#     datasets = ["EBT", "WARC", "Drone", "TrainController", "EasyClinic"]
-#     for dataset_name in datasets:
-#         experiment_type = "traces"
-#         data = pd.read_csv(create_run_export_path((dataset_name, experiment_type)))
-#         metric_table = Table()
-#         metric_table.table = data
-#         post_processing((dataset_name, experiment_type), metric_table)
 
 
 if __name__ == "__main__":

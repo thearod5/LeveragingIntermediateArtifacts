@@ -15,10 +15,6 @@ class CalculateGain(Experiment):
         best_table.sort_cols().save(PATH_TO_GAIN_AGGREGATE)
         return best_table
 
-    @property
-    def description(self) -> str:
-        return "Calculates the maximum gain per trace type"
-
     @staticmethod
     def name() -> str:
         return "gain_table"
