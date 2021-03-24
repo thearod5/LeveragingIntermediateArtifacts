@@ -4,8 +4,6 @@ The following experiment calculates all possible direct, transitive, and combine
 import os
 from typing import Optional, Tuple
 
-import click
-
 from api.constants.processing import (
     ALGEBRAIC_MODEL_COLNAME,
     DIRECT_ALGEBRAIC_MODEL_COLNAME,
@@ -41,6 +39,7 @@ from experiments.constants import (
 )
 from src.experiments.experiment import Experiment
 from src.experiments.progress_bar_factory import create_bar
+from utilities.prompts import prompt_for_dataset
 
 RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION = (
     "This experiment calculates all direct, transitive, and combined "
@@ -78,6 +77,8 @@ class CalculateMetricTable(Experiment):
         Table.aggregate_intermediate_files(PATH_TO_METRIC_TABLES).sort_cols().save(
             PATH_TO_METRIC_TABLE_AGGREGATE
         )
+        self.export_paths.append(create_export_path(dataset_name))
+        self.export_paths.append(PATH_TO_METRIC_TABLE_AGGREGATE)
         return metric_table
 
     @staticmethod
@@ -102,6 +103,8 @@ class RetrievalTechniques:
 
         # transitive
         for trace_type in ExperimentTraceType:
+            if trace_type == ExperimentTraceType.DIRECT:
+                continue
             for t_am in AlgebraicModel:
                 for t_scaling in ScalingMethod:
                     for transitive_aggregation in AggregationMethod:
@@ -169,7 +172,7 @@ def get_n_combined():
     """
     return (
         len(AlgebraicModel)
-        * len(ExperimentTraceType)
+        * (len(ExperimentTraceType) - 1)  # remove direct trace type
         * len(AlgebraicModel)
         * len(ScalingMethod)
         * len(AggregationMethod)
@@ -182,7 +185,7 @@ def get_n_transitive():
     :return: int - the number of transitive techniques
     """
     return (
-        len(ExperimentTraceType)
+        (len(ExperimentTraceType) - 1)  # remove direct trace type
         * len(AlgebraicModel)
         * len(ScalingMethod)
         * len(AggregationMethod)
@@ -203,16 +206,6 @@ def create_export_path(dataset: str):
     """
     export_path: str = os.path.join(PATH_TO_METRIC_TABLES, dataset + ".csv")
     return export_path
-
-
-def prompt_for_dataset() -> str:
-    """
-    Prompts user for a dataset name
-    :return: name of dataset given by user.
-    """
-    dataset: str = click.prompt("Dataset name").strip()
-    assert len(dataset) > 0, "expected at least one dataset"
-    return dataset
 
 
 def create_direct_definition(algebraic_model: AlgebraicModel):
@@ -328,15 +321,17 @@ def get_component_trace_types(experiment_trace_type: ExperimentTraceType):
     :param experiment_trace_type: the type of tracing used (defined by experiment terminology)
     :return: tuple of two where each component is either traced or not traced
     """
-    a_trace, b_trace = TraceType.NOT_TRACED, TraceType.NOT_TRACED
+    if experiment_trace_type == ExperimentTraceType.NONE:
+        return TraceType.NOT_TRACED, TraceType.NOT_TRACED
     if experiment_trace_type == ExperimentTraceType.LOWER:
-        b_trace = TraceType.TRACED
-    elif experiment_trace_type == ExperimentTraceType.UPPER:
-        a_trace = TraceType.TRACED
-    elif experiment_trace_type == ExperimentTraceType.ALL:
-        a_trace = TraceType.TRACED
-        b_trace = TraceType.TRACED
-    return a_trace, b_trace
+        return TraceType.NOT_TRACED, TraceType.TRACED
+    if experiment_trace_type == ExperimentTraceType.UPPER:
+        return TraceType.TRACED, TraceType.NOT_TRACED
+    if experiment_trace_type == ExperimentTraceType.ALL:
+        return TraceType.TRACED, TraceType.TRACED
+    raise ValueError(
+        f"Component trace types not defined for: {experiment_trace_type.value}"
+    )
 
 
 if __name__ == "__main__":

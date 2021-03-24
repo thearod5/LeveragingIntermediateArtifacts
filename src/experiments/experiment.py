@@ -13,6 +13,9 @@ class Experiment(ABC):
     Interface for running experiment under a common interface
     """
 
+    def __init__(self):
+        self.export_paths = []
+
     @abstractmethod
     def run(self) -> Table:
         """

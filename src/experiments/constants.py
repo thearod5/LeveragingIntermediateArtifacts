@@ -25,3 +25,15 @@ PATH_TO_ARTIFACT_CORRELATION_AGG = os.path.join(
 PATH_TO_TRACES_CORRELATION_AGG = os.path.join(
     PATH_TO_AGGREGATE_TABLES, "traces_correlation.csv"
 )
+"""
+AGGREGATES
+"""
+PATH_TO_BEST_RANKS = os.path.join(PATH_TO_AGGREGATE_TABLES, "best_ranks.csv")
+
+"""
+PRESENTATION
+
+contains the path to tables that are used directly in the paper
+"""
+PATH_TO_PRESENTATION = os.path.join(PATH_TO_DATA, "presentation")
+PATH_TO_RQ1_BEST = os.path.join(PATH_TO_PRESENTATION, "rq1_best.csv")

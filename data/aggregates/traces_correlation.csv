@@ -1,4 +1,4 @@
 correlation,metric,p_value
 ,ap,
-0.512,auc,<0.001
-0.533,lag_normalized_inverted,<0.001
+0.363,auc,<0.001
+0.385,lag_normalized_inverted,<0.001

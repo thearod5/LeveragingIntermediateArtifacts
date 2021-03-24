@@ -1,0 +1,15 @@
+Variation Point,Technique,Percent Best
+Technique Type,COMBINED,100\%
+Technique Type,TRANSITIVE,0\%
+Direct Algebraic Model,LSI,80\%
+Direct Algebraic Model,VSM,20\%
+Transitive Algebraic Model,LSI,40\%
+Transitive Algebraic Model,VSM,60\%
+Transitive Scaling,GLOBAL,40\%
+Transitive Scaling,INDEPENDENT,60\%
+Transitive Aggregation,MAX,20\%
+Transitive Aggregation,PCA,20\%
+Transitive Aggregation,SUM,60\%
+Technique Aggregation,MAX,40\%
+Technique Aggregation,PCA,40\%
+Technique Aggregation,SUM,20\%

@@ -13,6 +13,7 @@ class CalculateGain(Experiment):
         rq1_aggregate = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
         best_table = rq1_aggregate.calculate_gain()
         best_table.sort_cols().save(PATH_TO_GAIN_AGGREGATE)
+        self.export_paths.append(PATH_TO_GAIN_AGGREGATE)
         return best_table
 
     @staticmethod
