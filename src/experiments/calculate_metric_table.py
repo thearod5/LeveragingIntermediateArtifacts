@@ -6,19 +6,6 @@ from typing import Optional, Tuple
 
 import click
 
-from api.constants.paths import (
-    NOTRACES_ID,
-    PATH_TO_BEST_INTERMEDIARY,
-    PATH_TO_BEST_PROCESSED,
-    PATH_TO_DATA_PROCESSED,
-    PATH_TO_GAIN_INTERMEDIARY,
-    PATH_TO_GAIN_PROCESSED,
-    PATH_TO_RQ1_INTERMEDIATE,
-    PATH_TO_RQ2_INTERMEDIATE,
-    PATH_TO_TECHNIQUE_SOURCE_DATA,
-    TECHNIQUES_ID,
-    WITHTRACES_ID,
-)
 from api.constants.processing import (
     ALGEBRAIC_MODEL_COLNAME,
     DIRECT_ALGEBRAIC_MODEL_COLNAME,
@@ -48,8 +35,12 @@ from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
 from api.technique.variationpoints.tracetype.trace_type import TraceType
 from api.tracer import Tracer
-from src.runner.experiment import Experiment
-from src.runner.progress_bar_factory import create_bar
+from experiments.constants import (
+    PATH_TO_DATASET_METRIC_TABLES,
+    PATH_TO_METRIC_TABLE_AGGREGATE,
+)
+from src.experiments.experiment import Experiment
+from src.experiments.progress_bar_factory import create_bar
 
 RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION = (
     "This experiment calculates all direct, transitive, and combined "
@@ -58,7 +49,7 @@ RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION = (
     "each technique."
 )
 
-RETRIEVAL_TECHNIQUES_ID = "RETRIEVAL_TECHNIQUES"
+RETRIEVAL_TECHNIQUES_ID = "METRIC_TABLE"
 
 EXPERIMENT_LOADING_MESSAGE = "...calculating techniques..."
 TechniqueID = Tuple[
@@ -69,6 +60,39 @@ TechniqueID = Tuple[
     Optional[AggregationMethod],  # transitive aggregation method
     Optional[AggregationMethod],
 ]  # technique aggregation
+
+
+class CalculateMetricTable(Experiment):
+    """
+    Implements the Experiment interface for calculating the metric of all the retrieval techniques.
+    """
+
+    def run(self) -> Table:
+        """
+        calculates metric table for all techniques and applies post processing techinques defined in module
+        :return: metric table with metrics
+        """
+        dataset_name = prompt_for_dataset()
+        metric_table = calculate_technique_metric_table(dataset_name)
+        metric_table.save(create_export_path(dataset_name))
+        Table.aggregate_intermediate_files(PATH_TO_DATASET_METRIC_TABLES).save(
+            PATH_TO_METRIC_TABLE_AGGREGATE
+        )
+        return metric_table
+
+    @property
+    def description(self) -> str:
+        """
+        :return: a description of what this experiments
+        """
+        return RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION
+
+    @staticmethod
+    def name() -> str:
+        """
+        :return: the name of the experiment
+        """
+        return RETRIEVAL_TECHNIQUES_ID
 
 
 class RetrievalTechniques:
@@ -133,7 +157,7 @@ def calculate_technique_metric_table(dataset: str) -> Table:
     :return: MetricTable - contains default accuracy metrics for techniques
     """
     tracer = Tracer()
-    metric_table = Table()
+    metric_table = MetricTable()
 
     techniques = RetrievalTechniques()
     with create_bar(
@@ -184,7 +208,7 @@ def create_export_path(dataset: str):
     :param dataset: the dataset being experimented on
     :return: the export path for retrieval techniques experiment when applying it to given dataset
     """
-    export_path: str = os.path.join(PATH_TO_TECHNIQUE_SOURCE_DATA, dataset + ".csv")
+    export_path: str = os.path.join(PATH_TO_DATASET_METRIC_TABLES, dataset + ".csv")
     return export_path
 
 
@@ -320,101 +344,7 @@ def get_component_trace_types(experiment_trace_type: ExperimentTraceType):
     return a_trace, b_trace
 
 
-def post_processing(dataset: str, metric_table: MetricTable):
-    """
-    Post processing steps:
-    1. Calculate percent best
-    2. Calculate gain on direct best technique
-    3. Create RQ1 and RQ2 tables
-    :param dataset: the dataset the metric table is calculated for
-    :param metric_table: MetricTable containing technique identifying information and accuracy scores
-    :return: None
-    """
-    # paths
-    best_export_path = os.path.join(PATH_TO_BEST_INTERMEDIARY, dataset + ".csv")
-    gain_export_path = os.path.join(PATH_TO_GAIN_INTERMEDIARY, dataset + ".csv")
-    rq1_agg_export_path = os.path.join(
-        PATH_TO_DATA_PROCESSED, TECHNIQUES_ID, NOTRACES_ID + ".csv"
-    )
-    rq2_agg_export_path = os.path.join(
-        PATH_TO_DATA_PROCESSED, TECHNIQUES_ID, WITHTRACES_ID + ".csv"
-    )
-    rq1_export_path = os.path.join(PATH_TO_RQ1_INTERMEDIATE, dataset + ".csv")
-    rq2_export_path = os.path.join(PATH_TO_RQ2_INTERMEDIATE, dataset + ".csv")
-
-    # 1. percent best
-    path_to_best_agg = os.path.join(PATH_TO_BEST_PROCESSED, "Best.csv")
-    metric_table.calculate_percent_best().format_table().save(best_export_path)
-    Table.aggregate_intermediate_files(PATH_TO_BEST_INTERMEDIARY).format_table().save(
-        path_to_best_agg
-    )
-
-    # 2. calculate gain
-    path_to_gain_agg = os.path.join(PATH_TO_GAIN_PROCESSED, "Gain.csv")
-    metric_table.calculate_gain().save(gain_export_path)
-    Table.aggregate_intermediate_files(PATH_TO_GAIN_INTERMEDIARY).format_table().save(
-        path_to_gain_agg
-    )
-
-    # 3. Split into RQ1 and RQ2 tables
-    metric_table_values = metric_table.table
-    direct_mask = (
-        metric_table_values[TRANSITIVE_TRACE_TYPE_COLNAME]
-        == ExperimentTraceType.DIRECT.value
-    )
-    none_mask = (
-        metric_table_values[TRANSITIVE_TRACE_TYPE_COLNAME]
-        == ExperimentTraceType.NONE.value
-    )
-    rq1_mask = none_mask | direct_mask
-    rq2_mask = (~none_mask) | direct_mask
-    rq1_df, rq2_df = metric_table.split(left=rq1_mask, right=rq2_mask)
-
-    MetricTable(rq1_df).setup_for_graph().save(rq1_export_path)
-    MetricTable(rq2_df).setup_for_graph().save(rq2_export_path)
-
-    Table.aggregate_intermediate_files(PATH_TO_RQ1_INTERMEDIATE).format_table().save(
-        rq1_agg_export_path
-    )
-    Table.aggregate_intermediate_files(PATH_TO_RQ2_INTERMEDIATE).format_table().save(
-        rq2_agg_export_path
-    )
-
-    print("RQ1 aggregate path: %s" % rq1_agg_export_path)
-    print("RQ2 aggregate path: %s" % rq2_agg_export_path)
-
-
-class RetrievalTechniquesExperiment(Experiment):
-    """
-    Implements the Experiment interface for calculating the metric of all the retrieval techniques.
-    """
-
-    def run(self) -> Table:
-        """
-        calculates metric table for all techniques and applies post processing techinques defined in module
-        :return: metric table with metrics
-        """
-        dataset_name = prompt_for_dataset()
-        metric_table = calculate_technique_metric_table(dataset_name)
-        post_processing(dataset_name, metric_table)
-        return metric_table
-
-    @property
-    def description(self) -> str:
-        """
-        :return: a description of what this experiments
-        """
-        return RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION
-
-    @staticmethod
-    def name() -> str:
-        """
-        :return: the name of the experiment
-        """
-        return RETRIEVAL_TECHNIQUES_ID
-
-
 if __name__ == "__main__":
     Cache.CACHE_ON = True
-    experiment = RetrievalTechniquesExperiment()
+    experiment = CalculateMetricTable()
     experiment.run()
