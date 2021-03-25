@@ -14,7 +14,7 @@ from api.constants.processing import (
     VALUE_COLNAME,
 )
 from api.extension.experiment_types import SamplingExperiment
-from src.analysis.sampling.correlation_helper import (
+from src.analysis.sampling.gain_correlation_joiner import (
     create_correlation_matrix,
     create_gain_correlation_table,
 )

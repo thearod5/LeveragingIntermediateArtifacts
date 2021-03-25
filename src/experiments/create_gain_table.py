@@ -1,4 +1,3 @@
-from api.constants.processing import METRIC_COLNAME
 from api.extension.experiment_types import ExperimentTraceType
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
@@ -7,18 +6,20 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
 )
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
-from experiments.calculate_metric_table import create_combined_definition
 from experiments.constants import (
     PATH_TO_METRIC_TABLE_AGGREGATE,
     PATH_TO_RQ1_GAIN,
     PATH_TO_RQ2_GAIN,
 )
+from experiments.create_metric_table import create_combined_definition
 from experiments.experiment import Experiment
 
 
 class CalculateGain(Experiment):
     """
-    Creates a table
+    Creates two tables representing:
+    * Gain on direct best when leveraging intermediate artifacts
+    * Gain on direct best when leveraging intermediate traces
     """
 
     best_traced_technique = (
@@ -30,10 +31,11 @@ class CalculateGain(Experiment):
         AggregationMethod.MAX,
     )
 
-    def calculate_rq1_gain(self, agg_df, direct_indices) -> Table:
-        notraces_target_indices = agg_df.get_best_combined_notraces_indices()
+    @staticmethod
+    def calculate_rq1_gain(agg_df, direct_indices) -> Table:
+        no_traces_target_indices = agg_df.get_best_combined_no_traces_indices()
         no_traces_gain_df = agg_df.calculate_gain(
-            base_indices=direct_indices, target_indices=notraces_target_indices
+            base_indices=direct_indices, target_indices=no_traces_target_indices
         )
 
         return no_traces_gain_df
@@ -54,14 +56,10 @@ class CalculateGain(Experiment):
         rq1_gain_df = self.calculate_rq1_gain(agg_metric_table, direct_indices)
         rq2_gain_df = self.calculate_rq2_gain(agg_metric_table, direct_indices)
 
-        rq1_gain_df.col_values_to_upper(METRIC_COLNAME).to_title_case(
-            exclude=[METRIC_COLNAME]
-        ).save(PATH_TO_RQ1_GAIN)
+        rq1_gain_df.save(PATH_TO_RQ1_GAIN)
         self.export_paths.append(PATH_TO_RQ1_GAIN)
 
-        rq2_gain_df.col_values_to_upper(METRIC_COLNAME).to_title_case(
-            exclude=[METRIC_COLNAME]
-        ).save(PATH_TO_RQ2_GAIN)
+        rq2_gain_df.save(PATH_TO_RQ2_GAIN)
         self.export_paths.append(PATH_TO_RQ2_GAIN)
         return rq1_gain_df
 

@@ -14,22 +14,50 @@ PATH_TO_ROOT = os.path.join(Path(__file__).parent.absolute())
 sys.path.append(os.path.join(PATH_TO_ROOT, ".."))
 sys.path.append(os.path.join(PATH_TO_ROOT, "..", "Tracer", "src"))
 
-from experiments.calculate_ranks import CalculateBestRanks
-from api.extension.cache import Cache
-from experiments.calculate_correlation import CalculateCorrelation
-from experiments.calculate_gain_table import CalculateGain
-from experiments.calculate_percent_best import CreateBestTechnique
-from experiments.experiment import Experiment
-from experiments.calculate_metric_table import CalculateMetricTable
-from experiments.random_sampling import SampledMetricTable
+# TODO: imports
+# pylint: disable=wrong-import-position, ungrouped-imports
+from api.extension.cache import (
+    Cache,
+)  # pylint: disable=wrong-import-position, ungrouped-imports
+
+# pylint: disable=wrong-import-position, ungrouped-imports
+from experiments.calculate_individual_queries import (
+    CalculateIndividualQueries,
+)  # pylint: disable=wrong-import-position
+from experiments.create_gain_correlation_table import (
+    GainCorrelationTable,
+)  # pylint: disable=wrong-import-position
+from experiments.find_best_ranked_techniques import (
+    FindBestRankedTechniques,
+)  # pylint: disable=wrong-import-position
+
+# pylint: disable=wrong-import-position, ungrouped-imports
+from experiments.create_correlation_table import (
+    CalculateCorrelation,
+)  # pylint: disable=wrong-import-position, ungrouped-imports
+from experiments.create_gain_table import (
+    CalculateGain,
+)  # pylint: disable=wrong-import-position
+from experiments.calculate_percent_best import (
+    CreateBestTechnique,
+)  # pylint: disable=wrong-import-position
+from experiments.experiment import Experiment  # pylint: disable=wrong-import-position
+from experiments.create_metric_table import (
+    CreateMetricTable,
+)  # pylint: disable=wrong-import-position
+from experiments.create_sampled_table import (
+    CreateSampledTable,
+)  # pylint: disable=wrong-import-position
 
 REGISTERED_EXPERIMENTS: List[Type[Experiment]] = [
-    CalculateMetricTable,
+    CreateMetricTable,
     CreateBestTechnique,
     CalculateGain,
-    SampledMetricTable,
+    CreateSampledTable,
     CalculateCorrelation,
-    CalculateBestRanks,
+    FindBestRankedTechniques,
+    GainCorrelationTable,
+    CalculateIndividualQueries,
 ]
 
 EXPERIMENT_DECOMPOSITION = list(map(lambda e: {e.name(): e}, REGISTERED_EXPERIMENTS))
@@ -55,19 +83,17 @@ if __name__ == "__main__":
             ),
         )
         if experiment_name == EXIT_COMMAND:
-            Cache.cleanup()
             print("\n\nGoodbye!")
             break
-        else:
-            print(EXPERIMENT_RUN_DELIMITER)
-            print("Running Experiment: %s" % experiment_name)
-            experiment = EXPERIMENT_NAME_MAP[experiment_name]()
-            result = experiment.run()
-            for e_path in experiment.export_paths:
-                print(
-                    "Exported: ",
-                    os.path.normpath(
-                        os.path.relpath(e_path, start=os.path.join(PATH_TO_ROOT, ".."))
-                    ),
-                )
-            print(EXPERIMENT_RUN_DELIMITER)
+        print(EXPERIMENT_RUN_DELIMITER)
+        print("Running Experiment: %s" % experiment_name)
+        experiment = EXPERIMENT_NAME_MAP[experiment_name]()
+        result = experiment.run()
+        for e_path in experiment.export_paths:
+            print(
+                "Exported: ",
+                os.path.normpath(
+                    os.path.relpath(e_path, start=os.path.join(PATH_TO_ROOT, ".."))
+                ),
+            )
+        print(EXPERIMENT_RUN_DELIMITER)

@@ -10,9 +10,9 @@ from experiments.constants import (
 from experiments.experiment import Experiment
 
 
-class CalculateBestRanks(Experiment):
+class FindBestRankedTechniques(Experiment):
     """
-    Exports the techniques that performed the best for each dataset in each trace type
+    Exports the techniques that performed the best for each dataset and trace type
     """
 
     def run(self) -> Table:

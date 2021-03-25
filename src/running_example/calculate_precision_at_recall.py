@@ -14,7 +14,7 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
 )
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.tracer import Tracer
-from experiments.calculate_metric_table import create_combined_definition
+from experiments.create_metric_table import create_combined_definition
 
 if __name__ == "__main__":
     dataset_name = "EasyClinic"

@@ -1,11 +1,15 @@
 import os
 
+from api.constants.processing import DATASET_COLNAME, NAME_COLNAME
 from api.extension.experiment_types import SamplingExperiment
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
+from api.technique.definitions.sampled.definition import SAMPLED_COMMAND_SYMBOL
+from api.technique.definitions.transitive.definition import TRANSITIVE_COMMAND_SYMBOL
 from api.tracer import Tracer
 from experiments.constants import (
     PATH_TO_ARTIFACT_SAMPLING_AGG,
+    PATH_TO_METRIC_TABLE_AGGREGATE,
     PATH_TO_SAMPLED_METRIC_TABLES,
     PATH_TO_TRACES_SAMPLING_AGG,
 )
@@ -15,20 +19,16 @@ from utilities.prompts import prompt_for_dataset, prompt_for_sampling_method
 
 SamplingInitData = (str, str)
 
-n_iterations = 100
-n_intervals = 10
+N_INCREMENTS = 10  # increments to take between 0 and 100% of samples
+N_ITERATIONS = 100  # iterations per increment
 
 """ MUST MANUALLY UPDATE
 because we are technically defining a new technique, SampledIntermediateTechnique
 """
 
-best_technique = "(o (MAX) (\
-(. (LSI NT) (0 2))\
- (~ (SUM INDEPENDENT %f) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2))))))"
-
 best_traced_technique = "(o (MAX) (\
 (. (LSI NT) (0 2))\
- ($ (SUM INDEPENDENT %f) ((. (VSM T) (0 1)) (. (VSM T) (1 2))))))"
+ ($ (SUM INDEPENDENT %f) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2))))))"
 
 SAMPLING_FOLDER_NAME = "sampling"
 
@@ -39,7 +39,7 @@ EXPERIMENT_DESCRIPTION = (
 )
 
 
-class SampledMetricTable(Experiment):
+class CreateSampledTable(Experiment):
     """
     Contains the experiment interface for sampling techniques.
     """
@@ -72,28 +72,31 @@ class SampledMetricTable(Experiment):
         return EXPERIMENT_NAME
 
 
-def create_sampling_sections():
-    for interval_index in range(0, n_intervals + 1):
-        percentage = interval_index / n_intervals
-        for iteration_index in range(n_iterations):
-            yield interval_index, iteration_index, percentage
-
-
 def create_sampled_metric_table(dataset_name: str, sampling_method: str) -> MetricTable:
+    """
+    Creates a MetricTable for each percentage (between 0 and 100 in increments of 10) with each percentage
+    containing 100 iterations.
+    :param dataset_name:
+    :param sampling_method:
+    :return: MetricTable containing metrics, percent, and iteration columns as identifying information
+    """
     experiment_type = SamplingExperiment(sampling_method)
 
     tracer = Tracer()
     metric_table = MetricTable()
     loading_message = "sampling %s" % sampling_method
     sampling_intervals = create_sampling_sections()
+    best_no_trace_technique = get_best_no_trace_sampled_technique(dataset_name)
     with create_bar(
-        loading_message, sampling_intervals, length=n_intervals * n_iterations
+        loading_message, sampling_intervals, length=N_INCREMENTS * N_ITERATIONS
     ) as iter_id:
         for interval_index, iteration_index, percentage in iter_id:
             if experiment_type == SamplingExperiment.ARTIFACTS:
-                if interval_index == 0:
+                if (
+                    interval_index == 0
+                ):  # using 0% of intermediate artifacts is not a valid COMBINED technique
                     continue
-                technique_name = best_technique % percentage
+                technique_name = best_no_trace_technique % percentage
             elif experiment_type == SamplingExperiment.TRACES:
                 technique_name = best_traced_technique % percentage
             else:
@@ -108,11 +111,52 @@ def create_sampled_metric_table(dataset_name: str, sampling_method: str) -> Metr
     return metric_table
 
 
+def get_best_no_trace_technique(dataset: str):
+    """
+    Reads the aggregate metric table and finds the highest scoring techniques that uses no traces
+    :param dataset: the dataset that whose best technique we are after
+    :return: string - technique definition
+    """
+    agg_metric_table = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
+    best_df = agg_metric_table.get_best_combined_no_traces_techniques().table.set_index(
+        DATASET_COLNAME
+    )
+
+    return best_df.loc[dataset][NAME_COLNAME]
+
+
+def get_best_no_trace_sampled_technique(dataset: str):
+    """
+    Reads the aggregate metric table and finds the highest scoring techniques that uses no traces
+    :param dataset: the dataset that whose best technique we are after
+    :return: string - technique definition
+    """
+    temp = get_best_no_trace_technique(dataset)
+    temp = temp.replace(TRANSITIVE_COMMAND_SYMBOL, SAMPLED_COMMAND_SYMBOL)
+
+    if "INDEPENDENT" in temp:
+        temp = temp.replace("INDEPENDENT", "INDEPENDENT %f")
+    if "GLOBAL" in temp:
+        temp = temp.replace("GLOBAL", "GLOBAL %f")
+
+    return temp
+
+
+def create_sampling_sections():
+    """
+    Creates generator for iterating through n_intervals from 0 to 100% which n_iterations per each increment.
+    :return: (int, int, float) representing interval index, iteration index, and percentage
+    """
+    for interval_index in range(0, N_INCREMENTS + 1):
+        percentage = interval_index / N_INCREMENTS
+        for iteration_index in range(N_ITERATIONS):
+            yield interval_index, iteration_index, percentage
+
+
 def prompt_user():
+    """
+    :return: (str, str) representing dataset to sample and what to sample (e.g. artifacts or traces)
+    """
     dataset_name = prompt_for_dataset()
     sampling_method = prompt_for_sampling_method()
     return dataset_name, sampling_method
-
-
-if __name__ == "__main__":
-    SampledMetricTable().run()

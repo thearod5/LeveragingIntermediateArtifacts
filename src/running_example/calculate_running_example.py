@@ -21,7 +21,7 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
 )
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.tracer import Tracer
-from experiments import calculate_metric_table
+from experiments import create_metric_table
 
 if __name__ == "__main__":
     dataset_name = "Drone"
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     tracer = Tracer()
 
     # direct technique
-    direct_technique_name = calculate_metric_table.create_direct_definition(direct_am)
+    direct_technique_name = create_metric_table.create_direct_definition(direct_am)
     direct_technique_data = tracer.get_technique_data(
         dataset_name, direct_technique_name
     )
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     direct_scores = direct_scoring_table.values
 
     # transitive technique
-    transitive_technique_name = calculate_metric_table.create_transitive_definition(
+    transitive_technique_name = create_metric_table.create_transitive_definition(
         transitive_am, transitive_scaling, transitive_aggregation, trace_type
     )
     transitive_technique_data: TransitiveTechniqueData = tracer.get_technique_data(
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     transitive_scores = transitive_scoring_table.values
 
     # combined technique
-    combined_technique_name = calculate_metric_table.create_combined_definition(
+    combined_technique_name = create_metric_table.create_combined_definition(
         direct_am,
         transitive_am,
         transitive_scaling,

@@ -57,7 +57,8 @@ class CreateBestTechnique(Experiment):
                 col_value_order=TRANSITIVE_TRACE_TYPE_ORDER,
             )
             .sort_values(
-                by=[TRANSITIVE_TRACE_TYPE_COLNAME, VARIATION_POINT_COLNAME], axis=0
+                group_names=[TRANSITIVE_TRACE_TYPE_COLNAME, VARIATION_POINT_COLNAME],
+                axis=0,
             )
             .sort_cols()
         )

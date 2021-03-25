@@ -62,7 +62,7 @@ TechniqueID = Tuple[
 ]  # technique aggregation
 
 
-class CalculateMetricTable(Experiment):
+class CreateMetricTable(Experiment):
     """
     Implements the Experiment interface for calculating the metric of all the retrieval techniques.
     """
@@ -338,5 +338,5 @@ def get_component_trace_types(experiment_trace_type: ExperimentTraceType):
 
 if __name__ == "__main__":
     Cache.CACHE_ON = True
-    experiment = CalculateMetricTable()
+    experiment = CreateMetricTable()
     experiment.run()

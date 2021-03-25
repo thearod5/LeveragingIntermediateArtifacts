@@ -1,60 +1,60 @@
-Transitive Trace Type,Variation Point,Technique,Percent Best
-Direct,Technique Type,DIRECT,100\%
-Direct,Direct Algebraic Model,LSI,40\%
-Direct,Direct Algebraic Model,VSM,60\%
-None,Technique Type,COMBINED,100\%
-None,Technique Type,TRANSITIVE,0\%
-None,Direct Algebraic Model,LSI,80\%
-None,Direct Algebraic Model,VSM,20\%
-None,Transitive Algebraic Model,LSI,40\%
-None,Transitive Algebraic Model,VSM,60\%
-None,Transitive Scaling,GLOBAL,40\%
-None,Transitive Scaling,INDEPENDENT,60\%
-None,Transitive Aggregation,MAX,20\%
-None,Transitive Aggregation,PCA,20\%
-None,Transitive Aggregation,SUM,60\%
-None,Technique Aggregation,MAX,40\%
-None,Technique Aggregation,PCA,40\%
-None,Technique Aggregation,SUM,20\%
-Upper,Technique Type,COMBINED,80\%
-Upper,Technique Type,TRANSITIVE,20\%
-Upper,Direct Algebraic Model,LSI,40\%
-Upper,Direct Algebraic Model,VSM,40\%
-Upper,Transitive Algebraic Model,LSI,40\%
-Upper,Transitive Algebraic Model,VSM,60\%
-Upper,Transitive Scaling,GLOBAL,0\%
-Upper,Transitive Scaling,INDEPENDENT,100\%
-Upper,Transitive Aggregation,MAX,60\%
-Upper,Transitive Aggregation,PCA,0\%
-Upper,Transitive Aggregation,SUM,40\%
-Upper,Technique Aggregation,MAX,40\%
-Upper,Technique Aggregation,PCA,20\%
-Upper,Technique Aggregation,SUM,20\%
-Lower,Technique Type,COMBINED,60\%
-Lower,Technique Type,TRANSITIVE,40\%
-Lower,Direct Algebraic Model,LSI,20\%
-Lower,Direct Algebraic Model,VSM,40\%
-Lower,Transitive Algebraic Model,LSI,40\%
-Lower,Transitive Algebraic Model,VSM,60\%
-Lower,Transitive Scaling,GLOBAL,60\%
-Lower,Transitive Scaling,INDEPENDENT,80\%
-Lower,Transitive Aggregation,MAX,100\%
-Lower,Transitive Aggregation,PCA,0\%
-Lower,Transitive Aggregation,SUM,0\%
-Lower,Technique Aggregation,MAX,40\%
-Lower,Technique Aggregation,PCA,0\%
-Lower,Technique Aggregation,SUM,20\%
-All,Technique Type,COMBINED,100\%
-All,Technique Type,TRANSITIVE,80\%
-All,Direct Algebraic Model,LSI,100\%
-All,Direct Algebraic Model,VSM,80\%
-All,Transitive Algebraic Model,LSI,100\%
-All,Transitive Algebraic Model,VSM,100\%
-All,Transitive Scaling,GLOBAL,100\%
-All,Transitive Scaling,INDEPENDENT,100\%
-All,Transitive Aggregation,MAX,100\%
-All,Transitive Aggregation,PCA,80\%
-All,Transitive Aggregation,SUM,100\%
-All,Technique Aggregation,MAX,80\%
-All,Technique Aggregation,PCA,80\%
-All,Technique Aggregation,SUM,100\%
+TransitiveTraceType,VariationPoint,Technique,PercentBest
+Direct,TechniqueType,DIRECT,100\%
+Direct,DirectAlgebraicModel,LSI,40\%
+Direct,DirectAlgebraicModel,VSM,60\%
+None,TechniqueType,COMBINED,100\%
+None,TechniqueType,TRANSITIVE,0\%
+None,DirectAlgebraicModel,LSI,80\%
+None,DirectAlgebraicModel,VSM,20\%
+None,TransitiveAlgebraicModel,LSI,40\%
+None,TransitiveAlgebraicModel,VSM,60\%
+None,TransitiveScaling,GLOBAL,40\%
+None,TransitiveScaling,INDEPENDENT,60\%
+None,TransitiveAggregation,MAX,20\%
+None,TransitiveAggregation,PCA,20\%
+None,TransitiveAggregation,SUM,60\%
+None,TechniqueAggregation,MAX,40\%
+None,TechniqueAggregation,PCA,40\%
+None,TechniqueAggregation,SUM,20\%
+Upper,TechniqueType,COMBINED,80\%
+Upper,TechniqueType,TRANSITIVE,20\%
+Upper,DirectAlgebraicModel,LSI,40\%
+Upper,DirectAlgebraicModel,VSM,40\%
+Upper,TransitiveAlgebraicModel,LSI,40\%
+Upper,TransitiveAlgebraicModel,VSM,60\%
+Upper,TransitiveScaling,GLOBAL,0\%
+Upper,TransitiveScaling,INDEPENDENT,100\%
+Upper,TransitiveAggregation,MAX,60\%
+Upper,TransitiveAggregation,PCA,0\%
+Upper,TransitiveAggregation,SUM,40\%
+Upper,TechniqueAggregation,MAX,40\%
+Upper,TechniqueAggregation,PCA,20\%
+Upper,TechniqueAggregation,SUM,20\%
+Lower,TechniqueType,COMBINED,60\%
+Lower,TechniqueType,TRANSITIVE,40\%
+Lower,DirectAlgebraicModel,LSI,20\%
+Lower,DirectAlgebraicModel,VSM,40\%
+Lower,TransitiveAlgebraicModel,LSI,40\%
+Lower,TransitiveAlgebraicModel,VSM,60\%
+Lower,TransitiveScaling,GLOBAL,60\%
+Lower,TransitiveScaling,INDEPENDENT,80\%
+Lower,TransitiveAggregation,MAX,100\%
+Lower,TransitiveAggregation,PCA,0\%
+Lower,TransitiveAggregation,SUM,0\%
+Lower,TechniqueAggregation,MAX,40\%
+Lower,TechniqueAggregation,PCA,0\%
+Lower,TechniqueAggregation,SUM,20\%
+All,TechniqueType,COMBINED,100\%
+All,TechniqueType,TRANSITIVE,80\%
+All,DirectAlgebraicModel,LSI,100\%
+All,DirectAlgebraicModel,VSM,80\%
+All,TransitiveAlgebraicModel,LSI,100\%
+All,TransitiveAlgebraicModel,VSM,100\%
+All,TransitiveScaling,GLOBAL,100\%
+All,TransitiveScaling,INDEPENDENT,100\%
+All,TransitiveAggregation,MAX,100\%
+All,TransitiveAggregation,PCA,80\%
+All,TransitiveAggregation,SUM,100\%
+All,TechniqueAggregation,MAX,80\%
+All,TechniqueAggregation,PCA,80\%
+All,TechniqueAggregation,SUM,100\%
