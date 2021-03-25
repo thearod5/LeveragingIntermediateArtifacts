@@ -18,6 +18,22 @@ from api.technique.definitions.combined.technique import (
 from api.technique.definitions.direct.technique import DirectTechnique
 from api.technique.definitions.transitive.technique import TransitiveTechnique
 from api.tracer import Tracer
+from experiments.constants import PATH_TO_DATA
+from experiments.experiment import Experiment
+
+
+class CalculateIndividualQueries(Experiment):
+    """
+    Given a dataset, extracts its best no trace technique and calculates metric on the individual queries
+    of the technique.
+    """
+
+    def run(self) -> Table:
+        pass
+
+    @staticmethod
+    def name() -> str:
+        return "individual_queries"
 
 
 def get_technique_type(technique_name: str):

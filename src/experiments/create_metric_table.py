@@ -7,6 +7,7 @@ from typing import Optional, Tuple
 from api.constants.processing import (
     ALGEBRAIC_MODEL_COLNAME,
     DIRECT_ALGEBRAIC_MODEL_COLNAME,
+    NAME_COLNAME,
     TECHNIQUE_AGGREGATION_COLNAME,
     TECHNIQUE_TYPE_COLNAME,
     TRANSITIVE_AGGREGATION_COLNAME,
@@ -160,6 +161,7 @@ def calculate_technique_metric_table(dataset: str) -> Table:
         EXPERIMENT_LOADING_MESSAGE, techniques, length=len(techniques)
     ) as techniques:
         for t_name, t_entry in techniques:
+            t_entry.update({NAME_COLNAME: t_name})
             t_metrics = tracer.get_metrics(dataset, t_name)
             metric_table.add(t_metrics, t_entry)
 

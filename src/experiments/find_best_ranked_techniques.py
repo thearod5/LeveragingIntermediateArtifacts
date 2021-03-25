@@ -1,8 +1,6 @@
 from api.constants.processing import (
     RANK_COLNAME,
-    TRANSITIVE_TRACE_TYPE_COLNAME,
 )
-from api.extension.experiment_types import ExperimentTraceType
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
 from experiments.constants import (
@@ -29,22 +27,9 @@ class CalculateBestRanks(Experiment):
 
         # Read aggregate metric table
         rq1_aggregate = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
-
         best_table = rq1_aggregate.create_ranks()
 
-        direct_mask = (
-            best_table.table[TRANSITIVE_TRACE_TYPE_COLNAME]
-            == ExperimentTraceType.DIRECT.value
-        )
-
-        none_mask = (
-            best_table.table[TRANSITIVE_TRACE_TYPE_COLNAME]
-            == ExperimentTraceType.NONE.value
-        )
-
-        best_ranks = best_table.table[
-            (best_table.table[RANK_COLNAME] == 1) & (none_mask)
-        ]
+        best_ranks = best_table.table[(best_table.table[RANK_COLNAME] == 1)]
         best_ranks.to_csv(PATH_TO_BEST_RANKS, index=False)
         self.export_paths.append(PATH_TO_BEST_RANKS)
 

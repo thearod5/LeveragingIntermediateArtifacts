@@ -1,46 +1,47 @@
+from api.constants.processing import METRIC_COLNAME
 from api.tables.table import Table
-from experiments.constants import PATH_TO_GAIN_AGGREGATE
+from experiments.constants import (
+    PATH_TO_RQ1_CORRELATION,
+    PATH_TO_RQ1_GAIN,
+    PATH_TO_RQ1_GAIN_CORRELATION,
+    PATH_TO_RQ2_CORRELATION,
+    PATH_TO_RQ2_GAIN,
+    PATH_TO_RQ2_GAIN_CORRELATION,
+)
 from experiments.experiment import Experiment
-
-EXPERIMENT_NAME = "gain_correlation_table"
-
-import pandas as pd
 
 
 class GainCorrelationTable(Experiment):
     """
-    Combines aggregate gain and correlation tables.
+    Joins the Gain and Correlation table for RQ1 and RQ2.
     """
-
-    def run(self) -> Table:
-        gain_df = pd.read_csv(PATH_TO_GAIN_AGGREGATE)
-        aggregate_file_path = (
-            PATH_TO_ARTIFACT_SAMPLING_AGG
-            if sampling_method in PATH_TO_ARTIFACT_SAMPLING_AGG
-            else PATH_TO_TRACES_SAMPLING_AGG
-        )
-        gain_correlation_df = create_gain_correlation_table(
-            dataset, experiment_type, correlation_df
-        ).round(n_sig_figs)
-
-        correlation_base_folder = os.path.join(
-            PATH_TO_CORRELATION_INTERMEDIARY, experiment_type
-        )
-        correlation_export_path = os.path.join(
-            correlation_base_folder, dataset + ".csv"
-        )
-        gain_correlation_df.to_csv(correlation_export_path, index=False)
-
-        # update aggregate gain-correlation table
-        correlation_agg_path = os.path.join(
-            PATH_TO_CORRELATION_PROCESSED,
-            experiment_type,
-            "%s_gain_correlation.csv" % experiment_type,
-        )
-        Table.aggregate_intermediate_files(correlation_base_folder).format_table().save(
-            correlation_agg_path
-        )
 
     @staticmethod
     def name() -> str:
-        return EXPERIMENT_NAME
+        return "gain_correlation"
+
+    def run(self):
+        rq1_correlation = Table(path_to_table=PATH_TO_RQ1_CORRELATION)
+        rq2_correlation = Table(path_to_table=PATH_TO_RQ2_CORRELATION)
+        rq1_gain = Table(path_to_table=PATH_TO_RQ1_GAIN)
+        rq2_gain = Table(path_to_table=PATH_TO_RQ2_GAIN)
+
+        rq1_gain_correlation = rq1_correlation + rq1_gain
+        (
+            rq1_gain_correlation.drop_duplicate_columns()
+            .sort_cols()
+            .col_values_to_upper(METRIC_COLNAME)
+            .to_title_case(exclude=[METRIC_COLNAME])
+            .save(PATH_TO_RQ1_GAIN_CORRELATION)
+        )
+        self.export_paths.append(PATH_TO_RQ1_GAIN_CORRELATION)
+
+        rq2_gain_correlation = rq2_correlation + rq2_gain
+        (
+            rq2_gain_correlation.drop_duplicate_columns()
+            .sort_cols()
+            .col_values_to_upper(METRIC_COLNAME)
+            .to_title_case(exclude=[METRIC_COLNAME])
+            .save(PATH_TO_RQ2_GAIN_CORRELATION)
+        )
+        self.export_paths.append(PATH_TO_RQ2_GAIN_CORRELATION)
