@@ -1,0 +1,35 @@
+﻿Open(
+	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/sampling_tables/rq1/rq1_sampling.jmp"
+);
+Graph Builder(
+	Size( 1004, 704 ),
+	Show Legend( 0 ),
+	Variables(
+		X( :Percent of Intermediate Artifacts Used ),
+		Y( :Value ),
+		Group X( :Metric ),
+		Group Y( :Dataset ),
+		Color( :Percent of Intermediate Artifacts Used )
+	),
+	Elements( Points( X, Y, Legend( 17 ) ), Line Of Fit( X, Y, Legend( 19 ) ) ),
+	SendToReport(
+		Dispatch(
+			{},
+			"Percent of Intermediate Artifacts Used",
+			ScaleBox,
+			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.1 ),
+			Minor Ticks( 0 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			Label Row( {Show Minor Grid( 0 ), Set Font Size( 10 )} )}
+		),
+		Dispatch(
+			{},
+			"Value",
+			ScaleBox,
+			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
+			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			Label Row( Show Minor Grid( 0 ) )}
+		),
+		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
+		Dispatch( {}, "Y title", TextEditBox, {Set Text( "MetricScore" )} )
+	)
+);

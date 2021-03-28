@@ -1,0 +1,41 @@
+﻿Open(
+	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/sampling_tables/rq2/rq2_sampling.jmp"
+);
+Graph Builder(
+	Size( 1108, 720 ),
+	Show Legend( 0 ),
+	Variables(
+		X( :Percent ),
+		Y( :Value ),
+		Group X( :Metric ),
+		Group Y( :Dataset ),
+		Color( :Percent )
+	),
+	Elements( Points( X, Y, Legend( 39 ) ), Smoother( X, Y, Legend( 40 ) ) ),
+	SendToReport(
+		Dispatch(
+			{},
+			"Percent",
+			ScaleBox,
+			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.1 ),
+			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			Label Row( {Show Minor Grid( 0 ), Set Font Size( 9 )} )}
+		),
+		Dispatch(
+			{},
+			"Value",
+			ScaleBox,
+			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
+			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			Label Row( Show Minor Grid( 0 ) )}
+		),
+		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
+		Dispatch(
+			{},
+			"X title",
+			TextEditBox,
+			{Set Text( "Percent of Transitive Traces Used" )}
+		),
+		Dispatch( {}, "Y title", TextEditBox, {Set Text( "Metric Scores" )} )
+	)
+);
