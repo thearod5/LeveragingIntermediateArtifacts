@@ -14,6 +14,9 @@ PATH_TO_AGGREGATE_TABLES = os.path.join(PATH_TO_DATA, "aggregates")
 PATH_TO_METRIC_TABLE_AGGREGATE = os.path.join(
     PATH_TO_AGGREGATE_TABLES, "metric_table.csv"
 )
+PATH_TO_GRAPH_METRIC_TABLE_AGGREGATE = os.path.join(
+    PATH_TO_AGGREGATE_TABLES, "graph_metric_table.csv"
+)
 PATH_TO_RQ1_AGGREGATE = os.path.join(PATH_TO_AGGREGATE_TABLES, "rq1.csv")
 PATH_TO_BEST_AGGREGATE = os.path.join(PATH_TO_AGGREGATE_TABLES, "best.csv")
 PATH_TO_ARTIFACT_SAMPLING_AGG = os.path.join(

@@ -3,7 +3,7 @@ from api.tracer import Tracer
 from experiments.create_metric_table import (
     create_direct_definition,
 )
-from experiments.create_sampled_table import get_best_no_trace_sampled_technique
+from utilities.technique_extractors import get_best_combined_sampled_technique
 
 if __name__ == "__main__":
     tracer = Tracer()
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     """
     SAMPLED
     """
-    sampled_combined_definition = get_best_no_trace_sampled_technique(dataset_name) % 1
+    sampled_combined_definition = get_best_combined_sampled_technique(dataset_name) % 1
     sampled_ap = sampled_technique_data = tracer.get_metrics(
         dataset_name, sampled_combined_definition
     )[0].ap

@@ -2,7 +2,7 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/sampling_tables/rq2/rq2_sampling.jmp"
 );
 Graph Builder(
-	Size( 1108, 720 ),
+	Size( 1289, 792 ),
 	Show Legend( 0 ),
 	Variables(
 		X( :Percent ),
@@ -34,8 +34,13 @@ Graph Builder(
 			{},
 			"X title",
 			TextEditBox,
-			{Set Text( "Percent of Transitive Traces Used" )}
+			{Set Font Size( 18 ), Set Text( "Percent of Transitive Traces Used" )}
 		),
-		Dispatch( {}, "Y title", TextEditBox, {Set Text( "Metric Scores" )} )
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 18 ), Set Text( "Metric Scores" )}
+		)
 	)
 );

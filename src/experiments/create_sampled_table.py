@@ -1,21 +1,19 @@
 import os
 
-from api.constants.processing import DATASET_COLNAME, NAME_COLNAME
+from api.constants.processing import METRIC_COLNAME
 from api.extension.experiment_types import SamplingExperiment
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
-from api.technique.definitions.sampled.definition import SAMPLED_COMMAND_SYMBOL
-from api.technique.definitions.transitive.definition import TRANSITIVE_COMMAND_SYMBOL
 from api.tracer import Tracer
 from experiments.constants import (
     PATH_TO_ARTIFACT_SAMPLING_AGG,
-    PATH_TO_METRIC_TABLE_AGGREGATE,
     PATH_TO_SAMPLED_METRIC_TABLES,
     PATH_TO_TRACES_SAMPLING_AGG,
 )
 from src.experiments.experiment import Experiment
 from src.experiments.progress_bar_factory import create_bar
 from utilities.prompts import prompt_for_dataset, prompt_for_sampling_method
+from utilities.technique_extractors import get_best_combined_sampled_technique
 
 SamplingInitData = (str, str)
 
@@ -46,6 +44,13 @@ class CreateSampledTable(Experiment):
 
     def run(self) -> Table:
         dataset_name, sampling_method = prompt_user()
+
+        """
+        Create export paths using user responses:
+        1. one for intermediate folder
+        2. current run export path
+        3. aggregate export path
+        """
         path_to_intermediate_files = os.path.join(
             PATH_TO_SAMPLED_METRIC_TABLES, sampling_method
         )
@@ -58,10 +63,26 @@ class CreateSampledTable(Experiment):
             else PATH_TO_TRACES_SAMPLING_AGG
         )
 
+        """
+        Current run
+        """
+
         metric_table = create_sampled_metric_table(dataset_name, sampling_method)
-        metric_table.sort_cols().save(run_export_path)
+        metric_table.sort().save(run_export_path)
+
+        """
+        Update aggregate
+        """
         self.export_paths.append(run_export_path)
-        Table.aggregate_intermediate_files(path_to_intermediate_files).sort_cols().save(
+        MetricTable(
+            Table.aggregate_intermediate_files(path_to_intermediate_files).sort().table
+        ).create_lag_norm_inverted(
+            remove_old_lag=True
+        ).melt_metrics().col_values_to_upper(
+            METRIC_COLNAME
+        ).to_title_case(
+            exclude=METRIC_COLNAME
+        ).save(
             aggregate_file_path
         )
         self.export_paths.append(aggregate_file_path)
@@ -86,7 +107,7 @@ def create_sampled_metric_table(dataset_name: str, sampling_method: str) -> Metr
     metric_table = MetricTable()
     loading_message = "sampling %s" % sampling_method
     sampling_intervals = create_sampling_sections()
-    best_no_trace_technique = get_best_no_trace_sampled_technique(dataset_name)
+    best_no_trace_technique = get_best_combined_sampled_technique(dataset_name)
     with create_bar(
         loading_message, sampling_intervals, length=N_INCREMENTS * N_ITERATIONS
     ) as iter_id:
@@ -109,37 +130,6 @@ def create_sampled_metric_table(dataset_name: str, sampling_method: str) -> Metr
             )
 
     return metric_table
-
-
-def get_best_no_trace_technique(dataset: str):
-    """
-    Reads the aggregate metric table and finds the highest scoring techniques that uses no traces
-    :param dataset: the dataset that whose best technique we are after
-    :return: string - technique definition
-    """
-    agg_metric_table = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
-    best_df = agg_metric_table.get_best_combined_no_traces_techniques().table.set_index(
-        DATASET_COLNAME
-    )
-
-    return best_df.loc[dataset][NAME_COLNAME]
-
-
-def get_best_no_trace_sampled_technique(dataset: str):
-    """
-    Reads the aggregate metric table and finds the highest scoring techniques that uses no traces
-    :param dataset: the dataset that whose best technique we are after
-    :return: string - technique definition
-    """
-    temp = get_best_no_trace_technique(dataset)
-    temp = temp.replace(TRANSITIVE_COMMAND_SYMBOL, SAMPLED_COMMAND_SYMBOL)
-
-    if "INDEPENDENT" in temp:
-        temp = temp.replace("INDEPENDENT", "INDEPENDENT %f")
-    if "GLOBAL" in temp:
-        temp = temp.replace("GLOBAL", "GLOBAL %f")
-
-    return temp
 
 
 def create_sampling_sections():

@@ -29,9 +29,10 @@ class GainCorrelationTable(Experiment):
         rq1_gain_correlation = rq1_correlation + rq1_gain
         (
             rq1_gain_correlation.drop_duplicate_columns()
-            .sort_cols()
+            .sort()
             .col_values_to_upper(METRIC_COLNAME)
             .to_title_case(exclude=[METRIC_COLNAME])
+            .round()
             .save(PATH_TO_RQ1_GAIN_CORRELATION)
         )
         self.export_paths.append(PATH_TO_RQ1_GAIN_CORRELATION)
@@ -39,9 +40,10 @@ class GainCorrelationTable(Experiment):
         rq2_gain_correlation = rq2_correlation + rq2_gain
         (
             rq2_gain_correlation.drop_duplicate_columns()
-            .sort_cols()
+            .sort()
             .col_values_to_upper(METRIC_COLNAME)
             .to_title_case(exclude=[METRIC_COLNAME])
+            .round()
             .save(PATH_TO_RQ2_GAIN_CORRELATION)
         )
         self.export_paths.append(PATH_TO_RQ2_GAIN_CORRELATION)

@@ -2,7 +2,7 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/individual_queries/individual_queries.jmp"
 );
 Graph Builder(
-	Size( 950, 628 ),
+	Size( 1104, 884 ),
 	Legend Position( "Bottom" ),
 	Variables(
 		X( :Metric ),
@@ -12,6 +12,7 @@ Graph Builder(
 	),
 	Elements( Box Plot( X, Y, Legend( 8 ), Outliers( 0 ) ) ),
 	SendToReport(
+		Dispatch( {}, "Metric", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
 		Dispatch(
 			{},
 			"MetricScore",
@@ -21,11 +22,7 @@ Graph Builder(
 			Label Row( Show Minor Grid( 0 ) )}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
-		Dispatch(
-			{},
-			"400",
-			LegendBox,
-			{Orientation( "Horizontal" ), Sides( "Left" )}
-		)
+		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 18 )} ),
+		Dispatch( {}, "400", LegendBox, {font( "Helvetica Neue", 24, "Plain" )} )
 	)
 );

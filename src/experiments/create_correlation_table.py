@@ -4,6 +4,7 @@ from experiments.constants import (
     PATH_TO_ARTIFACT_SAMPLING_AGG,
     PATH_TO_RQ1_CORRELATION,
     PATH_TO_RQ2_CORRELATION,
+    PATH_TO_TRACES_SAMPLING_AGG,
 )
 from experiments.experiment import Experiment
 
@@ -29,7 +30,7 @@ class CalculateCorrelation(Experiment):
         self.export_paths.append(PATH_TO_RQ1_CORRELATION)
 
         trace_correlation_df: Table = (
-            MetricTable(path_to_table=PATH_TO_ARTIFACT_SAMPLING_AGG)
+            MetricTable(path_to_table=PATH_TO_TRACES_SAMPLING_AGG)
             .create_correlation_table()
             .round()
             .save(PATH_TO_RQ2_CORRELATION)

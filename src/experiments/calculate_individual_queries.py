@@ -5,38 +5,25 @@ map, lag, and auc of individual queries in some dataset for some technique.
 import os
 
 from api.constants.processing import (
-    DATASET_COLNAME,
     METRIC_COLNAME,
     METRIC_SCORE_COLNAME,
-    NAME_COLNAME,
     TECHNIQUE_TYPE_COLNAME,
 )
 from api.constants.techniques import COMBINED_ID, DIRECT_ID, TRANSITIVE_ID
 from api.tables.metric_table import MetricTable, Metrics
 from api.tables.table import Table
-from api.technique.definitions.combined.technique import (
-    CombinedTechnique,
-    create_technique_by_name,
-)
-from api.technique.definitions.direct.technique import DirectTechnique
-from api.technique.definitions.transitive.technique import TransitiveTechnique
 from api.tracer import Tracer
 from experiments.constants import (
     PATH_TO_INDIVIDUAL_QUERIES,
     PATH_TO_INDIVIDUAL_QUERIES_AGG,
-    PATH_TO_METRIC_TABLE_AGGREGATE,
 )
-from experiments.create_sampled_table import get_best_no_trace_technique
 from experiments.experiment import Experiment
 from utilities.prompts import prompt_for_dataset
-
-
-def get_direct_best_technique(dataset_name: str) -> str:
-    agg_metric_table = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
-    best_direct_definition = agg_metric_table.get_direct_best_techniques().set_index(
-        DATASET_COLNAME
-    )
-    return best_direct_definition.loc[dataset_name][NAME_COLNAME]
+from utilities.technique_extractors import (
+    get_best_combined_technique,
+    get_best_direct_technique,
+    get_best_transitive_technique,
+)
 
 
 class CalculateIndividualQueries(Experiment):
@@ -51,20 +38,21 @@ class CalculateIndividualQueries(Experiment):
         :return: metric table with single query metrics for each technique applied to specified dataset in row
         """
         dataset_name = prompt_for_dataset()
-        best_combined_definition = get_best_no_trace_technique(dataset_name)
-        direct_best_definition = get_direct_best_technique(dataset_name)
 
+        """
+        Find best techniques
+        """
+        direct_best_definition = get_best_direct_technique(dataset_name)
+        transitive_best_definition = get_best_transitive_technique(dataset_name)
+        combined_best_definition = get_best_combined_technique(dataset_name)
+
+        print(transitive_best_definition)
+        """
+        Calculate metrics for individual queries on dataset
+        """
         tracer = Tracer()
         metric_table = MetricTable()
 
-        combined_metrics: [Metrics] = tracer.get_metrics(
-            dataset_name, best_combined_definition, summary_metrics=False
-        )
-        metric_table.add(
-            combined_metrics,
-            other={TECHNIQUE_TYPE_COLNAME: COMBINED_ID},
-            create_index=True,
-        )
         direct_metrics: [Metrics] = tracer.get_metrics(
             dataset_name, direct_best_definition, summary_metrics=False
         )
@@ -72,40 +60,55 @@ class CalculateIndividualQueries(Experiment):
             direct_metrics, other={TECHNIQUE_TYPE_COLNAME: DIRECT_ID}, create_index=True
         )
 
+        transitive_metrics: [Metrics] = tracer.get_metrics(
+            dataset_name, transitive_best_definition, summary_metrics=False
+        )
+        metric_table.add(
+            transitive_metrics,
+            other={TECHNIQUE_TYPE_COLNAME: TRANSITIVE_ID},
+            create_index=True,
+        )
+
+        combined_metrics: [Metrics] = tracer.get_metrics(
+            dataset_name, combined_best_definition, summary_metrics=False
+        )
+        metric_table.add(
+            combined_metrics,
+            other={TECHNIQUE_TYPE_COLNAME: COMBINED_ID},
+            create_index=True,
+        )
+
         """
-        Export
+        Export individual run
         """
         export_path = os.path.join(PATH_TO_INDIVIDUAL_QUERIES, dataset_name + ".csv")
-        metric_table.save(export_path)
+        (metric_table.sort().save(export_path))
         self.export_paths.append(export_path)
 
-        (
+        """
+        Update aggregate
+        """
+
+        individual_queries_aggregate = (
             MetricTable(
                 Table.aggregate_intermediate_files(PATH_TO_INDIVIDUAL_QUERIES).table
             )
+            .create_lag_norm_inverted(remove_old_lag=True)
             .melt_metrics(metric_value_col_name=METRIC_SCORE_COLNAME)
-            .sort_cols()
+            .sort()
             .col_values_to_upper(METRIC_COLNAME)
-            # .to_title_case(exclude=[METRIC_COLNAME])
+            .to_title_case(exclude=METRIC_COLNAME)
             .save(PATH_TO_INDIVIDUAL_QUERIES_AGG)
         )
+
+        # aggregate_table
         self.export_paths.append(PATH_TO_INDIVIDUAL_QUERIES_AGG)
+
+        return individual_queries_aggregate
 
     @staticmethod
     def name() -> str:
         return "individual_queries"
-
-
-def get_technique_type(technique_name: str):
-    technique = create_technique_by_name(technique_name)
-    if isinstance(technique, DirectTechnique):
-        return DIRECT_ID
-    elif isinstance(technique, TransitiveTechnique):
-        return TRANSITIVE_ID
-    elif isinstance(technique, CombinedTechnique):
-        return COMBINED_ID
-    else:
-        raise Exception("Technique %s not implemented." % technique.name)
 
 
 if __name__ == "__main__":

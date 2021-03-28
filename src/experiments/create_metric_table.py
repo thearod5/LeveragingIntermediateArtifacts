@@ -7,6 +7,7 @@ from typing import Optional, Tuple
 from api.constants.processing import (
     ALGEBRAIC_MODEL_COLNAME,
     DIRECT_ALGEBRAIC_MODEL_COLNAME,
+    METRIC_COLNAME,
     NAME_COLNAME,
     TECHNIQUE_AGGREGATION_COLNAME,
     TECHNIQUE_TYPE_COLNAME,
@@ -35,6 +36,7 @@ from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
 from api.technique.variationpoints.tracetype.trace_type import TraceType
 from api.tracer import Tracer
 from experiments.constants import (
+    PATH_TO_GRAPH_METRIC_TABLE_AGGREGATE,
     PATH_TO_METRIC_TABLES,
     PATH_TO_METRIC_TABLE_AGGREGATE,
 )
@@ -74,10 +76,20 @@ class CreateMetricTable(Experiment):
         """
         dataset_name = prompt_for_dataset()
         metric_table = calculate_technique_metric_table(dataset_name)
-        metric_table.sort_cols().save(create_export_path(dataset_name))
-        Table.aggregate_intermediate_files(PATH_TO_METRIC_TABLES).sort_cols().save(
-            PATH_TO_METRIC_TABLE_AGGREGATE
+        metric_table.sort().save(create_export_path(dataset_name))
+
+        # export metric table
+        aggregate_metric_table = MetricTable(
+            Table.aggregate_intermediate_files(PATH_TO_METRIC_TABLES).sort().table
+        ).save(PATH_TO_METRIC_TABLE_AGGREGATE)
+
+        # create graphable metrics and export table
+        aggregate_metric_table.create_lag_norm_inverted(
+            remove_old_lag=True
+        ).melt_metrics().col_values_to_upper(METRIC_COLNAME).save(
+            PATH_TO_GRAPH_METRIC_TABLE_AGGREGATE
         )
+
         self.export_paths.append(create_export_path(dataset_name))
         self.export_paths.append(PATH_TO_METRIC_TABLE_AGGREGATE)
         return metric_table

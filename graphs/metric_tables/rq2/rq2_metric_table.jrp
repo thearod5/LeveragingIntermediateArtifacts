@@ -1,0 +1,32 @@
+﻿Open(
+	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/metric_tables/rq2/rq2_metric_table.jmp"
+);
+Graph Builder(
+	Size( 924, 700 ),
+	Legend Position( "Bottom" ),
+	Variables(
+		X( :Metrics ),
+		Y( :value ),
+		Group Y( :Datasets ),
+		Overlay( :Transitive Traces Used )
+	),
+	Elements( Box Plot( X, Y, Legend( 9 ), Outliers( 0 ) ) ),
+	SendToReport(
+		Dispatch(
+			{},
+			"value",
+			ScaleBox,
+			{Select, Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
+			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 )}
+		),
+		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
+		Dispatch( {}, "Y title", TextEditBox, {Set Text( "Metric Score" )} ),
+		Dispatch(
+			{},
+			"400",
+			LegendBox,
+			{Set Title( "Transitive Traces Used" ), Orientation( "Horizontal" ),
+			Sides( "Left" )}
+		)
+	)
+);

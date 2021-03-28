@@ -60,7 +60,7 @@ class CreateBestTechnique(Experiment):
                 group_names=[TRANSITIVE_TRACE_TYPE_COLNAME, VARIATION_POINT_COLNAME],
                 axis=0,
             )
-            .sort_cols()
+            .sort()
         )
 
         # export rq1 best

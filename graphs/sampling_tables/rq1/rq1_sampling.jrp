@@ -2,7 +2,7 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/sampling_tables/rq1/rq1_sampling.jmp"
 );
 Graph Builder(
-	Size( 1004, 704 ),
+	Size( 1329, 912 ),
 	Show Legend( 0 ),
 	Variables(
 		X( :Percent of Intermediate Artifacts Used ),
@@ -30,6 +30,12 @@ Graph Builder(
 			Label Row( Show Minor Grid( 0 ) )}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
-		Dispatch( {}, "Y title", TextEditBox, {Set Text( "MetricScore" )} )
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 18 )} ),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 18 ), Set Text( "MetricScore" )}
+		)
 	)
 );
