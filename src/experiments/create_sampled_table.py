@@ -24,7 +24,7 @@ N_ITERATIONS = 100  # iterations per increment
 because we are technically defining a new technique, SampledIntermediateTechnique
 """
 
-best_traced_technique = "(o (MAX) (\
+best_traced_technique = "(o (SUM) (\
 (. (LSI NT) (0 2))\
  ($ (SUM INDEPENDENT %f) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2))))))"
 
@@ -80,8 +80,6 @@ class CreateSampledTable(Experiment):
             remove_old_lag=True
         ).melt_metrics().col_values_to_upper(
             METRIC_COLNAME
-        ).to_title_case(
-            exclude=METRIC_COLNAME
         ).save(
             aggregate_file_path
         )

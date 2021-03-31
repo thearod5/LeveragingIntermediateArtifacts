@@ -2,13 +2,13 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/individual_queries/individual_queries.jmp"
 );
 Graph Builder(
-	Size( 1104, 884 ),
+	Size( 1378, 910 ),
 	Legend Position( "Bottom" ),
 	Variables(
 		X( :Metric ),
 		Y( :MetricScore ),
 		Group Y( :Dataset ),
-		Overlay( :TechniqueType )
+		Overlay( :Best Technique Family )
 	),
 	Elements( Box Plot( X, Y, Legend( 8 ), Outliers( 0 ) ) ),
 	SendToReport(
@@ -18,11 +18,11 @@ Graph Builder(
 			"MetricScore",
 			ScaleBox,
 			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
-			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
-			Label Row( Show Minor Grid( 0 ) )}
+			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 )}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
-		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 18 )} ),
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 24 )} ),
+		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 24 )} ),
 		Dispatch( {}, "400", LegendBox, {font( "Helvetica Neue", 24, "Plain" )} )
 	)
 );

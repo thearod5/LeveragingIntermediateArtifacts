@@ -2,11 +2,11 @@ import os
 
 import pandas as pd
 
-from api.constants.paths import PATH_TO_DATASET_SIZES_DATA
-from api.constants.processing import n_sig_figs
+from api.constants.processing import N_SIG_FIGS
 from api.datasets.dataset import Dataset
+from experiments.constants import PATH_TO_AGGREGATE_TABLES
 
-EXPORT_PATH = os.path.join(PATH_TO_DATASET_SIZES_DATA, "DatasetSizes.csv")
+EXPORT_PATH = os.path.join(PATH_TO_AGGREGATE_TABLES, "dataset_sizes.csv")
 
 DATASET_NAME = "Dataset"
 TOP_NAME = "Top"
@@ -21,23 +21,30 @@ LOWER_TRACES = "Lower Traces"
 
 if __name__ == "__main__":
     datasets = ["EasyClinic", "EBT", "Drone", "TrainController", "WARC"]
-    columns = [DATASET_NAME, TOP_NAME, MIDDLE_NAME, BOTTOM_NAME,
-               DIRECT_PATHS, DIRECT_TRACES, UPPER_PATHS, UPPER_TRACES,
-               LOWER_PATHS, LOWER_TRACES]
+    columns = [
+        DATASET_NAME,
+        TOP_NAME,
+        MIDDLE_NAME,
+        BOTTOM_NAME,
+        DIRECT_PATHS,
+        DIRECT_TRACES,
+        UPPER_PATHS,
+        UPPER_TRACES,
+        LOWER_PATHS,
+        LOWER_TRACES,
+    ]
     data = pd.DataFrame(columns=columns)
     for dataset_name in datasets:
         dataset = Dataset(dataset_name)
-        n_top = len(dataset.artifacts.levels[0])
-        n_middle = len(dataset.artifacts.levels[1])
-        n_bottom = len(dataset.artifacts.levels[2])
-
+        n_top = len(dataset.artifacts[0])
+        n_middle = len(dataset.artifacts[1])
+        n_bottom = len(dataset.artifacts[2])
 
         def stat_matrix(matrix):
             n_traces = matrix.sum(axis=1).sum()
-            n_paths = (matrix.shape[0] * matrix.shape[1])
+            n_paths = matrix.shape[0] * matrix.shape[1]
             percent_traced = n_traces / n_paths
             return n_paths, percent_traced
-
 
         d_paths, d_percent = stat_matrix(dataset.traced_matrices["0-2"])
         u_paths, u_percent = stat_matrix(dataset.traced_matrices["0-1"])
@@ -56,11 +63,13 @@ if __name__ == "__main__":
             LOWER_TRACES: l_percent,
         }
         data = data.append(entry, ignore_index=True)
-
+    print(data[["Dataset", DIRECT_TRACES]])
     post_df = data.sort_values(by=DIRECT_TRACES)
-    for n_col in list(filter(lambda c: 'paths' in c.lower(), post_df.columns)):
-        post_df[n_col] = post_df[n_col].apply(lambda n: f'{n:,}')
-    for p_col in list(filter(lambda c: 'traces' in c.lower(), post_df.columns)):
+    print(post_df[["Dataset", DIRECT_TRACES]])
+    for n_col in list(filter(lambda c: "paths" in c.lower(), post_df.columns)):
+        post_df[n_col] = post_df[n_col].apply(lambda n: f"{n:,}")
+    for p_col in list(filter(lambda c: "traces" in c.lower(), post_df.columns)):
         post_df[p_col] = post_df[p_col].apply(lambda p: repr(round(p * 100, 1)) + "\%")
-    post_df = post_df.round(n_sig_figs)
-    post_df.to_csv(EXPORT_PATH, index=False, sep=';')
+    post_df = post_df.round(N_SIG_FIGS)
+    post_df.to_csv(EXPORT_PATH, index=False, sep=";")
+    print("Done")

@@ -46,7 +46,6 @@ class CalculateIndividualQueries(Experiment):
         transitive_best_definition = get_best_transitive_technique(dataset_name)
         combined_best_definition = get_best_combined_technique(dataset_name)
 
-        print(transitive_best_definition)
         """
         Calculate metrics for individual queries on dataset
         """

@@ -13,13 +13,13 @@ if __name__ == "__main__":
     # get technique similarity values
     dataset = Dataset(dataset_name)
 
-    artifacts_df = pd.concat(dataset.artifacts.levels, axis=0)
+    artifacts_df = pd.concat(dataset.artifacts.artifact_levels, axis=0)
     artifacts_df = artifacts_df.set_index("id")
 
     word_intersection = set([])
     for a_id in ids:
         a = artifacts_df.loc[a_id]
-        a_text = a['text']
+        a_text = a["text"]
         print("%s:%s" % (a_id, a_text))
         a_words = a_text.split(" ")
 

@@ -97,9 +97,9 @@ if __name__ == "__main__":
     What artifact pair benefited the most from the transitive technique?
     """
     dataset = Dataset(dataset_name)
-    top_artifacts = dataset.artifacts.levels[0]
-    intermediate_artifacts = dataset.artifacts.levels[1]
-    bottom_artifacts = dataset.artifacts.levels[2]
+    top_artifacts = dataset.artifacts.artifact_levels[0]
+    intermediate_artifacts = dataset.artifacts.artifact_levels[1]
+    bottom_artifacts = dataset.artifacts.artifact_levels[2]
 
     top_artifact_idx = int(example_item_idx // len(bottom_artifacts))
     bottom_artifact_idx = int(example_item_idx % len(bottom_artifacts))

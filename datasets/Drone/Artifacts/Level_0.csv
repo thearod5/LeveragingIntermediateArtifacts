@@ -1,27 +1,52 @@
 id,text
 RE-8,uav state transit request vehicl core transit uav state accord allow state transit depict uav state transit diagram
+RE-9,listen notif client regist notif ui middlewar send notif specif event
 RE-25,uav identif vehicl core assign uniqu id activ uav
 RE-28,uav flight plan execut singl uav flight plan schedul execut flight plan time uav
 RE-36,instanc regist drone activ time uav activ manag ensur instanc regist drone activ time
+RE-38,uav type specif assign vehicl core associ uavtyp uav defin basic attribut
 RE-77,waypoint definit waypoint specifi use coordin includ longitud latitud altitud
 RE-80,visit waypoint flight plan flight plan execut vehicl core send next waypoint uav
 RE-86,manag flight plan queue singl uav flight plan schedul maintain manag pend flight plan uav
 RE-100,remov plan flight request singl uav flight plan schedul unassign flight plan assign uav await execut
 RE-101,assign new flight plan complet previou flight uav pend flight plan reach final waypoint current flight plan singl uav flight plan schedul execut next assign flight plan
+RE-103,remov pend plan returntohom ua vs current flight cancel singl uav flight plan schedul turn cancel schedul flight plan uav
+RE-108,ui middlewar accept registr ui middlewar provid interfac regist ui client
+RE-110,uav control ui client time ui middlewar assign controlcli time uav
+RE-112,ui bind uav command issu vaadin ui uav vaadin ui request control uav
 RE-114,map ui real time flight ui load map display
 RE-120,real time flight ui real time flight ui locat activ ua vs icon map
+RE-124,object avoid stationari move object proxim uav object avoid system issu evas direct uav
+RE-125,reach destin avoid object uav take evas action system ensur eventu reach destin
+RE-127,onboard obstacl avoid uav activ onboard obstacl avoid obstacl avoid system issu direct
+RE-160,activ addit uav detect gc gc request activ newli detect uav gc middlewar forward request dronolog
+RE-161,uav activ uav activ manag activ ua vs regist
+RE-235,allow reconnect gc uav disconnect gc lose connect uav gc attempt reconnect
 RE-424,return home detour return home command issu flight manag return uav origin launch locat issu addit waypoint rout command
 RE-501,flight rout defin waypoint flight rout manag defin flight rout order sequenc waypoint first waypoint repres first target locat final waypoint repres final target locat
+RE-503,valid flight rout flight rout manag ensur flight rout repres validflightrout
 RE-505,flight rout persist flight rout manag persist flight rout
 RE-508,specifi takeoff altitud flight rout requir custom takeoff altitud differ system default takeoff altitud specifi flight rout
 RE-510,coordin system convers request coordin system transform coordin altern format
 RE-516,calcul distanc given coordin coordin system comput distanc
+RE-517,calcul direct given coordin coordin system comput direct first coordin second coordin
+RE-521,maintain posit hover place hover place command issu flight manag halt uav place maintain current posit
+RE-523,flight rout assign hover place flight rout assign uav current hover place flight manag assign rout maintain hover place mode
+RE-525,rescind hover place command flight plan activ hover place command rescind flight manag notifi uav continu origin design waypoint
+RE-531,takeoff altitud flight plan activ uav current ground flight schedulingand execut notifi uav takeoff vertic reach prescrib altitud
 RE-541,predefin flight pattern mission planner manag predefin flight pattern
+RE-545,cancel mission request mission current activ mission planner cancel activ mission
 RE-547,flight plan schedul request singl uav flight plan schedul schedul rout execut
+RE-549,manual flight plan assign rout contain specif uavid singl uav flight plan schedul assign rout given uav
 RE-551,automat flight plan assign schedul flight manual assign uav singl uav flight plan schedul assign rout automat uav
+RE-555,hover complet flight uav doe pend flight plan reach final waypoint current flight plan singl uav flight plan schedul notifi uav hover place
 RE-558,cancel activ plan request singl uav flight plan schedul abort current execut flight plan uav
+RE-562,patternbas flight path flight pattern document longitud latitud altitud waypoint flight rout offset start posit uav
+RE-574,support gc connect ua vs vehicl core support ua vs connect gc
 RE-576,support intern simul ua vs vehicl core support virtual ua vs
 RE-587,deactiv physic ua vs uav deactiv uav activ manag cancel current schedul flight plan
+RE-589,establish maximum number activ ua vs maximum number allow activ ua vs reach uav activ manag reject activ request
+RE-592,uav registr uav registr manag store uav metadata inform ua vs technic characterist
 RE-594,simul takeoff given takeoff command intern simul uav takeoff altitud correspond current longitud latitud
 RE-595,simul goto given goto command intern simul updat locat uav increment simulationsteps meter move target destin destin reach
 RE-596,simul land given land command intern simul uav ground altitud correspond current longitud latitud

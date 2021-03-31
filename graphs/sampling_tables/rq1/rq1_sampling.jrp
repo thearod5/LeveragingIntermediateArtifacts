@@ -2,40 +2,106 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/sampling_tables/rq1/rq1_sampling.jmp"
 );
 Graph Builder(
-	Size( 1329, 912 ),
-	Show Legend( 0 ),
+	Size( 1378, 922 ),
+	Legend Position( "Bottom" ),
 	Variables(
-		X( :Percent of Intermediate Artifacts Used ),
-		Y( :Value ),
-		Group X( :Metric ),
-		Group Y( :Dataset ),
-		Color( :Percent of Intermediate Artifacts Used )
+		X( :Metrics ),
+		Y( :value ),
+		Group Y( :Datasets ),
+		Overlay( :Percent of Intermediate Artifacts )
 	),
-	Elements( Points( X, Y, Legend( 17 ) ), Line Of Fit( X, Y, Legend( 19 ) ) ),
+	Elements( Box Plot( X, Y, Legend( 9 ), Outliers( 0 ) ) ),
 	SendToReport(
+		Dispatch( {}, "Metrics", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
 		Dispatch(
 			{},
-			"Percent of Intermediate Artifacts Used",
-			ScaleBox,
-			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.1 ),
-			Minor Ticks( 0 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
-			Label Row( {Show Minor Grid( 0 ), Set Font Size( 10 )} )}
-		),
-		Dispatch(
-			{},
-			"Value",
+			"value",
 			ScaleBox,
 			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
 			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
-			Label Row( Show Minor Grid( 0 ) )}
+			Label Row( Set Font Size( 18 ) )}
+		),
+		Dispatch(
+			{},
+			"400",
+			ScaleBox,
+			{Legend Model(
+				9,
+				Properties(
+					-1,
+					{Line Color( -2768895 ), Fill Color( -2768895 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.1", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -4938993 ), Fill Color( -4938993 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.2", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -7174371 ), Fill Color( -7174371 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.3", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -9344469 ), Fill Color( -9344469 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.4", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -11514567 ), Fill Color( -11514567 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.5", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -13085868 ), Fill Color( -13085868 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.6", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -13927556 ), Fill Color( -13927556 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.7", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -14768987 ), Fill Color( -14768987 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.8", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -15676211 ), Fill Color( -15676211 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "0.9", 1 )
+				),
+				Properties(
+					-1,
+					{Line Color( -16517899 ), Fill Color( -16517899 ),
+					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
+					Item ID( "1", 1 )
+				)
+			)}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
-		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 18 )} ),
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 24 )} ),
 		Dispatch(
 			{},
 			"Y title",
 			TextEditBox,
-			{Set Font Size( 18 ), Set Text( "MetricScore" )}
+			{Set Font Size( 24 ), Set Text( "MetricScore" )}
+		),
+		Dispatch(
+			{},
+			"400",
+			LegendBox,
+			{font( "Helvetica Neue", 18, "Plain" ), Set Wrap( 11 )}
 		)
 	)
 );
