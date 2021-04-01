@@ -1,0 +1,1 @@
+SSR1 - The WCP’s high-speed (1.2Mb/s) client LAN port directly connects to other Mobility I/O modules to transmit state messages.

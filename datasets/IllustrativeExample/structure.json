@@ -1,0 +1,10 @@
+{
+  "artifacts": {
+    "0": "originals/system_requirements.txt",
+    "1": "originals/system_designs.txt",
+    "2": "originals/subsystem_requirements.txt"
+  }, "traces": {
+    "0-1": "originals/SR2SD.txt",
+    "1-2": "originals/SD2SSR.txt"
+  }
+}

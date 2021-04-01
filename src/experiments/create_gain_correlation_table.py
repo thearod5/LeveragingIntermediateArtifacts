@@ -1,6 +1,8 @@
 from api.constants.processing import METRIC_COLNAME
 from api.tables.table import Table
-from experiments.constants import (
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
+    DATASET_COLUMN_ORDER,
     PATH_TO_RQ1_CORRELATION,
     PATH_TO_RQ1_GAIN,
     PATH_TO_RQ1_GAIN_CORRELATION,
@@ -8,7 +10,6 @@ from experiments.constants import (
     PATH_TO_RQ2_GAIN,
     PATH_TO_RQ2_GAIN_CORRELATION,
 )
-from experiments.experiment import Experiment
 
 
 class GainCorrelationTable(Experiment):
@@ -29,7 +30,7 @@ class GainCorrelationTable(Experiment):
         rq1_gain_correlation = rq1_correlation + rq1_gain
         (
             rq1_gain_correlation.drop_duplicate_columns()
-            .sort()
+            .sort(DATASET_COLUMN_ORDER)
             .col_values_to_upper(METRIC_COLNAME)
             .to_title_case(exclude=[METRIC_COLNAME])
             .round()
@@ -40,7 +41,7 @@ class GainCorrelationTable(Experiment):
         rq2_gain_correlation = rq2_correlation + rq2_gain
         (
             rq2_gain_correlation.drop_duplicate_columns()
-            .sort()
+            .sort(DATASET_COLUMN_ORDER)
             .col_values_to_upper(METRIC_COLNAME)
             .to_title_case(exclude=[METRIC_COLNAME])
             .round()

@@ -9,19 +9,19 @@ from api.constants.processing import (
     METRIC_SCORE_COLNAME,
     TECHNIQUE_TYPE_COLNAME,
 )
-from api.constants.techniques import COMBINED_ID, DIRECT_ID, TRANSITIVE_ID
+from api.constants.techniques import DIRECT_ID, HYBRID_ID, TRANSITIVE_ID
 from api.tables.metric_table import MetricTable, Metrics
 from api.tables.table import Table
 from api.tracer import Tracer
-from experiments.constants import (
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
     PATH_TO_INDIVIDUAL_QUERIES,
     PATH_TO_INDIVIDUAL_QUERIES_AGG,
 )
-from experiments.experiment import Experiment
 from utilities.prompts import prompt_for_dataset
 from utilities.technique_extractors import (
-    get_best_combined_technique,
     get_best_direct_technique,
+    get_best_hybrid_technique,
     get_best_transitive_technique,
 )
 
@@ -44,7 +44,7 @@ class CalculateIndividualQueries(Experiment):
         """
         direct_best_definition = get_best_direct_technique(dataset_name)
         transitive_best_definition = get_best_transitive_technique(dataset_name)
-        combined_best_definition = get_best_combined_technique(dataset_name)
+        combined_best_definition = get_best_hybrid_technique(dataset_name)
 
         """
         Calculate metrics for individual queries on dataset
@@ -73,7 +73,7 @@ class CalculateIndividualQueries(Experiment):
         )
         metric_table.add(
             combined_metrics,
-            other={TECHNIQUE_TYPE_COLNAME: COMBINED_ID},
+            other={TECHNIQUE_TYPE_COLNAME: HYBRID_ID},
             create_index=True,
         )
 
@@ -81,7 +81,7 @@ class CalculateIndividualQueries(Experiment):
         Export individual run
         """
         export_path = os.path.join(PATH_TO_INDIVIDUAL_QUERIES, dataset_name + ".csv")
-        (metric_table.sort().save(export_path))
+        (metric_table.sort(DATASET_COLUMN_ORDER).save(export_path))
         self.export_paths.append(export_path)
 
         """

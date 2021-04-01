@@ -5,13 +5,14 @@ from api.extension.experiment_types import SamplingExperiment
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
 from api.tracer import Tracer
-from experiments.constants import (
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
+    DATASET_COLUMN_ORDER,
     PATH_TO_ARTIFACT_SAMPLING_AGG,
     PATH_TO_SAMPLED_METRIC_TABLES,
     PATH_TO_TRACES_SAMPLING_AGG,
 )
-from src.experiments.experiment import Experiment
-from src.experiments.progress_bar_factory import create_bar
+from utilities.progress_bar_factory import create_loading_bar
 from utilities.prompts import prompt_for_dataset, prompt_for_sampling_method
 from utilities.technique_extractors import get_best_combined_sampled_technique
 
@@ -68,14 +69,16 @@ class CreateSampledTable(Experiment):
         """
 
         metric_table = create_sampled_metric_table(dataset_name, sampling_method)
-        metric_table.sort().save(run_export_path)
+        metric_table.sort(DATASET_COLUMN_ORDER).save(run_export_path)
 
         """
         Update aggregate
         """
         self.export_paths.append(run_export_path)
         MetricTable(
-            Table.aggregate_intermediate_files(path_to_intermediate_files).sort().table
+            Table.aggregate_intermediate_files(path_to_intermediate_files)
+            .sort(DATASET_COLUMN_ORDER)
+            .table
         ).create_lag_norm_inverted(
             remove_old_lag=True
         ).melt_metrics().col_values_to_upper(
@@ -106,14 +109,14 @@ def create_sampled_metric_table(dataset_name: str, sampling_method: str) -> Metr
     loading_message = "sampling %s" % sampling_method
     sampling_intervals = create_sampling_sections()
     best_no_trace_technique = get_best_combined_sampled_technique(dataset_name)
-    with create_bar(
+    with create_loading_bar(
         loading_message, sampling_intervals, length=N_INCREMENTS * N_ITERATIONS
     ) as iter_id:
         for interval_index, iteration_index, percentage in iter_id:
             if experiment_type == SamplingExperiment.ARTIFACTS:
                 if (
                     interval_index == 0
-                ):  # using 0% of intermediate artifacts is not a valid COMBINED technique
+                ):  # using 0% of intermediate artifacts is not a valid Hybrid technique
                     continue
                 technique_name = best_no_trace_technique % percentage
             elif experiment_type == SamplingExperiment.TRACES:

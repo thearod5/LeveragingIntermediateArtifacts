@@ -1,0 +1,1 @@
+SR1 - The Highway Wayside Segment shall monitor signal, road work directive, and hazard detector information from field devices and the related system design artifact that states

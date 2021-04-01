@@ -9,15 +9,17 @@ from api.constants.processing import (
     TRANSITIVE_TRACE_TYPE_ORDER,
     VARIATION_POINT_COLNAME,
 )
+from api.constants.techniques import HYBRID_ID
 from api.extension.experiment_types import ExperimentTraceType
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
-from experiments.constants import (
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
+    DATASET_COLUMN_ORDER,
     PATH_TO_BEST_AGGREGATE,
     PATH_TO_METRIC_TABLE_AGGREGATE,
     PATH_TO_RQ1_BEST,
 )
-from experiments.experiment import Experiment
 
 
 class CreateBestTechnique(Experiment):
@@ -49,6 +51,7 @@ class CreateBestTechnique(Experiment):
 
         best_table = (
             rq1_aggregate.calculate_percent_best()
+            .sort(DATASET_COLUMN_ORDER)
             .to_categorical(
                 VARIATION_POINT_COLNAME, col_value_order=self.variation_point_order
             )
@@ -60,15 +63,19 @@ class CreateBestTechnique(Experiment):
                 group_names=[TRANSITIVE_TRACE_TYPE_COLNAME, VARIATION_POINT_COLNAME],
                 axis=0,
             )
-            .sort()
+            .sort(DATASET_COLUMN_ORDER)
         )
 
         # export rq1 best
+        hybrid_query = best_table.table[TECHNIQUE_TYPE_COLNAME] == HYBRID_ID
+        none_traced_query = (
+            best_table.table[TRANSITIVE_TRACE_TYPE_COLNAME]
+            == ExperimentTraceType.NONE.value
+        )
         Table(
-            best_table.table[
-                best_table.table[TRANSITIVE_TRACE_TYPE_COLNAME]
-                == ExperimentTraceType.NONE.value
-            ].drop(TRANSITIVE_TRACE_TYPE_COLNAME, axis=1)
+            best_table.table[hybrid_query & none_traced_query].drop(
+                [TECHNIQUE_TYPE_COLNAME, TRANSITIVE_TRACE_TYPE_COLNAME], axis=1
+            )
         ).to_title_case(exclude=["technique"]).format_percents_for_latex(
             to_int=True
         ).save(

@@ -6,13 +6,14 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
 )
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
-from experiments.constants import (
+from experiments.create_metric_table import create_combined_definition
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
+    DATASET_COLUMN_ORDER,
     PATH_TO_METRIC_TABLE_AGGREGATE,
     PATH_TO_RQ1_GAIN,
     PATH_TO_RQ2_GAIN,
 )
-from experiments.create_metric_table import create_combined_definition
-from experiments.experiment import Experiment
 
 
 class CalculateGain(Experiment):
@@ -46,7 +47,7 @@ class CalculateGain(Experiment):
         )
         traces_gain_df = agg_df.calculate_gain(
             base_indices=direct_indices, target_indices=traces_target_indices
-        )
+        ).sort(DATASET_COLUMN_ORDER)
 
         return traces_gain_df
 

@@ -1,12 +1,13 @@
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
-from experiments.constants import (
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
+    DATASET_COLUMN_ORDER,
     PATH_TO_ARTIFACT_SAMPLING_AGG,
     PATH_TO_RQ1_CORRELATION,
     PATH_TO_RQ2_CORRELATION,
     PATH_TO_TRACES_SAMPLING_AGG,
 )
-from experiments.experiment import Experiment
 
 EXPERIMENT_NAME = "correlation_table"
 
@@ -24,6 +25,7 @@ class CalculateCorrelation(Experiment):
         artifact_correlation_df: Table = (
             MetricTable(path_to_table=PATH_TO_ARTIFACT_SAMPLING_AGG)
             .create_correlation_table()
+            .sort(DATASET_COLUMN_ORDER)
             .round()
             .save(PATH_TO_RQ1_CORRELATION)
         )
@@ -32,6 +34,7 @@ class CalculateCorrelation(Experiment):
         trace_correlation_df: Table = (
             MetricTable(path_to_table=PATH_TO_TRACES_SAMPLING_AGG)
             .create_correlation_table()
+            .sort(DATASET_COLUMN_ORDER)
             .round()
             .save(PATH_TO_RQ2_CORRELATION)
         )

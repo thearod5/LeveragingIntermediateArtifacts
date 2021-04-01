@@ -48,3 +48,4 @@ PATH_TO_RQ1_GAIN_CORRELATION = os.path.join(
 PATH_TO_RQ2_GAIN_CORRELATION = os.path.join(
     PATH_TO_PRESENTATION, "rq2_gain_correlation.csv"
 )
+DATASET_COLUMN_ORDER = ["WARC", "Drone", "TrainController", "EasyClinic", "EBT"]

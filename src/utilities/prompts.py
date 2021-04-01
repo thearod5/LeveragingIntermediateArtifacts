@@ -3,7 +3,8 @@ This module contains all of the user prompts for all defined experiments in star
 """
 import click
 
-from api.constants.processing import DATASET_COLUMN_ORDER, SAMPLING_METHODS
+from api.constants.processing import SAMPLING_METHODS
+from utilities.constants import DATASET_COLUMN_ORDER
 
 
 def prompt_for_dataset() -> str:

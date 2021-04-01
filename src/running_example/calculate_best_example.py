@@ -9,9 +9,8 @@ The following questions are answered:
 -> How much did they help?
 """
 import pandas as pd
-from api.technique.variationpoints.scalers.ScalingMethod import ScalingMethod
 
-from api.constants.processing import n_sig_figs
+from api.constants.processing import N_SIG_FIGS
 from api.datasets.dataset import Dataset
 from api.extension.experiment_types import ExperimentTraceType
 from api.technique.definitions.combined.technique import CombinedTechniqueData
@@ -20,6 +19,7 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
     AggregationMethod,
 )
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
+from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
 from api.tracer import Tracer
 from experiments import create_metric_table
 
@@ -149,4 +149,4 @@ if __name__ == "__main__":
         print("%s: %f" % (technique_score[0], technique_score[1]))
     print("\nMost helpful intermediate artifacts (artifact, score): ")
     for best_i in best_intermediate_artifacts:
-        print("%s -> %f" % (best_i[0], round(best_i[1], n_sig_figs)))
+        print("%s -> %f" % (best_i[0], round(best_i[1], N_SIG_FIGS)))

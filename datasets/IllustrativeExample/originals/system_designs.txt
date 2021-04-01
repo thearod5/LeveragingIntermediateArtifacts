@@ -1,0 +1,1 @@
+SD1 - During lamp-out conditions the WIU shall send the current state of the highway signal.

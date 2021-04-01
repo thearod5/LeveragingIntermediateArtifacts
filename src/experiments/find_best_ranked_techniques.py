@@ -3,11 +3,11 @@ from api.constants.processing import (
 )
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
-from experiments.constants import (
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
     PATH_TO_BEST_RANKS,
     PATH_TO_METRIC_TABLE_AGGREGATE,
 )
-from experiments.experiment import Experiment
 
 
 class FindBestRankedTechniques(Experiment):

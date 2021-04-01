@@ -16,8 +16,8 @@ from api.constants.processing import (
     TRANSITIVE_TRACE_TYPE_COLNAME,
 )
 from api.constants.techniques import (
-    COMBINED_ID,
     DIRECT_ID,
+    HYBRID_ID,
     TRANSITIVE_ID,
     UNDEFINED_TECHNIQUE,
 )
@@ -25,7 +25,7 @@ from api.extension.cache import Cache
 from api.extension.experiment_types import ExperimentTraceType
 from api.tables.metric_table import MetricTable
 from api.tables.table import Table
-from api.technique.definitions.combined.technique import COMBINED_COMMAND_SYMBOL
+from api.technique.definitions.combined.technique import HYBRID_COMMAND_SYMBOL
 from api.technique.definitions.direct.definition import DIRECT_COMMAND_SYMBOL
 from api.technique.definitions.transitive.definition import TRANSITIVE_COMMAND_SYMBOL
 from api.technique.variationpoints.aggregation.aggregation_method import (
@@ -35,13 +35,14 @@ from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
 from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
 from api.technique.variationpoints.tracetype.trace_type import TraceType
 from api.tracer import Tracer
-from experiments.constants import (
+from experiments.meta.experiment import Experiment
+from utilities.constants import (
+    DATASET_COLUMN_ORDER,
     PATH_TO_GRAPH_METRIC_TABLE_AGGREGATE,
     PATH_TO_METRIC_TABLES,
     PATH_TO_METRIC_TABLE_AGGREGATE,
 )
-from src.experiments.experiment import Experiment
-from src.experiments.progress_bar_factory import create_bar
+from utilities.progress_bar_factory import create_loading_bar
 from utilities.prompts import prompt_for_dataset
 
 RETRIEVAL_TECHNIQUE_EXPERIMENT_DESCRIPTION = (
@@ -76,11 +77,13 @@ class CreateMetricTable(Experiment):
         """
         dataset_name = prompt_for_dataset()
         metric_table = calculate_technique_metric_table(dataset_name)
-        metric_table.sort().save(create_export_path(dataset_name))
+        metric_table.sort(DATASET_COLUMN_ORDER).save(create_export_path(dataset_name))
 
         # export metric table
         aggregate_metric_table = MetricTable(
-            Table.aggregate_intermediate_files(PATH_TO_METRIC_TABLES).sort().table
+            Table.aggregate_intermediate_files(PATH_TO_METRIC_TABLES)
+            .sort(DATASET_COLUMN_ORDER)
+            .table
         ).save(PATH_TO_METRIC_TABLE_AGGREGATE)
 
         # create graphable metrics and export table
@@ -169,7 +172,7 @@ def calculate_technique_metric_table(dataset: str) -> Table:
     metric_table = MetricTable()
 
     techniques = RetrievalTechniques()
-    with create_bar(
+    with create_loading_bar(
         EXPERIMENT_LOADING_MESSAGE, techniques, length=len(techniques)
     ) as techniques:
         for t_name, t_entry in techniques:
@@ -288,7 +291,7 @@ def create_combined_definition(t_id: TechniqueID):
     )
 
     return "(%s (%s) (%s %s))" % (
-        COMBINED_COMMAND_SYMBOL,
+        HYBRID_COMMAND_SYMBOL,
         technique_aggregation.value,
         direct,
         transitive,
@@ -307,7 +310,7 @@ def create_entry(t_id: TechniqueID) -> dict:
     elif technique_agg is None and t_am is not None:
         technique_type = TRANSITIVE_ID
     else:
-        technique_type = COMBINED_ID
+        technique_type = HYBRID_ID
     return {
         TECHNIQUE_TYPE_COLNAME: technique_type,
         DIRECT_ALGEBRAIC_MODEL_COLNAME: UNDEFINED_TECHNIQUE

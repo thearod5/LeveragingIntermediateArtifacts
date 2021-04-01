@@ -1,19 +1,17 @@
 """
 Calculates what words two artifacts have in common.
 """
+from typing import Tuple
 
 import pandas as pd
 
 from api.datasets.dataset import Dataset
 
-if __name__ == "__main__":
-    dataset_name = "Drone"
-    ids = ["RE-100", "IMonitoringDataHandler.java"]
 
-    # get technique similarity values
+def words_in_common(dataset_name: str, artifact_ids: Tuple[str, str]):
     dataset = Dataset(dataset_name)
 
-    artifacts_df = pd.concat(dataset.artifacts.artifact_levels, axis=0)
+    artifacts_df = pd.concat(dataset.artifacts, axis=0)
     artifacts_df = artifacts_df.set_index("id")
 
     word_intersection = set([])
@@ -28,4 +26,12 @@ if __name__ == "__main__":
         else:
             word_intersection = word_intersection.intersection(set(a_words))
 
-    print("shared words: ", list(word_intersection))
+    return word_intersection
+
+
+if __name__ == "__main__":
+    global_ids = [("SR1", "SD1"), ("SD1", "SSR1"), ("SR1", "SSR1")]
+
+    for ids in global_ids:
+        shared_words = words_in_common("IllustrativeExample", ids)
+        print(ids, "shared words: ", list(shared_words), "\n")

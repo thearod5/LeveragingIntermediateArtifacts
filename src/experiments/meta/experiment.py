@@ -5,8 +5,6 @@ of this projects experiments in one place.
 """
 from abc import ABC, abstractmethod
 
-from api.tables.table import Table
-
 
 class Experiment(ABC):
     """
@@ -17,9 +15,10 @@ class Experiment(ABC):
         self.export_paths = []
 
     @abstractmethod
-    def run(self) -> Table:
+    def run(self):
         """
-        :return: Table - the output of the experiment
+        Run the experiment
+        :return: None
         """
 
     @property

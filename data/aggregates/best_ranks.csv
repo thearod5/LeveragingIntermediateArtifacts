@@ -1,219 +1,231 @@
 dataset,technique_type,transitive_trace_type,direct_algebraic_model,transitive_algebraic_model,transitive_scaling,transitive_aggregation,technique_aggregation,ap,auc,lag,name,map_rank
+Drone,Hybrid,all,VSM,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,all,VSM,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,all,LSI,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+Drone,Hybrid,lower,VSM,VSM,INDEPENDENT,MAX,MAX,0.922478476127336,0.9861343164704344,305.5996649916248,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))))),1.0
+Drone,Hybrid,none,VSM,VSM,GLOBAL,SUM,MAX,0.2269417042842417,0.6772567617275731,7113.245896147404,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),1.0
+Drone,Hybrid,upper,VSM,LSI,INDEPENDENT,SUM,MAX,0.5336205814429953,0.9039664444424178,2116.5795644891123,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))))),1.0
+Drone,DIRECT,direct,VSM,,,,,0.1860362526313316,0.6130744314433633,8494.24690117253,(. (VSM NT) (0 2)),1.0
+Drone,TRANSITIVE,all,,VSM,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,VSM,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,VSM,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,VSM,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,LSI,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,LSI,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,VSM,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,all,,LSI,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 Drone,TRANSITIVE,all,,LSI,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 Drone,TRANSITIVE,all,,LSI,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,LSI,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,LSI,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 Drone,TRANSITIVE,all,,LSI,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,LSI,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,VSM,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,VSM,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,VSM,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,VSM,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,TRANSITIVE,all,,VSM,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,LSI,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,COMBINED,all,VSM,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-Drone,DIRECT,direct,LSI,,,,,0.3187476054791195,0.6067489816640633,4194.022110552764,(. (LSI NT) (0 2)),1.0
-Drone,TRANSITIVE,lower,,VSM,INDEPENDENT,MAX,,0.9937687142901044,0.9981237646271676,20.01005025125628,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,TRANSITIVE,lower,,VSM,GLOBAL,MAX,,0.9937687142901044,0.9981237646271676,20.01005025125628,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
-Drone,COMBINED,none,LSI,LSI,INDEPENDENT,SUM,PCA,0.3765918582581851,0.6834694177246602,3375.798659966499,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),1.0
-Drone,COMBINED,upper,LSI,LSI,INDEPENDENT,SUM,MAX,0.5328318681281063,0.8003845764217242,2128.8984924623114,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))))),1.0
-EBT,TRANSITIVE,all,,LSI,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,LSI,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,LSI,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,LSI,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,LSI,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,LSI,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,VSM,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,VSM,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,lower,,VSM,INDEPENDENT,MAX,,0.9255240415914828,0.9869410117739332,287.82010050251256,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,lower,,VSM,GLOBAL,MAX,,0.9255240415914828,0.9869410117739332,287.82010050251256,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+Drone,TRANSITIVE,none,,VSM,GLOBAL,MAX,,0.2332631307745357,0.6713395319002757,7243.676716917923,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+Drone,TRANSITIVE,none,,VSM,INDEPENDENT,MAX,,0.2332631307745357,0.6713395319002757,7243.676716917923,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+Drone,TRANSITIVE,upper,,LSI,INDEPENDENT,SUM,,0.5336209899379849,0.9039676300437456,2116.5534338358457,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))),1.0
+EBT,Hybrid,all,VSM,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,GLOBAL,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,GLOBAL,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,LSI,INDEPENDENT,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,INDEPENDENT,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,all,VSM,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,lower,VSM,VSM,INDEPENDENT,MAX,SUM,0.9379176929888108,0.9421512403307548,34.59355828220859,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))))),1.0
+EBT,Hybrid,none,LSI,VSM,GLOBAL,SUM,MAX,0.7346496943706644,0.7169988920122289,169.24539877300614,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),1.0
+EBT,Hybrid,upper,VSM,LSI,GLOBAL,SUM,PCA,0.8670138449295456,0.8451971807866714,92.57208588957056,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))))),1.0
+EBT,DIRECT,direct,VSM,,,,,0.7088872379186215,0.7009048566797299,178.40797546012269,(. (VSM NT) (0 2)),1.0
 EBT,TRANSITIVE,all,,VSM,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-EBT,TRANSITIVE,all,,VSM,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,LSI,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 EBT,TRANSITIVE,all,,VSM,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-EBT,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,LSI,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,GLOBAL,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,GLOBAL,MAX,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,all,VSM,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,DIRECT,direct,VSM,,,,,0.7600251941619731,0.6985117906441718,136.14723926380367,(. (VSM NT) (0 2)),1.0
-EBT,COMBINED,lower,VSM,VSM,INDEPENDENT,MAX,SUM,0.9889277309622264,0.985248000657318,6.608895705521473,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))))),1.0
-EBT,COMBINED,none,LSI,VSM,GLOBAL,SUM,MAX,0.785295329326285,0.7269253943908851,122.25153374233128,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),1.0
-EBT,COMBINED,upper,LSI,VSM,INDEPENDENT,SUM,MAX,0.869022981160043,0.7913014899211219,93.48466257668711,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))))),1.0
+EBT,TRANSITIVE,all,,VSM,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,VSM,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,VSM,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,LSI,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,LSI,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,LSI,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,LSI,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+EBT,TRANSITIVE,all,,LSI,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+EBT,TRANSITIVE,lower,,VSM,INDEPENDENT,MAX,,0.9318569272923808,0.9309867246650388,41.26993865030675,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+EBT,TRANSITIVE,lower,,VSM,GLOBAL,MAX,,0.9318569272923808,0.9309867246650388,41.26993865030675,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+EBT,TRANSITIVE,none,,VSM,INDEPENDENT,SUM,,0.7298841063732695,0.7049674785070891,176.4754601226994,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+EBT,TRANSITIVE,none,,VSM,GLOBAL,SUM,,0.7298841063732695,0.7049674785070891,176.4754601226994,(x (SUM GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+EBT,TRANSITIVE,upper,,LSI,INDEPENDENT,SUM,,0.8663612840831967,0.8394777068756797,95.99233128834356,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,all,VSM,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+EasyClinic,Hybrid,lower,VSM,VSM,INDEPENDENT,MAX,MAX,0.9622660528096254,0.9782187739948968,22.587131367292223,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))))),1.0
+EasyClinic,Hybrid,none,VSM,VSM,INDEPENDENT,MAX,SUM,0.6793934128216994,0.7995170643302371,207.90080428954423,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),1.0
+EasyClinic,Hybrid,upper,VSM,VSM,INDEPENDENT,MAX,SUM,0.8825056010524347,0.9232034043345284,79.63806970509384,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))))),1.0
+EasyClinic,DIRECT,direct,VSM,,,,,0.6369261600498141,0.7582632930111349,250.6809651474531,(. (VSM NT) (0 2)),1.0
+EasyClinic,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+EasyClinic,TRANSITIVE,all,,VSM,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,LSI,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,LSI,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,LSI,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,LSI,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,LSI,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,LSI,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-EasyClinic,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,VSM,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,VSM,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,VSM,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-EasyClinic,TRANSITIVE,all,,VSM,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
 EasyClinic,TRANSITIVE,all,,VSM,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,LSI,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,GLOBAL,MAX,SUM,1.0,1.0,0.0,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,all,VSM,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,DIRECT,direct,VSM,,,,,0.6369261600498141,0.7582632930111349,250.6809651474531,(. (VSM NT) (0 2)),1.0
-EasyClinic,COMBINED,lower,VSM,VSM,INDEPENDENT,MAX,MAX,0.9622660528096254,0.9782187739948968,22.587131367292223,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))))),1.0
-EasyClinic,COMBINED,none,VSM,VSM,INDEPENDENT,MAX,SUM,0.6793934128216994,0.7995170643302371,207.90080428954423,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),1.0
-EasyClinic,COMBINED,upper,VSM,VSM,INDEPENDENT,MAX,SUM,0.8825056010524347,0.9232034043345284,79.63806970509384,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))))),1.0
-TrainController,TRANSITIVE,all,,LSI,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,LSI,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,LSI,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,LSI,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,LSI,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,LSI,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,1.0,1.0,0.0,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,VSM,INDEPENDENT,SUM,,1.0,1.0,0.0,(x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,VSM,INDEPENDENT,MAX,,1.0,1.0,0.0,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,VSM,GLOBAL,PCA,,1.0,1.0,0.0,(x (PCA GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,VSM,GLOBAL,SUM,,1.0,1.0,0.0,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-TrainController,TRANSITIVE,all,,VSM,GLOBAL,MAX,,1.0,1.0,0.0,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
-TrainController,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,LSI,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,GLOBAL,SUM,PCA,1.0,1.0,0.0,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,LSI,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,LSI,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,LSI,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,LSI,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,LSI,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,VSM,INDEPENDENT,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,VSM,INDEPENDENT,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,VSM,GLOBAL,SUM,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,COMBINED,all,VSM,VSM,GLOBAL,MAX,MAX,1.0,1.0,0.0,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-TrainController,DIRECT,direct,VSM,,,,,0.3778996154408955,0.5309602837756824,24764.13981457348,(. (VSM NT) (0 2)),1.0
-TrainController,TRANSITIVE,lower,,LSI,INDEPENDENT,MAX,,0.8502405609211666,0.9424009663166087,2952.814461779052,(x (MAX INDEPENDENT) ((. (LSI NT) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,TRANSITIVE,lower,,LSI,GLOBAL,MAX,,0.8502405609211666,0.9424009663166087,2952.814461779052,(x (MAX GLOBAL) ((. (LSI NT) (0 1)) (. (LSI T) (1 2)))),1.0
-TrainController,COMBINED,none,LSI,VSM,GLOBAL,SUM,MAX,0.4594668579239998,0.641573967794528,18374.710541013515,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),1.0
-TrainController,TRANSITIVE,upper,,LSI,INDEPENDENT,MAX,,0.7961622814906898,0.8801515688164103,6144.029824626727,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))),1.0
-WARC,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,PCA,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,LSI,INDEPENDENT,SUM,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,LSI,INDEPENDENT,MAX,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,LSI,GLOBAL,SUM,PCA,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,LSI,GLOBAL,SUM,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,LSI,GLOBAL,MAX,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,PCA,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,VSM,INDEPENDENT,SUM,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,VSM,INDEPENDENT,MAX,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,VSM,GLOBAL,SUM,PCA,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,VSM,GLOBAL,SUM,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-WARC,COMBINED,all,LSI,VSM,GLOBAL,MAX,SUM,0.8990943419076058,0.9650426816572976,55.96666666666667,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
-WARC,DIRECT,direct,LSI,,,,,0.4827753718260456,0.8547158026233603,232.6,(. (LSI NT) (0 2)),1.0
-WARC,COMBINED,lower,LSI,LSI,GLOBAL,MAX,MAX,0.6811191550833996,0.9070858491220763,148.87777777777777,(o (MAX) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI NT) (0 1)) (. (LSI T) (1 2)))))),1.0
-WARC,COMBINED,none,LSI,LSI,INDEPENDENT,PCA,PCA,0.5128254409026985,0.866604205704768,213.56666666666663,(o (PCA) ((. (LSI NT) (0 2)) (x (PCA INDEPENDENT) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),1.0
-WARC,COMBINED,upper,VSM,VSM,INDEPENDENT,MAX,PCA,0.6447213847972563,0.9319175515302938,109.66666666666669,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))))),1.0
+EasyClinic,TRANSITIVE,lower,,VSM,GLOBAL,MAX,,0.9613871408061244,0.9778258070687512,22.994638069705093,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+EasyClinic,TRANSITIVE,lower,,VSM,INDEPENDENT,MAX,,0.9613871408061244,0.9778258070687512,22.994638069705093,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+EasyClinic,TRANSITIVE,none,,VSM,GLOBAL,MAX,,0.6605661016599322,0.7898505950088028,217.9249329758713,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+EasyClinic,TRANSITIVE,upper,,VSM,INDEPENDENT,MAX,,0.8740010066875585,0.9204371239991624,82.50670241286863,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))),1.0
+EasyClinic,TRANSITIVE,upper,,VSM,GLOBAL,MAX,,0.8740010066875585,0.9204371239991624,82.50670241286863,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))),1.0
+TrainController,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+TrainController,Hybrid,all,LSI,LSI,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+TrainController,Hybrid,all,LSI,VSM,GLOBAL,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+TrainController,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,SUM,1.0,1.0,0.0,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+TrainController,Hybrid,lower,VSM,VSM,INDEPENDENT,MAX,MAX,0.704783948196096,0.9037447552313268,9648.3369698775,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))))),1.0
+TrainController,Hybrid,none,LSI,VSM,INDEPENDENT,SUM,MAX,0.3336544041980113,0.6617387075982493,33906.29716647429,(o (MAX) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),1.0
+TrainController,Hybrid,upper,VSM,LSI,INDEPENDENT,MAX,MAX,0.79185077283514,0.9373811887251796,6276.721785754179,(o (MAX) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))))),1.0
+TrainController,DIRECT,direct,LSI,,,,,0.2414745323683701,0.5364753490440191,46462.32043787467,(. (LSI NT) (0 2)),1.0
+TrainController,TRANSITIVE,all,,LSI,GLOBAL,PCA,,0.9999999861361648,0.9999999979569588,0.0002606396842536,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+TrainController,TRANSITIVE,all,,LSI,INDEPENDENT,PCA,,0.9999999861361648,0.9999999979569588,0.0002606396842536,(x (PCA INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+TrainController,TRANSITIVE,all,,VSM,GLOBAL,PCA,,0.9999999861361648,0.9999999979569588,0.0002606396842536,(x (PCA GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+TrainController,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,0.9999999861361648,0.9999999979569588,0.0002606396842536,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+TrainController,TRANSITIVE,lower,,VSM,GLOBAL,MAX,,0.7062858833159592,0.9044784005630824,9574.798562758311,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+TrainController,TRANSITIVE,lower,,VSM,INDEPENDENT,MAX,,0.7062858833159592,0.9044784005630824,9574.798562758311,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+TrainController,TRANSITIVE,none,,VSM,GLOBAL,SUM,,0.3336311156402068,0.6616436058865024,33915.829876754666,(x (SUM GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+TrainController,TRANSITIVE,none,,VSM,INDEPENDENT,SUM,,0.3336311156402068,0.6616436058865024,33915.829876754666,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+TrainController,TRANSITIVE,upper,,LSI,INDEPENDENT,MAX,,0.7920790631641607,0.9374358189046312,6271.245820456492,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI NT) (1 2)))),1.0
+WARC,Hybrid,all,LSI,LSI,INDEPENDENT,MAX,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,PCA,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,VSM,INDEPENDENT,SUM,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,VSM,INDEPENDENT,MAX,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,LSI,GLOBAL,MAX,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,VSM,GLOBAL,SUM,PCA,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,VSM,GLOBAL,SUM,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,PCA,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,LSI,INDEPENDENT,SUM,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,VSM,GLOBAL,MAX,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,LSI,GLOBAL,SUM,SUM,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (SUM) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+WARC,Hybrid,all,LSI,LSI,GLOBAL,SUM,PCA,0.8851190464656071,0.9563362688151896,77.67777777777778,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))))),1.0
+WARC,Hybrid,lower,LSI,VSM,INDEPENDENT,SUM,PCA,0.6745555608021069,0.9236087689713322,135.9,(o (PCA) ((. (LSI NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))))),1.0
+WARC,Hybrid,none,LSI,LSI,INDEPENDENT,PCA,PCA,0.5026308034917408,0.8568546624195866,254.6555555555556,(o (PCA) ((. (LSI NT) (0 2)) (x (PCA INDEPENDENT) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),1.0
+WARC,Hybrid,upper,VSM,VSM,INDEPENDENT,MAX,PCA,0.6418114914877917,0.9342389607145088,115.2,(o (PCA) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))))),1.0
+WARC,DIRECT,direct,LSI,,,,,0.4750732892269496,0.8470551495846605,272.0888888888889,(. (LSI NT) (0 2)),1.0
+WARC,TRANSITIVE,all,,VSM,GLOBAL,PCA,,0.714446227929374,0.85,169.9777777777778,(x (PCA GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,VSM,GLOBAL,SUM,,0.714446227929374,0.85,170.23333333333332,(x (SUM GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,VSM,GLOBAL,MAX,,0.714446227929374,0.85,170.4,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,LSI,GLOBAL,PCA,,0.714446227929374,0.85,169.9777777777778,(x (PCA GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,VSM,INDEPENDENT,MAX,,0.714446227929374,0.85,170.4,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,VSM,INDEPENDENT,SUM,,0.714446227929374,0.85,170.23333333333332,(x (SUM INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,VSM,INDEPENDENT,PCA,,0.714446227929374,0.85,169.9777777777778,(x (PCA INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,LSI,GLOBAL,MAX,,0.714446227929374,0.85,170.4,(x (MAX GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,LSI,GLOBAL,SUM,,0.714446227929374,0.85,170.23333333333332,(x (SUM GLOBAL) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,LSI,INDEPENDENT,MAX,,0.714446227929374,0.85,170.4,(x (MAX INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,LSI,INDEPENDENT,SUM,,0.714446227929374,0.85,170.23333333333332,(x (SUM INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+WARC,TRANSITIVE,all,,LSI,INDEPENDENT,PCA,,0.714446227929374,0.85,169.9777777777778,(x (PCA INDEPENDENT) ((. (LSI T) (0 1)) (. (LSI T) (1 2)))),1.0
+WARC,TRANSITIVE,lower,,VSM,GLOBAL,SUM,,0.5653026387941741,0.7822059833864217,416.5444444444444,(x (SUM GLOBAL) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,lower,,VSM,INDEPENDENT,SUM,,0.5653026387941741,0.7822059833864217,416.5444444444444,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM T) (1 2)))),1.0
+WARC,TRANSITIVE,none,,VSM,INDEPENDENT,MAX,,0.3117923526849092,0.7456373743051652,453.4333333333333,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+WARC,TRANSITIVE,none,,VSM,GLOBAL,MAX,,0.3117923526849092,0.7456373743051652,453.4333333333333,(x (MAX GLOBAL) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),1.0
+WARC,TRANSITIVE,upper,,VSM,GLOBAL,MAX,,0.5117528737184417,0.7951033664355756,389.0888888888889,(x (MAX GLOBAL) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))),1.0
+WARC,TRANSITIVE,upper,,VSM,INDEPENDENT,MAX,,0.5117528737184417,0.7951033664355756,389.0888888888889,(x (MAX INDEPENDENT) ((. (VSM T) (0 1)) (. (VSM NT) (1 2)))),1.0

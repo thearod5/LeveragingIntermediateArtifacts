@@ -6,7 +6,7 @@ from typing import List, Union
 import numpy as np
 
 from api.constants.processing import DATASET_COLNAME, NAME_COLNAME
-from api.constants.techniques import COMBINED_ID, DIRECT_ID, TRANSITIVE_ID
+from api.constants.techniques import DIRECT_ID, HYBRID_ID, TRANSITIVE_ID
 from api.tables.metric_table import MetricTable
 from api.technique.definitions.combined.technique import (
     CombinedTechnique,
@@ -16,7 +16,8 @@ from api.technique.definitions.direct.technique import DirectTechnique
 from api.technique.definitions.sampled.definition import SAMPLED_COMMAND_SYMBOL
 from api.technique.definitions.transitive.definition import TRANSITIVE_COMMAND_SYMBOL
 from api.technique.definitions.transitive.technique import TransitiveTechnique
-from experiments.constants import PATH_TO_METRIC_TABLE_AGGREGATE
+from api.technique.parser.itechnique import ITechnique
+from utilities.constants import PATH_TO_METRIC_TABLE_AGGREGATE
 
 AGGREGATE_METRIC_TABLE = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
 
@@ -50,7 +51,7 @@ def get_best_transitive_technique(dataset_name: str):
     return get_simplest_technique(best_technique_query)
 
 
-def get_best_combined_technique(dataset_name: str):
+def get_best_hybrid_technique(dataset_name: str):
     """
     Find the best combined techniques and returns the one corresponding to given dataset.
     Note, only techniques without transitive traces are considered.
@@ -71,7 +72,7 @@ def get_best_combined_sampled_technique(dataset: str):
     :param dataset: the dataset that whose best technique we are after
     :return: string - technique definition
     """
-    temp = get_best_combined_technique(dataset)
+    temp = get_best_hybrid_technique(dataset)
     temp = temp.replace(TRANSITIVE_COMMAND_SYMBOL, SAMPLED_COMMAND_SYMBOL)
 
     if "INDEPENDENT" in temp:
@@ -88,15 +89,15 @@ def get_technique_type_id(technique_definition: str):
     :param technique_definition: string format of definition
     :return: string - the id of the technique type
     """
-    technique = create_technique_by_name(technique_definition)
+    technique: ITechnique = create_technique_by_name(technique_definition)
     if isinstance(technique, DirectTechnique):
         return DIRECT_ID
-    elif isinstance(technique, TransitiveTechnique):
+    if isinstance(technique, TransitiveTechnique):
         return TRANSITIVE_ID
-    elif isinstance(technique, CombinedTechnique):
-        return COMBINED_ID
+    if isinstance(technique, CombinedTechnique):
+        return HYBRID_ID
     else:
-        raise Exception("Technique %s not implemented." % technique.name)
+        raise Exception("Technique %s not implemented." % technique.get_name())
 
 
 def get_simplest_technique(best_technique_query: Union[str, List[str]]):
