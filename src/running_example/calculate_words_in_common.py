@@ -30,8 +30,9 @@ def words_in_common(dataset_name: str, artifact_ids: Tuple[str, str]):
 
 
 if __name__ == "__main__":
-    global_ids = [("SR1", "SD1"), ("SD1", "SSR1"), ("SR1", "SSR1")]
+    global_ids = [("NFR11.txt", "FR41.txt")]
+    dataset_name = "WARC"
 
     for ids in global_ids:
-        shared_words = words_in_common("IllustrativeExample", ids)
+        shared_words = words_in_common(dataset_name, ids)
         print(ids, "shared words: ", list(shared_words), "\n")

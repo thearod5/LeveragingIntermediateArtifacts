@@ -70,7 +70,7 @@ WELCOME_MESSAGE = "Welcome to the experiment runner."
 
 class Runner(Experiment):
     def run(self) -> Table:
-        Cache.CACHE_ON = True
+        Cache.CACHE_ON = False
 
         print(WELCOME_MESSAGE, end="\n\n")
 
@@ -96,6 +96,7 @@ class Runner(Experiment):
                     ),
                 )
             print(EXPERIMENT_RUN_DELIMITER)
+        Cache.cleanup()
         return Table()
 
     def name(self) -> str:

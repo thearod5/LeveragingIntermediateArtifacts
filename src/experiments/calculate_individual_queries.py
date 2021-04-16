@@ -15,6 +15,7 @@ from api.tables.table import Table
 from api.tracer import Tracer
 from experiments.meta.experiment import Experiment
 from utilities.constants import (
+    DATASET_COLUMN_ORDER,
     PATH_TO_INDIVIDUAL_QUERIES,
     PATH_TO_INDIVIDUAL_QUERIES_AGG,
 )
@@ -94,7 +95,7 @@ class CalculateIndividualQueries(Experiment):
             )
             .create_lag_norm_inverted(remove_old_lag=True)
             .melt_metrics(metric_value_col_name=METRIC_SCORE_COLNAME)
-            .sort()
+            .sort(DATASET_COLUMN_ORDER)
             .col_values_to_upper(METRIC_COLNAME)
             .to_title_case(exclude=METRIC_COLNAME)
             .save(PATH_TO_INDIVIDUAL_QUERIES_AGG)

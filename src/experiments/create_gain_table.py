@@ -14,6 +14,7 @@ from utilities.constants import (
     PATH_TO_RQ1_GAIN,
     PATH_TO_RQ2_GAIN,
 )
+from utilities.technique_extractors import create_comparison_dict
 
 
 class CalculateGain(Experiment):
@@ -35,6 +36,7 @@ class CalculateGain(Experiment):
     @staticmethod
     def calculate_rq1_gain(agg_df, direct_indices) -> Table:
         no_traces_target_indices = agg_df.get_best_combined_no_traces_indices()
+        print(no_traces_target_indices)
         no_traces_gain_df = agg_df.calculate_gain(
             base_indices=direct_indices, target_indices=no_traces_target_indices
         )
@@ -53,16 +55,21 @@ class CalculateGain(Experiment):
 
     def run(self) -> Table:
         agg_metric_table = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
-        direct_indices = agg_metric_table.get_direct_best_indices()
-        rq1_gain_df = self.calculate_rq1_gain(agg_metric_table, direct_indices)
-        rq2_gain_df = self.calculate_rq2_gain(agg_metric_table, direct_indices)
+        # direct_indices = agg_metric_table.get_direct_best_indices()
+        # rq1_gain_df = self.calculate_rq1_gain(agg_metric_table, direct_indices)
+        # rq2_gain_df = self.calculate_rq2_gain(agg_metric_table, direct_indices)
 
-        rq1_gain_df.save(PATH_TO_RQ1_GAIN)
+        gain_table = agg_metric_table.calculate_gain_between_techniques(
+            create_comparison_dict()
+        )
+        print(gain_table.table)
+
+        # rq1_gain_df.save(PATH_TO_RQ1_GAIN)
         self.export_paths.append(PATH_TO_RQ1_GAIN)
 
-        rq2_gain_df.save(PATH_TO_RQ2_GAIN)
+        # rq2_gain_df.save(PATH_TO_RQ2_GAIN)
         self.export_paths.append(PATH_TO_RQ2_GAIN)
-        return rq1_gain_df
+        return agg_metric_table
 
     @staticmethod
     def name() -> str:

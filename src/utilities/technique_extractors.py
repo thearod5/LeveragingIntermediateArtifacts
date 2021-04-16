@@ -17,7 +17,7 @@ from api.technique.definitions.sampled.definition import SAMPLED_COMMAND_SYMBOL
 from api.technique.definitions.transitive.definition import TRANSITIVE_COMMAND_SYMBOL
 from api.technique.definitions.transitive.technique import TransitiveTechnique
 from api.technique.parser.itechnique import ITechnique
-from utilities.constants import PATH_TO_METRIC_TABLE_AGGREGATE
+from utilities.constants import DATASET_COLUMN_ORDER, PATH_TO_METRIC_TABLE_AGGREGATE
 
 AGGREGATE_METRIC_TABLE = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
 
@@ -28,12 +28,14 @@ def get_best_direct_technique(dataset_name: str) -> str:
     :param dataset_name: the dataset that whose best technique we are after
     :return: string - technique definition
     """
-    best_direct_definition = (
-        AGGREGATE_METRIC_TABLE.find_direct_best_techniques().table.set_index(
-            DATASET_COLNAME
-        )
+    best_df = AGGREGATE_METRIC_TABLE.find_direct_best_techniques().table.set_index(
+        DATASET_COLNAME
     )
-    best_technique_query = best_direct_definition.loc[dataset_name][NAME_COLNAME]
+    if dataset_name not in best_df.index:
+        raise Exception(
+            f"Expected {dataset_name} to have metrics in {PATH_TO_METRIC_TABLE_AGGREGATE}"
+        )
+    best_technique_query = best_df.loc[dataset_name][NAME_COLNAME]
     return get_simplest_technique(best_technique_query)
 
 
@@ -47,6 +49,10 @@ def get_best_transitive_technique(dataset_name: str):
     best_df = AGGREGATE_METRIC_TABLE.find_best_transitive_techniques().table.set_index(
         DATASET_COLNAME
     )
+    if dataset_name not in best_df.index:
+        raise Exception(
+            f"Expected {dataset_name} to have metrics in {PATH_TO_METRIC_TABLE_AGGREGATE}"
+        )
     best_technique_query = best_df.loc[dataset_name][NAME_COLNAME]
     return get_simplest_technique(best_technique_query)
 
@@ -62,6 +68,10 @@ def get_best_hybrid_technique(dataset_name: str):
     best_df = AGGREGATE_METRIC_TABLE.find_best_combined_techniques().table.set_index(
         DATASET_COLNAME
     )
+    if dataset_name not in best_df.index:
+        raise Exception(
+            f"Expected {dataset_name} to have metrics in {PATH_TO_METRIC_TABLE_AGGREGATE}"
+        )
     best_technique_query = best_df.loc[dataset_name][NAME_COLNAME]
     return get_simplest_technique(best_technique_query)
 
@@ -123,3 +133,23 @@ def get_simplest_technique(best_technique_query: Union[str, List[str]]):
     best_technique_index = np.array(points).argmax()
 
     return best_technique_query[best_technique_index]
+
+
+def create_comparison_dict() -> dict:
+    """
+    Creates a dictionary containing dataset names as keys and tuples as values of the technique definition
+    of the best direct and hybrid techniques. This dictionary can be used to calculate the gain between
+    techniques within metric tables.
+    :return:
+    """
+    comparison_dict = {}
+    for dataset in DATASET_COLUMN_ORDER:
+        comparison_dict.update(
+            {
+                dataset: (
+                    get_best_direct_technique(dataset),
+                    get_best_hybrid_technique(dataset),
+                )
+            }
+        )
+    return comparison_dict
