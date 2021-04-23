@@ -75,6 +75,7 @@ class CreateMetricTable(Experiment):
         calculates metric table for all techniques and applies post processing techinques defined in module
         :return: metric table with metrics
         """
+        Cache.CACHE_ON = True
         dataset_name = prompt_for_dataset()
         metric_table = calculate_technique_metric_table(dataset_name)
         metric_table.sort(DATASET_COLUMN_ORDER).save(create_export_path(dataset_name))
@@ -88,13 +89,14 @@ class CreateMetricTable(Experiment):
 
         # create graphable metrics and export table
         aggregate_metric_table.create_lag_norm_inverted(
-            remove_old_lag=True
+            drop_old=True
         ).melt_metrics().col_values_to_upper(METRIC_COLNAME).save(
             PATH_TO_GRAPH_METRIC_TABLE_AGGREGATE
         )
 
         self.export_paths.append(create_export_path(dataset_name))
         self.export_paths.append(PATH_TO_METRIC_TABLE_AGGREGATE)
+        Cache.cleanup(dataset_name)
         return metric_table
 
     @staticmethod

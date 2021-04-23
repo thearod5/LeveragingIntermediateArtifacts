@@ -9,9 +9,6 @@ from typing import Dict, List, Type
 import click
 
 from api.constants.paths import PATH_TO_ROOT
-from api.extension.cache import (
-    Cache,
-)
 from api.tables.table import Table
 from experiments.calculate_individual_queries import (
     CalculateIndividualQueries,
@@ -70,7 +67,6 @@ WELCOME_MESSAGE = "Welcome to the experiment runner."
 
 class Runner(Experiment):
     def run(self) -> Table:
-        Cache.CACHE_ON = False
 
         print(WELCOME_MESSAGE, end="\n\n")
 
@@ -96,7 +92,6 @@ class Runner(Experiment):
                     ),
                 )
             print(EXPERIMENT_RUN_DELIMITER)
-        Cache.cleanup()
         return Table()
 
     def name(self) -> str:

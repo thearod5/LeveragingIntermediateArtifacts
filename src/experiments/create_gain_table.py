@@ -36,7 +36,6 @@ class CalculateGain(Experiment):
     @staticmethod
     def calculate_rq1_gain(agg_df, direct_indices) -> Table:
         no_traces_target_indices = agg_df.get_best_combined_no_traces_indices()
-        print(no_traces_target_indices)
         no_traces_gain_df = agg_df.calculate_gain(
             base_indices=direct_indices, target_indices=no_traces_target_indices
         )
@@ -62,9 +61,10 @@ class CalculateGain(Experiment):
         gain_table = agg_metric_table.calculate_gain_between_techniques(
             create_comparison_dict()
         )
-        print(gain_table.table)
 
-        # rq1_gain_df.save(PATH_TO_RQ1_GAIN)
+        gain_table.melt_metrics(metric_value_col_name="relative_gain").save(
+            PATH_TO_RQ1_GAIN
+        )
         self.export_paths.append(PATH_TO_RQ1_GAIN)
 
         # rq2_gain_df.save(PATH_TO_RQ2_GAIN)
@@ -77,4 +77,7 @@ class CalculateGain(Experiment):
 
 
 if __name__ == "__main__":
-    CalculateGain().run()
+    e = CalculateGain()
+    e.run()
+    print(e.export_paths)
+    print("Done")

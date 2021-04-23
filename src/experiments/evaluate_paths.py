@@ -142,7 +142,7 @@ class EvaluatePaths(Experiment):
             )
 
             MetricTable(aggregate_metric).create_lag_norm_inverted(
-                remove_old_lag=True
+                drop_old=True
             ).melt_metrics().save(METRIC_TABLE_EXPORT_PATH)
             self.export_paths.append(METRIC_TABLE_EXPORT_PATH)
 

@@ -79,9 +79,7 @@ class CreateSampledTable(Experiment):
             Table.aggregate_intermediate_files(path_to_intermediate_files)
             .sort(DATASET_COLUMN_ORDER)
             .table
-        ).create_lag_norm_inverted(
-            remove_old_lag=True
-        ).melt_metrics().col_values_to_upper(
+        ).create_lag_norm_inverted(drop_old=True).melt_metrics().col_values_to_upper(
             METRIC_COLNAME
         ).save(
             aggregate_file_path

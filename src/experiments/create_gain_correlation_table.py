@@ -1,4 +1,4 @@
-from api.constants.processing import METRIC_COLNAME
+from api.constants.processing import LAG_NORMALIZED_INVERTED_COLNAME, METRIC_COLNAME
 from api.tables.table import Table
 from experiments.meta.experiment import Experiment
 from utilities.constants import (
@@ -27,7 +27,15 @@ class GainCorrelationTable(Experiment):
         rq1_gain = Table(path_to_table=PATH_TO_RQ1_GAIN)
         rq2_gain = Table(path_to_table=PATH_TO_RQ2_GAIN)
 
+        rq1_gain.table[METRIC_COLNAME] = rq1_gain.table[METRIC_COLNAME].apply(
+            lambda c: "lag" if c == LAG_NORMALIZED_INVERTED_COLNAME else c
+        )
+        rq1_correlation.table[METRIC_COLNAME] = rq1_correlation.table[
+            METRIC_COLNAME
+        ].apply(lambda c: "lag" if c == LAG_NORMALIZED_INVERTED_COLNAME else c)
+
         rq1_gain_correlation = rq1_correlation + rq1_gain
+
         (
             rq1_gain_correlation.drop_duplicate_columns()
             .sort(DATASET_COLUMN_ORDER)
@@ -48,3 +56,10 @@ class GainCorrelationTable(Experiment):
             .save(PATH_TO_RQ2_GAIN_CORRELATION)
         )
         self.export_paths.append(PATH_TO_RQ2_GAIN_CORRELATION)
+
+
+if __name__ == "__main__":
+    e = GainCorrelationTable()
+    e.run()
+    print(e.export_paths)
+    print("Done")

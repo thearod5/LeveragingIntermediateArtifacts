@@ -43,9 +43,6 @@ class DatasetSizes(Experiment):
         """
         columns = [
             DATASET_NAME,
-            TOP_NAME,
-            MIDDLE_NAME,
-            BOTTOM_NAME,
             DIRECT_PATHS,
             DIRECT_TRACES,
             UPPER_PATHS,
@@ -59,6 +56,7 @@ class DatasetSizes(Experiment):
             n_top = len(dataset.artifacts[0])
             n_middle = len(dataset.artifacts[1])
             n_bottom = len(dataset.artifacts[2])
+            print(dataset_name, n_top, n_middle, n_bottom)
 
             def stat_matrix(matrix):
                 n_traces = matrix.sum(axis=1).sum()
@@ -72,9 +70,6 @@ class DatasetSizes(Experiment):
 
             entry = {
                 DATASET_NAME: dataset_name,
-                TOP_NAME: n_top,
-                MIDDLE_NAME: n_middle,
-                BOTTOM_NAME: n_bottom,
                 DIRECT_PATHS: d_paths,
                 DIRECT_TRACES: d_percent,
                 UPPER_PATHS: u_paths,

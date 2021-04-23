@@ -28,8 +28,8 @@ BAR = "-" * 50
 def get_worst_query(metrics):
     ap_scores = list(map(lambda m: m.ap, metrics))
     min_ap = min(ap_scores)
-    query = [m.query_id for m in metrics if m.ap == min_ap]
-    return query[0]
+    query_indices = [m.query_id for m in metrics if m.ap == min_ap]
+    return query_indices[0], min_ap
 
 
 def get_metrics_by_query(metrics, query_id: int):
@@ -163,7 +163,7 @@ def print_highest_ranking_link_in_query(
 
 if __name__ == "__main__":
     Cache.CACHE_ON = False
-    d_name = "WARC"
+    d_name = "EBT"
     direct_t_name = get_best_direct_technique(d_name)
     transitive_t_name = get_best_transitive_technique(d_name)
     hybrid_t_name = get_best_hybrid_technique(d_name)
@@ -177,7 +177,9 @@ if __name__ == "__main__":
     data = [direct_technique_data, transitive_technique_data, hybrid_technique_data]
     matrices = list(map(lambda d: d.similarity_matrix, data))
 
-    worst_query_index = get_worst_query(hybrid_metrics)
+    worst_query_index, ap_score = get_worst_query(hybrid_metrics)
+    print("Hybrid Technique:", hybrid_t_name)
+    print("Hybrid AP on worst query:", ap_score)
 
     """
     Experiments

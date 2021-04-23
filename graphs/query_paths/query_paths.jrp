@@ -2,7 +2,8 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/query_paths/query_paths.jmp"
 );
 Graph Builder(
-	Size( 1366, 963 ),
+	Size( 1352, 935 ),
+	Show Legend( 0 ),
 	Variables(
 		X( :path ),
 		Y( :value ),
@@ -10,15 +11,7 @@ Graph Builder(
 		Group Y( :Datasets ),
 		Color( :value )
 	),
-	Elements(
-		Bar(
-			X,
-			Y,
-			Legend( 6 ),
-			Summary Statistic( "Max" ),
-			Label( "Label by Value" )
-		)
-	),
+	Elements( Bar( X, Y, Legend( 5 ), Label( "Label by Value" ) ) ),
 	SendToReport(
 		Dispatch(
 			{},
@@ -26,7 +19,7 @@ Graph Builder(
 			ScaleBox,
 			{Add Ref Line( 2.5, "Solid", "Black", "", 1 ),
 			Label Row(
-				{Set Font Size( 24 ), Tick Mark(
+				{Set Font Size( 18 ), Tick Mark(
 					Label( "0->1->2" ),
 					Label( "0-1-2" )
 				), Tick Mark( Label( "0->2->1" ), Label( "0-2-1" ) ),
@@ -37,47 +30,24 @@ Graph Builder(
 			{},
 			"value",
 			ScaleBox,
-			{Format( "Percent", 12, 0 ), Min( -0.45 ), Max( 0.45 ), Inc( 0.25 ),
-			Minor Ticks( 0 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			{Select, Format( "Percent", 12, 0 ), Min( -0.5 ), Max( 0.5 ),
+			Inc( 0.25 ), Minor Ticks( 0 ),
+			Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			Add Ref Line( 0.5, "Solid", "Black", "", 2 ),
 			Label Row( Set Font Size( 18 ) )}
-		),
-		Dispatch(
-			{},
-			"400",
-			ScaleBox,
-			{Legend Model(
-				6,
-				Properties(
-					0,
-					{gradient(
-						{Color Theme(
-							{"Blue to Green to Red Copy", 8193, {{252, 11, 11}, {242,
-							20, 11}, {121, 123, 5}, {0, 227, 0}, {23, 138, 138}, {36,
-							86, 219}, {42, 63, 255}}}
-						), Width( 12 )}
-					)},
-					Item ID( "value", 1 )
-				)
-			)}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
 		Dispatch(
 			{},
 			"X title",
 			TextEditBox,
-			{Set Font Size( 24 ), Set Text( "Query path" )}
+			{Set Font Size( 18 ), Set Text( "Artifact Levels in Trace Query" )}
 		),
 		Dispatch(
 			{},
 			"Y title",
 			TextEditBox,
-			{Set Font Size( 24 ), Set Text( "Relative Gain" )}
-		),
-		Dispatch(
-			{},
-			"400",
-			LegendBox,
-			{Set Title( "Relative Gain" ), Orientation( "Horizontal" )}
+			{Set Font Size( 18 ), Set Text( "Relative Gain in Accuracy" )}
 		)
 	)
 );

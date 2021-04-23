@@ -93,7 +93,7 @@ class CalculateIndividualQueries(Experiment):
             MetricTable(
                 Table.aggregate_intermediate_files(PATH_TO_INDIVIDUAL_QUERIES).table
             )
-            .create_lag_norm_inverted(remove_old_lag=True)
+            .create_lag_norm_inverted(drop_old=True)
             .melt_metrics(metric_value_col_name=METRIC_SCORE_COLNAME)
             .sort(DATASET_COLUMN_ORDER)
             .col_values_to_upper(METRIC_COLNAME)

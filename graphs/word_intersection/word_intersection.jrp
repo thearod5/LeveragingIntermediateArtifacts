@@ -1,0 +1,50 @@
+﻿Open(
+	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/word_intersection/word_intersection.jmp"
+);
+Graph Builder(
+	Size( 1311, 945 ),
+	Show Legend( 0 ),
+	Variables(
+		X( :n_words ),
+		Y( :rank_gain ),
+		Group Y( :Datasets ),
+		Overlay( :n_words )
+	),
+	Elements(
+		Box Plot(
+			X,
+			Y,
+			Legend( 32 ),
+			Outliers( 0 ),
+			Box Type( "Quantile" ),
+			Width Proportion( 1.5 )
+		)
+	),
+	SendToReport(
+		Dispatch( {}, "n_words", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
+		Dispatch(
+			{},
+			"rank_gain",
+			ScaleBox,
+			{Format( "Percent", 12, 0 ), Min( -1 ), Max( 1 ), Inc( 0.5 ),
+			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 2 ),
+			Add Ref Line( 1, "Solid", "Black", "", 1 ),
+			Label Row( Set Font Size( 18 ) )}
+		),
+		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
+		Dispatch(
+			{},
+			"X title",
+			TextEditBox,
+			{Set Font Size( 18 ), Set Text(
+				"Number of Words Shared between Source and Target Artifacts"
+			)}
+		),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 18 ), Set Text( "Relative Gain in Rank" )}
+		)
+	)
+);

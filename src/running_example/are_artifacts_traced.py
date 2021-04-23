@@ -1,16 +1,10 @@
 from api.datasets.dataset import Dataset
 
 if __name__ == "__main__":
-    dataset_name = "WARC"
-    source_artifact = "NFR11.txt"
-    target_artifact = "SRS56.txt"
-    intermediate_artifacts = [
-        "FR25.txt",
-        "FR26.txt",
-        "FR20.txt",
-        "FR34.txt",
-        "FR35.txt",
-    ]
+    dataset_name = "EBT"
+    source_artifact = 151
+    target_artifact = 68
+    intermediate_artifacts = [132, 135, 127, 113, 134]
 
     dataset = Dataset(dataset_name)
 

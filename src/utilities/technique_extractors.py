@@ -65,9 +65,10 @@ def get_best_hybrid_technique(dataset_name: str):
     :return: string - technique definition
     """
 
-    best_df = AGGREGATE_METRIC_TABLE.find_best_combined_techniques().table.set_index(
+    best_df = AGGREGATE_METRIC_TABLE.find_best_hybrid_techniques().table.set_index(
         DATASET_COLNAME
     )
+    print(best_df["name"]["EBT"])
     if dataset_name not in best_df.index:
         raise Exception(
             f"Expected {dataset_name} to have metrics in {PATH_TO_METRIC_TABLE_AGGREGATE}"
@@ -127,6 +128,12 @@ def get_simplest_technique(best_technique_query: Union[str, List[str]]):
         if "VSM" in candidate_technique:
             points[t_index] = points[t_index] + 1
 
+        if "SUM" in candidate_technique:
+            points[t_index] = points[t_index] + candidate_technique.count("SUM")
+
+        if "MAX" in candidate_technique:
+            points[t_index] = points[t_index] + candidate_technique.count("MAX")
+
         if "INDEPENDENT" in candidate_technique:
             points[t_index] = points[t_index] + 1
 
@@ -152,4 +159,5 @@ def create_comparison_dict() -> dict:
                 )
             }
         )
+    print(comparison_dict["EBT"])
     return comparison_dict

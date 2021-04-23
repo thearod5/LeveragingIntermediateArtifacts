@@ -2,117 +2,44 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/sampling_tables/rq2/rq2_sampling.jmp"
 );
 Graph Builder(
-	Size( 1378, 922 ),
-	Legend Position( "Bottom" ),
+	Size( 1365, 889 ),
+	Show Legend( 0 ),
 	Variables(
-		X( :metric ),
+		X( :percent ),
 		Y( :value ),
+		Group X( :Metrics ),
 		Group Y( :Datasets ),
-		Overlay( :Percent of Transitive Traces Used )
+		Color( :percent )
 	),
-	Elements( Box Plot( X, Y, Legend( 17 ), Outliers( 0 ) ) ),
+	Elements( Points( X, Y, Legend( 12 ) ), Smoother( X, Y, Legend( 14 ) ) ),
 	SendToReport(
-		Dispatch( {}, "metric", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
+		Dispatch(
+			{},
+			"percent",
+			ScaleBox,
+			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.1 ),
+			Minor Ticks( 1 ), Add Ref Line( 1, "Solid", "Black", "", 1 )}
+		),
 		Dispatch(
 			{},
 			"value",
 			ScaleBox,
 			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
-			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			Minor Ticks( 0 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
 			Label Row( Set Font Size( 18 ) )}
-		),
-		Dispatch(
-			{},
-			"400",
-			ScaleBox,
-			{Legend Model(
-				17,
-				Properties(
-					0,
-					{Line Color( -2768895 ), Fill Color( -2768895 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "0%", 1 )
-				),
-				Properties(
-					1,
-					{Line Color( -4741618 ), Fill Color( -4741618 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "10%", 1 )
-				),
-				Properties(
-					2,
-					{Line Color( -6714342 ), Fill Color( -6714342 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "20%", 1 )
-				),
-				Properties(
-					3,
-					{Line Color( -8686809 ), Fill Color( -8686809 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "30%", 1 )
-				),
-				Properties(
-					4,
-					{Line Color( -10659533 ), Fill Color( -10659533 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "40%", 1 )
-				),
-				Properties(
-					5,
-					{Line Color( -12632256 ), Fill Color( -12632256 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "50%", 1 )
-				),
-				Properties(
-					6,
-					{Line Color( -13409436 ), Fill Color( -13409436 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "60%", 1 )
-				),
-				Properties(
-					7,
-					{Line Color( -14186616 ), Fill Color( -14186616 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "70%", 1 )
-				),
-				Properties(
-					8,
-					{Line Color( -14963539 ), Fill Color( -14963539 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "80%", 1 )
-				),
-				Properties(
-					9,
-					{Line Color( -15740719 ), Fill Color( -15740719 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "90%", 1 )
-				),
-				Properties(
-					10,
-					{Line Color( -16517899 ), Fill Color( -16517899 ),
-					gradient( {Color Theme( "Blue to Gray to Red" ), Width( 9 )} )},
-					Item ID( "100%", 1 )
-				)
-			)}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
 		Dispatch(
 			{},
 			"X title",
 			TextEditBox,
-			{Set Font Size( 24 ), Set Text( "Metrics" )}
+			{Set Font Size( 18 ), Set Text( "Percent of Intermediate Traces Used" )}
 		),
 		Dispatch(
 			{},
 			"Y title",
 			TextEditBox,
-			{Set Font Size( 24 ), Set Text( "MetricScore" )}
-		),
-		Dispatch(
-			{},
-			"400",
-			LegendBox,
-			{font( "Helvetica Neue", 18, "Plain" ), Set Wrap( 11 )}
+			{Set Font Size( 18 ), Set Text( "MetricScore" )}
 		)
 	)
 );

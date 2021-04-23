@@ -2,27 +2,28 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/individual_queries/individual_queries.jmp"
 );
 Graph Builder(
-	Size( 1378, 910 ),
+	Size( 1312, 885 ),
 	Legend Position( "Bottom" ),
 	Variables(
 		X( :Metric ),
 		Y( :MetricScore ),
 		Group Y( :Dataset ),
-		Overlay( :Best Technique Family )
+		Overlay( :TechniqueType )
 	),
-	Elements( Box Plot( X, Y, Legend( 8 ), Outliers( 0 ) ) ),
+	Elements( Box Plot( X, Y, Legend( 7 ), Outliers( 0 ), Box Type( "Quantile" ) ) ),
 	SendToReport(
 		Dispatch( {}, "Metric", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
 		Dispatch(
 			{},
 			"MetricScore",
 			ScaleBox,
-			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
-			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 )}
+			{Select, Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
+			Minor Ticks( 1 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			Label Row( Set Font Size( 18 ) )}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
-		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 24 )} ),
-		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 24 )} ),
-		Dispatch( {}, "400", LegendBox, {font( "Helvetica Neue", 24, "Plain" )} )
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 18 )} ),
+		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 18 )} ),
+		Dispatch( {}, "400", LegendBox, {font( "Helvetica Neue", 18, "Plain" )} )
 	)
 );
