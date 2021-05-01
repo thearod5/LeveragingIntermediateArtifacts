@@ -5,13 +5,13 @@ import os
 from typing import Optional, Tuple
 
 from api.constants.processing import (
-    ALGEBRAIC_MODEL_COLNAME,
     DIRECT_ALGEBRAIC_MODEL_COLNAME,
     METRIC_COLNAME,
     NAME_COLNAME,
     TECHNIQUE_AGGREGATION_COLNAME,
     TECHNIQUE_TYPE_COLNAME,
     TRANSITIVE_AGGREGATION_COLNAME,
+    TRANSITIVE_ALGEBRAIC_MODEL_COLNAME,
     TRANSITIVE_SCALING_COLNAME,
     TRANSITIVE_TRACE_TYPE_COLNAME,
 )
@@ -119,45 +119,39 @@ class RetrievalTechniques:
             t_id = (t_am, ExperimentTraceType.DIRECT, None, None, None, None)
             yield create_direct_definition(t_am), create_entry(t_id)
 
-        # transitive
-        for trace_type in ExperimentTraceType:
-            if trace_type == ExperimentTraceType.DIRECT:
-                continue
+        for t_am in AlgebraicModel:
+            for t_scaling in ScalingMethod:
+                for transitive_aggregation in AggregationMethod:
+                    t_id = (
+                        None,
+                        ExperimentTraceType.NONE,
+                        t_am,
+                        t_scaling,
+                        transitive_aggregation,
+                        None,
+                    )
+                    yield create_transitive_definition(
+                        t_am,
+                        t_scaling,
+                        transitive_aggregation,
+                        ExperimentTraceType.NONE,
+                    ), create_entry(t_id)
+
+        # combined
+        for direct_am in AlgebraicModel:
             for t_am in AlgebraicModel:
                 for t_scaling in ScalingMethod:
                     for transitive_aggregation in AggregationMethod:
-                        t_id = (
-                            None,
-                            trace_type,
-                            t_am,
-                            t_scaling,
-                            transitive_aggregation,
-                            None,
-                        )
-                        yield create_transitive_definition(
-                            t_am, t_scaling, transitive_aggregation, trace_type
-                        ), create_entry(t_id)
-
-        # combined
-        for trace_type in ExperimentTraceType:  # pylint: disable=too-many-nested-blocks
-            if trace_type == ExperimentTraceType.DIRECT:
-                continue
-            for direct_am in AlgebraicModel:
-                for t_am in AlgebraicModel:
-                    for t_scaling in ScalingMethod:
-                        for transitive_aggregation in AggregationMethod:
-                            for technique_aggregation in AggregationMethod:
-                                t_id = (
-                                    direct_am,
-                                    trace_type,
-                                    t_am,
-                                    t_scaling,
-                                    transitive_aggregation,
-                                    technique_aggregation,
-                                )
-                                yield create_combined_definition(t_id), create_entry(
-                                    t_id
-                                )
+                        for technique_aggregation in AggregationMethod:
+                            t_id = (
+                                direct_am,
+                                ExperimentTraceType.NONE,
+                                t_am,
+                                t_scaling,
+                                transitive_aggregation,
+                                technique_aggregation,
+                            )
+                            yield create_combined_definition(t_id), create_entry(t_id)
 
     def __len__(self):
         return get_n_direct() + get_n_transitive() + get_n_combined()
@@ -191,7 +185,6 @@ def get_n_combined():
     """
     return (
         len(AlgebraicModel)
-        * (len(ExperimentTraceType) - 1)  # remove direct trace type
         * len(AlgebraicModel)
         * len(ScalingMethod)
         * len(AggregationMethod)
@@ -203,12 +196,7 @@ def get_n_transitive():
     """
     :return: int - the number of transitive techniques
     """
-    return (
-        (len(ExperimentTraceType) - 1)  # remove direct trace type
-        * len(AlgebraicModel)
-        * len(ScalingMethod)
-        * len(AggregationMethod)
-    )
+    return len(AlgebraicModel) * len(ScalingMethod) * len(AggregationMethod)
 
 
 def get_n_direct():
@@ -318,7 +306,9 @@ def create_entry(t_id: TechniqueID) -> dict:
         DIRECT_ALGEBRAIC_MODEL_COLNAME: UNDEFINED_TECHNIQUE
         if d_am is None
         else d_am.value,
-        ALGEBRAIC_MODEL_COLNAME: UNDEFINED_TECHNIQUE if t_am is None else t_am.value,
+        TRANSITIVE_ALGEBRAIC_MODEL_COLNAME: UNDEFINED_TECHNIQUE
+        if t_am is None
+        else t_am.value,
         TRANSITIVE_SCALING_COLNAME: UNDEFINED_TECHNIQUE
         if t_scaling is None
         else t_scaling.value,
@@ -354,6 +344,6 @@ def get_component_trace_types(experiment_trace_type: ExperimentTraceType):
 
 
 if __name__ == "__main__":
-    Cache.CACHE_ON = True
+    Cache.CACHE_ON = False
     experiment = CreateMetricTable()
     experiment.run()

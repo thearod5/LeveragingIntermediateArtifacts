@@ -2,52 +2,35 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/query_paths/query_paths.jmp"
 );
 Graph Builder(
-	Size( 1352, 935 ),
-	Show Legend( 0 ),
+	Size( 849, 910 ),
+	Legend Position( "Bottom" ),
 	Variables(
-		X( :path ),
+		X( :Datasets ),
 		Y( :value ),
-		Group X( :Metrics ),
-		Group Y( :Datasets ),
-		Color( :value )
+		Group Y( :Metrics ),
+		Overlay( :Artifact Levels In Query Path )
 	),
-	Elements( Bar( X, Y, Legend( 5 ), Label( "Label by Value" ) ) ),
+	Elements( Bar( X, Y, Legend( 6 ), Label( "Label by Value" ) ) ),
 	SendToReport(
-		Dispatch(
-			{},
-			"path",
-			ScaleBox,
-			{Add Ref Line( 2.5, "Solid", "Black", "", 1 ),
-			Label Row(
-				{Set Font Size( 18 ), Tick Mark(
-					Label( "0->1->2" ),
-					Label( "0-1-2" )
-				), Tick Mark( Label( "0->2->1" ), Label( "0-2-1" ) ),
-				Tick Mark( Label( "1->0->2" ), Label( "1-0-2" ) )}
-			)}
-		),
+		Dispatch( {}, "Datasets", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
 		Dispatch(
 			{},
 			"value",
 			ScaleBox,
-			{Select, Format( "Percent", 12, 0 ), Min( -0.5 ), Max( 0.5 ),
-			Inc( 0.25 ), Minor Ticks( 0 ),
-			Add Ref Line( 0, "Solid", "Black", "", 1 ),
-			Add Ref Line( 0.5, "Solid", "Black", "", 2 ),
+			{Format( "Percent", 12, 0 ), Min( -0.4 ), Max( 0.4 ), Inc( 0.2 ),
+			Minor Ticks( 0 ), Add Ref Line( 0, "Solid", "Black", "", 2 ),
 			Label Row( Set Font Size( 18 ) )}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
-		Dispatch(
-			{},
-			"X title",
-			TextEditBox,
-			{Set Font Size( 18 ), Set Text( "Artifact Levels in Trace Query" )}
-		),
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 24 )} ),
 		Dispatch(
 			{},
 			"Y title",
 			TextEditBox,
-			{Set Font Size( 18 ), Set Text( "Relative Gain in Accuracy" )}
-		)
+			{Set Font Size( 24 ), Set Text(
+				"Relative Gain Over Best Direct Technique"
+			)}
+		),
+		Dispatch( {}, "400", LegendBox, {font( "Helvetica Neue", 24, "Plain" )} )
 	)
 );

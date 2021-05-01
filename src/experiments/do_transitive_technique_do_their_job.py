@@ -75,8 +75,11 @@ def compare_metrics_on_queries(
 
 
 if __name__ == "__main__":
+    # TODO: Move this to be an experiment
     datasets = ["WARC", "EBT", "EasyClinic", "Drone", "TrainController"]
-    EXPORT_PATH = os.path.join(PATH_TO_PRESENTATION, "word_intersection.csv")
+    WORD_INTERSECTION_EXPORT_PATH = os.path.join(
+        PATH_TO_PRESENTATION, "word_intersection.csv"
+    )
     MAX_N_WORDS = 10
     df = pd.DataFrame()
     for d_name in datasets:
@@ -112,5 +115,5 @@ if __name__ == "__main__":
                     "transitive_rank": t_rank,
                 }
                 df = df.append(entry, ignore_index=True)
-    df.to_csv(EXPORT_PATH, index=False)
+    df.to_csv(WORD_INTERSECTION_EXPORT_PATH, index=False)
     print("Done!")

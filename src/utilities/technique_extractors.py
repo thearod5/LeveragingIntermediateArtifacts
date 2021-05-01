@@ -10,7 +10,7 @@ from api.constants.techniques import DIRECT_ID, HYBRID_ID, TRANSITIVE_ID
 from api.tables.metric_table import MetricTable
 from api.technique.definitions.combined.technique import (
     CombinedTechnique,
-    create_technique_by_name,
+    create_technique_from_name,
 )
 from api.technique.definitions.direct.technique import DirectTechnique
 from api.technique.definitions.sampled.definition import SAMPLED_COMMAND_SYMBOL
@@ -28,7 +28,7 @@ def get_best_direct_technique(dataset_name: str) -> str:
     :param dataset_name: the dataset that whose best technique we are after
     :return: string - technique definition
     """
-    best_df = AGGREGATE_METRIC_TABLE.find_direct_best_techniques().table.set_index(
+    best_df = AGGREGATE_METRIC_TABLE.find_best_direct_techniques().table.set_index(
         DATASET_COLNAME
     )
     if dataset_name not in best_df.index:
@@ -100,7 +100,7 @@ def get_technique_type_id(technique_definition: str):
     :param technique_definition: string format of definition
     :return: string - the id of the technique type
     """
-    technique: ITechnique = create_technique_by_name(technique_definition)
+    technique: ITechnique = create_technique_from_name(technique_definition)
     if isinstance(technique, DirectTechnique):
         return DIRECT_ID
     if isinstance(technique, TransitiveTechnique):

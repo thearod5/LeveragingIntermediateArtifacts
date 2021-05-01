@@ -1,38 +1,34 @@
 ﻿Open(
-	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/individual_queries/individual_queries.jmp"
+	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/metric_bar/metric_bar.jmp"
 );
 Graph Builder(
-	Size( 801, 910 ),
+	Size( 804, 907 ),
 	Legend Position( "Bottom" ),
 	Variables(
 		X( :Datasets ),
-		Y( :MetricScore ),
+		Y( :value ),
 		Group Y( :Metrics ),
 		Overlay( :Technique Family )
 	),
-	Elements(
-		Box Plot(
-			X,
-			Y,
-			Legend( 7 ),
-			Outliers( 0 ),
-			Box Type( "Quantile" ),
-			Box Style( "Solid" )
-		)
-	),
+	Elements( Bar( X, Y, Legend( 14 ), Summary Statistic( "Max" ) ) ),
 	SendToReport(
 		Dispatch( {}, "Datasets", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
 		Dispatch(
 			{},
-			"MetricScore",
+			"value",
 			ScaleBox,
-			{Min( 0 ), Max( 1 ), Inc( 0.2 ), Minor Ticks( 1 ),
-			Add Ref Line( 0, "Solid", "Black", "", 1 ),
+			{Select, Format( "Fixed Dec", 12, 1 ), Min( 0 ), Max( 1 ), Inc( 0.2 ),
+			Minor Ticks( 0 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
 			Label Row( Set Font Size( 18 ) )}
 		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
 		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 24 )} ),
-		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 24 )} ),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 24 ), Set Text( "Metric Score" )}
+		),
 		Dispatch(
 			{},
 			"400",

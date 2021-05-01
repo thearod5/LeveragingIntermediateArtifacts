@@ -1,12 +1,12 @@
 {
 	"artifacts": {
 		"0": "Originals/NFR",
-		"1": "Originals/FRS",
-		"2": "Originals/SRS"
+		"1": "Originals/SRS",
+		"2": "Originals/FRS"
 	},
 	"traces": {
-		"0-2": "Originals/NFRtoSRS.txt",
-		"0-1": "",
-		"1-2": "Originals/FRStoSRS.txt"
+		"0-2": "",
+		"0-1": "Originals/NFRtoSRS.txt",
+		"2-1": "Originals/FRStoSRS.txt"
 	}
 }

@@ -2,30 +2,162 @@
 	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/metric_tables/rq1/rq1_metric_table.jmp"
 );
 Graph Builder(
-	Size( 1378, 910 ),
+	Size( 1061, 882 ),
 	Legend Position( "Bottom" ),
 	Variables(
 		X( :Metrics ),
-		Y( :Metrics Score ),
+		Y( :value ),
 		Group Y( :Datasets ),
 		Overlay( :Technique Family )
 	),
-	Elements(
-		Box Plot( X, Y, Legend( 5 ), Outliers( 0 ), Width Proportion( 0.5 ) )
-	),
+	Elements( Box Plot( X, Y, Legend( 10 ), Outliers( 0 ), Box Style( "Solid" ) ) ),
 	SendToReport(
 		Dispatch( {}, "Metrics", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
 		Dispatch(
 			{},
-			"Metrics Score",
+			"value",
 			ScaleBox,
 			{Format( "Percent", 12, 0 ), Min( 0 ), Max( 1 ), Inc( 0.25 ),
 			Minor Ticks( 0 ), Add Ref Line( 0, "Solid", "Black", "", 1 ),
 			Label Row( Set Font Size( 18 ) )}
 		),
+		Dispatch(
+			{},
+			"400",
+			ScaleBox,
+			{Legend Model(
+				10,
+				Properties(
+					0,
+					{Line Color( -5929650 ), Fill Color( -5929650 ),
+					gradient(
+						{Color Theme(
+							{"Teal to Brown Copy", 4099, {{90, 122, 178}, {168, 63,
+							63}, {127, 0, 246}, {128, 205, 193}, {199, 234, 229},
+							{245, 245, 245}, {246, 232, 195}, {223, 194, 125}, {191,
+							129, 45}, {140, 81, 10}, {132, 0, 255}}, {0,
+							0.452127659574468, 0.909574468085106, 0.962765957446809,
+							0.968085106382979, 0.973404255319149, 0.978723404255319,
+							0.98404255319149, 0.98936170212766, 0.99468085106383, 1}
+							}
+						), Width( 9 )}
+					)},
+					Item ID( "Direct", 1 )
+				),
+				Properties(
+					1,
+					{Line Color( -10762322 ), Fill Color( -10762322 ),
+					gradient(
+						{Color Theme(
+							{"Teal to Brown Copy", 4099, {{90, 122, 178}, {168, 63,
+							63}, {127, 0, 246}, {128, 205, 193}, {199, 234, 229},
+							{245, 245, 245}, {246, 232, 195}, {223, 194, 125}, {191,
+							129, 45}, {140, 81, 10}, {132, 0, 255}}, {0,
+							0.452127659574468, 0.909574468085106, 0.962765957446809,
+							0.968085106382979, 0.973404255319149, 0.978723404255319,
+							0.98404255319149, 0.98936170212766, 0.99468085106383, 1}
+							}
+						), Width( 9 )}
+					)},
+					Item ID( "Transitive", 1 )
+				),
+				Properties(
+					2,
+					{Line Color( -8651007 ), Fill Color( -8651007 ),
+					gradient(
+						{Color Theme(
+							{"Teal to Brown Copy", 4099, {{90, 122, 178}, {168, 63,
+							63}, {127, 0, 246}, {128, 205, 193}, {199, 234, 229},
+							{245, 245, 245}, {246, 232, 195}, {223, 194, 125}, {191,
+							129, 45}, {140, 81, 10}, {132, 0, 255}}, {0,
+							0.452127659574468, 0.909574468085106, 0.962765957446809,
+							0.968085106382979, 0.973404255319149, 0.978723404255319,
+							0.98404255319149, 0.98936170212766, 0.99468085106383, 1}
+							}
+						), Width( 9 )}
+					)},
+					Item ID( "Hybrid", 1 )
+				)
+			)}
+		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
-		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 24 )} ),
-		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 24 )} ),
-		Dispatch( {}, "400", LegendBox, {font( "Helvetica Neue", 24, "Plain" )} )
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 18 )} ),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 18 ), Set Text( "MetricScore" )}
+		),
+		Dispatch(
+			{},
+			"Graph Builder",
+			FrameBox,
+			{Grid Line Order( 1 ), Reference Line Order( 2 )}
+		),
+		Dispatch(
+			{},
+			"Graph Builder",
+			FrameBox( 2 ),
+			{Grid Line Order( 1 ), Reference Line Order( 2 ),
+			DispatchSeg(
+				Box Plot Seg( "Box Plot (Direct, MAP)" ),
+				{Box Style( "Normal" ), Fences( 1 ), Line Color( {90, 122, 178} ),
+				Line Width( 2 ), Fill Color( {90, 122, 178} ), Fill( 0 )}
+			), DispatchSeg(
+				Box Plot Seg( "Box Plot (Direct, LagNormInverted)" ),
+				{Line Color( {90, 122, 178} ), Fill Color( {90, 122, 178} ),
+				Fill( 0 )}
+			), DispatchSeg(
+				Box Plot Seg( "Box Plot (Transitive, MAP)" ),
+				{Line Color( {164, 56, 82} ), Fill Color( {164, 56, 82} ), Fill( 0 )
+				}
+			)}
+		),
+		Dispatch(
+			{},
+			"Graph Builder",
+			FrameBox( 3 ),
+			{Grid Line Order( 1 ), Reference Line Order( 2 ),
+			DispatchSeg(
+				Box Plot Seg( "Box Plot (Direct, MAP)" ),
+				{Line Color( {90, 122, 178} ), Fill Color( {90, 122, 178} ),
+				Fill( 0 )}
+			), DispatchSeg(
+				Box Plot Seg( "Box Plot (Direct, AUC)" ),
+				{Line Color( {90, 122, 178} ), Fill Color( {90, 122, 178} ),
+				Fill( 0 )}
+			)}
+		),
+		Dispatch(
+			{},
+			"Graph Builder",
+			FrameBox( 4 ),
+			{Grid Line Order( 1 ), Reference Line Order( 2 ),
+			DispatchSeg(
+				Box Plot Seg( "Box Plot (Direct, AUC)" ),
+				{Line Color( {90, 122, 178} ), Fill Color( {90, 122, 178} ),
+				Fill( 0 )}
+			), DispatchSeg(
+				Box Plot Seg( "Box Plot (Transitive, MAP)" ),
+				{Line Color( {164, 56, 82} ), Fill Color( {164, 56, 82} ), Fill( 0 )
+				}
+			), DispatchSeg(
+				Box Plot Seg( "Box Plot (Hybrid, MAP)" ),
+				{Line Color( {132, 0, 255} ), Fill Color( {132, 0, 255} ), Fill( 0 )
+				}
+			), DispatchSeg(
+				Box Plot Seg( "Box Plot (Direct, MAP)" ),
+				{Box Type( "Quantile" ), Box Style( "Normal" ), Fences( 1 ),
+				Line Color( {90, 122, 178} ), Line Width( 5 ),
+				Fill Color( {90, 122, 178} ), Fill( 1 )}
+			)}
+		),
+		Dispatch(
+			{},
+			"Graph Builder",
+			FrameBox( 5 ),
+			{Grid Line Order( 1 ), Reference Line Order( 2 )}
+		),
+		Dispatch( {}, "400", LegendBox, {font( "Helvetica Neue", 18, "Plain" )} )
 	)
 );

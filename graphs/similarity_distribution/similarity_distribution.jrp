@@ -1,0 +1,11 @@
+﻿Open(
+	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/similarity_distribution/similarity_distribution.jmp"
+);
+Graph Builder(
+	Size( 884, 534 ),
+	Variables( X( :Query Type ), Y( :value ), Overlay( :Similarity Score Oracle ) ),
+	Elements( Bar( X, Y, Legend( 10 ), Label( "Label by Value" ) ) ),
+	SendToReport(
+		Dispatch( {}, "Y title", TextEditBox, {Set Text( "Similarity - Oracle" )} )
+	)
+);

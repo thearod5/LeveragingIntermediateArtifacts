@@ -1,136 +1,136 @@
 query_id,dataset,path,type,name,metric,value
-0,WARC,0->2->1,DIRECT,(. (LSI NT) (0 1)),ap,0.6339562837276822
-0,WARC,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),ap,0.6166420290651156
-0,WARC,0->2->1,HYBRID,(o (PCA) ((. (VSM NT) (0 1)) (x (PCA INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),ap,0.7101340474146816
-0,WARC,1->0->2,DIRECT,(. (LSI NT) (1 2)),ap,0.5633563890734984
-0,WARC,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),ap,0.21806360638974245
-0,WARC,1->0->2,HYBRID,(o (PCA) ((. (VSM NT) (1 2)) (x (PCA INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),ap,0.5614745262740709
-0,WARC,0->1->2,DIRECT,(. (LSI NT) (0 2)),ap,0.6907759425697315
-0,WARC,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),ap,0.3095529619044417
-0,WARC,0->1->2,HYBRID,(o (PCA) ((. (VSM NT) (0 2)) (x (PCA INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),ap,0.6735612172994326
 0,Drone,0->2->1,DIRECT,(. (VSM NT) (0 1)),ap,0.7120554351277841
 0,Drone,0->2->1,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))),ap,0.5544181933054065
-0,Drone,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),ap,0.6505949732856273
+0,Drone,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),ap,0.7407097387227727
 0,Drone,1->0->2,DIRECT,(. (VSM NT) (1 2)),ap,0.33143064367282526
 0,Drone,1->0->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))),ap,0.3976895131750548
-0,Drone,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),ap,0.4078162119602049
+0,Drone,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),ap,0.3854508380325317
 0,Drone,0->1->2,DIRECT,(. (VSM NT) (0 2)),ap,0.3409457049808863
 0,Drone,0->1->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))),ap,0.42421639664972666
-0,Drone,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),ap,0.42668875696161035
+0,Drone,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),ap,0.39886953628223926
 0,TrainController,0->2->1,DIRECT,(. (VSM NT) (0 1)),ap,0.5872111489783824
 0,TrainController,0->2->1,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),ap,0.4781022912883037
-0,TrainController,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),ap,0.5863140327143003
+0,TrainController,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),ap,0.5745149639666388
 0,TrainController,1->0->2,DIRECT,(. (VSM NT) (1 2)),ap,0.5565473456861997
 0,TrainController,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),ap,0.5416956779295131
-0,TrainController,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),ap,0.5784080242072228
+0,TrainController,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),ap,0.5692324484594381
 0,TrainController,0->1->2,DIRECT,(. (VSM NT) (0 2)),ap,0.5029159998120842
 0,TrainController,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),ap,0.5137598081492438
-0,TrainController,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),ap,0.5782927892771796
+0,TrainController,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),ap,0.562548588982239
 0,EasyClinic,0->2->1,DIRECT,(. (VSM NT) (0 1)),ap,0.8806130625610644
 0,EasyClinic,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),ap,0.8401105371809708
-0,EasyClinic,0->2->1,HYBRID,(o (SUM) ((. (LSI NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),ap,0.8606162067050751
+0,EasyClinic,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),ap,0.8732867871071501
 0,EasyClinic,1->0->2,DIRECT,(. (VSM NT) (1 2)),ap,0.7146427908580687
 0,EasyClinic,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),ap,0.7696433727465339
-0,EasyClinic,1->0->2,HYBRID,(o (SUM) ((. (LSI NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),ap,0.7683712215360682
+0,EasyClinic,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),ap,0.7700804426199837
 0,EasyClinic,0->1->2,DIRECT,(. (VSM NT) (0 2)),ap,0.705069831117277
 0,EasyClinic,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),ap,0.7814249804343972
-0,EasyClinic,0->1->2,HYBRID,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),ap,0.7661621530752036
-0,EBT,0->2->1,DIRECT,(. (VSM NT) (0 1)),ap,0.8520309216541119
-0,EBT,0->2->1,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),ap,0.8115009206873472
-0,EBT,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),ap,0.9001449680393979
-0,EBT,1->0->2,DIRECT,(. (VSM NT) (1 2)),ap,0.7546266612697343
-0,EBT,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),ap,0.8526471137412744
-0,EBT,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),ap,0.8188657795261501
-0,EBT,0->1->2,DIRECT,(. (VSM NT) (0 2)),ap,0.7944444434783816
-0,EBT,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),ap,0.805729464697286
-0,EBT,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),ap,0.811798940014402
-0,WARC,0->2->1,DIRECT,(. (LSI NT) (0 1)),auc,0.8000000000000002
-0,WARC,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),auc,0.8886499402628435
-0,WARC,0->2->1,HYBRID,(o (PCA) ((. (VSM NT) (0 1)) (x (PCA INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),auc,0.8655250232311164
-0,WARC,1->0->2,DIRECT,(. (LSI NT) (1 2)),auc,0.7830022678134988
-0,WARC,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),auc,0.684911990035721
-0,WARC,1->0->2,HYBRID,(o (PCA) ((. (VSM NT) (1 2)) (x (PCA INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),auc,0.8074679216018049
-0,WARC,0->1->2,DIRECT,(. (LSI NT) (0 2)),auc,0.8470551495846605
-0,WARC,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),auc,0.7456373743051652
-0,WARC,0->1->2,HYBRID,(o (PCA) ((. (VSM NT) (0 2)) (x (PCA INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),auc,0.8816063956030229
+0,EasyClinic,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),ap,0.769960885865309
+0,EBT,0->2->1,DIRECT,(. (VSM NT) (0 1)),ap,0.8736775678448176
+0,EBT,0->2->1,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),ap,0.8686392640950036
+0,EBT,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),ap,0.8957509482905073
+0,EBT,1->0->2,DIRECT,(. (VSM NT) (1 2)),ap,0.7944444434783816
+0,EBT,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),ap,0.805729464697286
+0,EBT,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),ap,0.8081569331622177
+0,EBT,0->1->2,DIRECT,(. (VSM NT) (0 2)),ap,0.7546266612697343
+0,EBT,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),ap,0.8526471137412744
+0,EBT,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),ap,0.8375710674923839
+0,WARC,0->2->1,DIRECT,(. (VSM NT) (0 1)),ap,0.6432747818098498
+0,WARC,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),ap,0.3095529619044417
+0,WARC,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),ap,0.6074958673426919
+0,WARC,1->0->2,DIRECT,(. (VSM NT) (1 2)),ap,0.6049019935592481
+0,WARC,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),ap,0.28653218288582966
+0,WARC,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),ap,0.6163433949605576
+0,WARC,0->1->2,DIRECT,(. (VSM NT) (0 2)),ap,0.6741781544633663
+0,WARC,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),ap,0.6166420290651156
+0,WARC,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),ap,0.749165925499848
 0,Drone,0->2->1,DIRECT,(. (VSM NT) (0 1)),auc,0.5236545960709769
 0,Drone,0->2->1,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))),auc,0.6090022993968105
-0,Drone,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),auc,0.6133869941760165
+0,Drone,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),auc,0.5993175754110573
 0,Drone,1->0->2,DIRECT,(. (VSM NT) (1 2)),auc,0.6001545713866809
 0,Drone,1->0->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))),auc,0.6276438284470296
-0,Drone,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),auc,0.6352608167121055
+0,Drone,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),auc,0.6376421507036686
 0,Drone,0->1->2,DIRECT,(. (VSM NT) (0 2)),auc,0.6130744314433633
 0,Drone,0->1->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))),auc,0.6823258306049304
-0,Drone,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),auc,0.6836558168945149
+0,Drone,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),auc,0.6805516238178186
 0,TrainController,0->2->1,DIRECT,(. (VSM NT) (0 1)),auc,0.537688091066101
 0,TrainController,0->2->1,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),auc,0.5858201330924476
-0,TrainController,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),auc,0.5834746816839347
+0,TrainController,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),auc,0.5809877547033839
 0,TrainController,1->0->2,DIRECT,(. (VSM NT) (1 2)),auc,0.566860578675159
 0,TrainController,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),auc,0.5677049760546016
-0,TrainController,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),auc,0.5717363818931495
+0,TrainController,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),auc,0.5577623779466834
 0,TrainController,0->1->2,DIRECT,(. (VSM NT) (0 2)),auc,0.5447327981026184
 0,TrainController,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),auc,0.6616436058865024
-0,TrainController,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),auc,0.6558235479140486
+0,TrainController,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),auc,0.6336952105269457
 0,EasyClinic,0->2->1,DIRECT,(. (VSM NT) (0 1)),auc,0.8287667887667888
 0,EasyClinic,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),auc,0.7593284493284493
-0,EasyClinic,0->2->1,HYBRID,(o (SUM) ((. (LSI NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),auc,0.8074481074481075
+0,EasyClinic,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),auc,0.808009768009768
 0,EasyClinic,1->0->2,DIRECT,(. (VSM NT) (1 2)),auc,0.7470788090264227
 0,EasyClinic,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),auc,0.7828562246045776
-0,EasyClinic,1->0->2,HYBRID,(o (SUM) ((. (LSI NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),auc,0.7796710360184569
+0,EasyClinic,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),auc,0.7791028672436353
 0,EasyClinic,0->1->2,DIRECT,(. (VSM NT) (0 2)),auc,0.7582632930111349
 0,EasyClinic,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),auc,0.7904090216933255
-0,EasyClinic,0->1->2,HYBRID,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),auc,0.7963965966995948
+0,EasyClinic,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),auc,0.796562056457972
 0,EBT,0->2->1,DIRECT,(. (VSM NT) (0 1)),auc,0.5084115694642011
 0,EBT,0->2->1,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),auc,0.7077430061640588
-0,EBT,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),auc,0.6569179706021812
-0,EBT,1->0->2,DIRECT,(. (VSM NT) (1 2)),auc,0.6854816678511115
-0,EBT,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),auc,0.7329344428906566
-0,EBT,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),auc,0.7288099004302209
-0,EBT,0->1->2,DIRECT,(. (VSM NT) (0 2)),auc,0.7009048566797299
-0,EBT,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),auc,0.7049674785070891
-0,EBT,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),auc,0.7178067997619879
-0,WARC,0->2->1,DIRECT,(. (LSI NT) (0 1)),lag_normalized_inverted,0.9276026193639006
-0,WARC,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),lag_normalized_inverted,1.0
-0,WARC,0->2->1,HYBRID,(o (PCA) ((. (VSM NT) (0 1)) (x (PCA INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),lag_normalized_inverted,0.9811146695016345
-0,WARC,1->0->2,DIRECT,(. (LSI NT) (1 2)),lag_normalized_inverted,0.34015548280674
-0,WARC,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),lag_normalized_inverted,0.0
-0,WARC,1->0->2,HYBRID,(o (PCA) ((. (VSM NT) (1 2)) (x (PCA INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),lag_normalized_inverted,0.4242084839664072
-0,WARC,0->1->2,DIRECT,(. (LSI NT) (0 2)),lag_normalized_inverted,0.8254570487808927
-0,WARC,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),lag_normalized_inverted,0.648518197423933
-0,WARC,0->1->2,HYBRID,(o (PCA) ((. (VSM NT) (0 2)) (x (PCA INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),lag_normalized_inverted,0.8854304404668617
-0,Drone,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,0.9769452676282815
-0,Drone,0->2->1,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))),lag_normalized_inverted,0.9988157498086354
-0,Drone,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),lag_normalized_inverted,1.0
+0,EBT,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),auc,0.6262541488857278
+0,EBT,1->0->2,DIRECT,(. (VSM NT) (1 2)),auc,0.7009048566797299
+0,EBT,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),auc,0.7049674785070891
+0,EBT,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),auc,0.7179658165254325
+0,EBT,0->1->2,DIRECT,(. (VSM NT) (0 2)),auc,0.6854816678511115
+0,EBT,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),auc,0.7329344428906566
+0,EBT,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),auc,0.738847114921712
+0,WARC,0->2->1,DIRECT,(. (VSM NT) (0 1)),auc,0.8455499344200863
+0,WARC,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),auc,0.7456373743051652
+0,WARC,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),auc,0.8695896571107363
+0,WARC,1->0->2,DIRECT,(. (VSM NT) (1 2)),auc,0.7823604060913705
+0,WARC,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),auc,0.684911990035721
+0,WARC,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),auc,0.809600606316977
+0,WARC,0->1->2,DIRECT,(. (VSM NT) (0 2)),auc,0.8354971458914111
+0,WARC,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),auc,0.8886499402628435
+0,WARC,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),auc,0.8939864595778575
+0,Drone,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,0.9781035869883468
+0,Drone,0->2->1,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))),lag_normalized_inverted,1.0
+0,Drone,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),lag_normalized_inverted,0.9973811781110467
 0,Drone,1->0->2,DIRECT,(. (VSM NT) (1 2)),lag_normalized_inverted,0.0
-0,Drone,1->0->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))),lag_normalized_inverted,0.07193068935200464
-0,Drone,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),lag_normalized_inverted,0.093051470546059
-0,Drone,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.483697424036971
-0,Drone,0->1->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))),lag_normalized_inverted,0.5927779076001717
-0,Drone,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),lag_normalized_inverted,0.5949199639328201
-0,TrainController,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,0.9260313861554765
+0,Drone,1->0->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))),lag_normalized_inverted,0.07201597428333106
+0,Drone,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),lag_normalized_inverted,0.09977271313725944
+0,Drone,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.48427092196898514
+0,Drone,0->1->2,TRANSITIVE,(x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))),lag_normalized_inverted,0.5934807372768631
+0,Drone,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),lag_normalized_inverted,0.590619837931885
+0,TrainController,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,0.9284014382632159
 0,TrainController,0->2->1,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),lag_normalized_inverted,1.0
-0,TrainController,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),lag_normalized_inverted,0.9962927401054492
-0,TrainController,1->0->2,DIRECT,(. (VSM NT) (1 2)),lag_normalized_inverted,0.0
-0,TrainController,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),lag_normalized_inverted,0.004843081995353105
-0,TrainController,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),lag_normalized_inverted,0.020228689658812415
-0,TrainController,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.7883697755055147
-0,TrainController,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),lag_normalized_inverted,0.9996182881815606
-0,TrainController,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),lag_normalized_inverted,0.9883509416940446
+0,TrainController,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM GLOBAL) ((. (LSI NT) (0 2)) (. (LSI NT) (2 1)))))),lag_normalized_inverted,0.992606597592125
+0,TrainController,1->0->2,DIRECT,(. (VSM NT) (1 2)),lag_normalized_inverted,0.03204132110304181
+0,TrainController,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),lag_normalized_inverted,0.03672922435305337
+0,TrainController,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM GLOBAL) ((. (LSI NT) (1 0)) (. (LSI NT) (0 2)))))),lag_normalized_inverted,0.0
+0,TrainController,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.7951506874836513
+0,TrainController,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),lag_normalized_inverted,0.999630518732504
+0,TrainController,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM GLOBAL) ((. (LSI NT) (0 1)) (. (LSI NT) (1 2)))))),lag_normalized_inverted,0.9472574483265748
 0,EasyClinic,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,1.0
 0,EasyClinic,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),lag_normalized_inverted,0.8527408890648785
-0,EasyClinic,0->2->1,HYBRID,(o (SUM) ((. (LSI NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),lag_normalized_inverted,0.9547890965899908
+0,EasyClinic,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),lag_normalized_inverted,0.9559802200475284
 0,EasyClinic,1->0->2,DIRECT,(. (VSM NT) (1 2)),lag_normalized_inverted,0.41966842186993947
 0,EasyClinic,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),lag_normalized_inverted,0.5531284837666017
-0,EasyClinic,1->0->2,HYBRID,(o (SUM) ((. (LSI NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),lag_normalized_inverted,0.5412468131935111
+0,EasyClinic,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),lag_normalized_inverted,0.5391273800642571
 0,EasyClinic,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.0
 0,EasyClinic,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),lag_normalized_inverted,0.1812676363745418
-0,EasyClinic,0->1->2,HYBRID,(o (SUM) ((. (LSI NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),lag_normalized_inverted,0.21503117552875106
-0,EBT,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,0.7501723567289829
+0,EasyClinic,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),lag_normalized_inverted,0.21596419215477414
+0,EBT,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,0.7422581921081977
 0,EBT,0->2->1,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),lag_normalized_inverted,1.0
-0,EBT,0->2->1,HYBRID,(o (MAX) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),lag_normalized_inverted,0.9348949113045308
-0,EBT,1->0->2,DIRECT,(. (VSM NT) (1 2)),lag_normalized_inverted,0.0
-0,EBT,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),lag_normalized_inverted,0.21722725234856222
-0,EBT,1->0->2,HYBRID,(o (MAX) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),lag_normalized_inverted,0.199356402887913
-0,EBT,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.5724960092222189
-0,EBT,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),lag_normalized_inverted,0.581181919382844
-0,EBT,0->1->2,HYBRID,(o (MAX) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),lag_normalized_inverted,0.6148708423629832
+0,EBT,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),lag_normalized_inverted,0.8956156307192527
+0,EBT,1->0->2,DIRECT,(. (VSM NT) (1 2)),lag_normalized_inverted,0.5724960092222189
+0,EBT,1->0->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),lag_normalized_inverted,0.581181919382844
+0,EBT,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),lag_normalized_inverted,0.6165253014411974
+0,EBT,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.0
+0,EBT,0->1->2,TRANSITIVE,(x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),lag_normalized_inverted,0.21722725234856222
+0,EBT,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (SUM INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),lag_normalized_inverted,0.24284572343735744
+0,WARC,0->2->1,DIRECT,(. (VSM NT) (0 1)),lag_normalized_inverted,0.7925699454200887
+0,WARC,0->2->1,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))),lag_normalized_inverted,0.644614433579892
+0,WARC,0->2->1,HYBRID,(o (SUM) ((. (VSM NT) (0 1)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 2)) (. (VSM NT) (2 1)))))),lag_normalized_inverted,0.86039236226363
+0,WARC,1->0->2,DIRECT,(. (VSM NT) (1 2)),lag_normalized_inverted,0.370888616175427
+0,WARC,1->0->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))),lag_normalized_inverted,0.0
+0,WARC,1->0->2,HYBRID,(o (SUM) ((. (VSM NT) (1 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (1 0)) (. (VSM NT) (0 2)))))),lag_normalized_inverted,0.42798588251057423
+0,WARC,0->1->2,DIRECT,(. (VSM NT) (0 2)),lag_normalized_inverted,0.9551964941094231
+0,WARC,0->1->2,TRANSITIVE,(x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))),lag_normalized_inverted,0.9956474119458647
+0,WARC,0->1->2,HYBRID,(o (SUM) ((. (VSM NT) (0 2)) (x (MAX INDEPENDENT) ((. (VSM NT) (0 1)) (. (VSM NT) (1 2)))))),lag_normalized_inverted,1.0

@@ -20,8 +20,14 @@ class CreateDatasets(Experiment):
                 builder = DatasetBuilder(dataset_name)
                 builder.build()
                 builder.export()
+                print(f"{dataset_name} exported.")
         return Table()
 
     @staticmethod
     def name() -> str:
         return EXPERIMENT_NAME
+
+
+if __name__ == "__main__":
+    CreateDatasets().run()
+    print("Done!")

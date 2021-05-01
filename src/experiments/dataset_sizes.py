@@ -56,40 +56,37 @@ class DatasetSizes(Experiment):
             n_top = len(dataset.artifacts[0])
             n_middle = len(dataset.artifacts[1])
             n_bottom = len(dataset.artifacts[2])
-            print(dataset_name, n_top, n_middle, n_bottom)
 
             def stat_matrix(matrix):
                 n_traces = matrix.sum(axis=1).sum()
                 n_paths = matrix.shape[0] * matrix.shape[1]
-                percent_traced = n_traces / n_paths
-                return n_paths, percent_traced
+                return n_paths, n_traces
 
-            d_paths, d_percent = stat_matrix(dataset.traced_matrices["0-2"])
-            u_paths, u_percent = stat_matrix(dataset.traced_matrices["0-1"])
-            l_paths, l_percent = stat_matrix(dataset.traced_matrices["1-2"])
+            d_paths, n_direct_traces = stat_matrix(dataset.traced_matrices["0-2"])
+            u_paths, n_upper_traces = stat_matrix(dataset.traced_matrices["0-1"])
+            l_paths, n_lower_traces = stat_matrix(dataset.traced_matrices["1-2"])
 
             entry = {
                 DATASET_NAME: dataset_name,
                 DIRECT_PATHS: d_paths,
-                DIRECT_TRACES: d_percent,
+                DIRECT_TRACES: n_direct_traces,
                 UPPER_PATHS: u_paths,
-                UPPER_TRACES: u_percent,
+                UPPER_TRACES: n_upper_traces,
                 LOWER_PATHS: l_paths,
-                LOWER_TRACES: l_percent,
+                LOWER_TRACES: n_lower_traces,
             }
             data = data.append(entry, ignore_index=True)
         post_df = data.sort_values(by=DIRECT_TRACES)
-        for n_col in list(filter(lambda c: "paths" in c.lower(), post_df.columns)):
-            post_df[n_col] = post_df[n_col].apply(lambda n: f"{n:,}")
-        for p_col in list(filter(lambda c: "traces" in c.lower(), post_df.columns)):
-            post_df[p_col] = post_df[p_col].apply(
-                lambda p: repr(round(p * 100, 1)) + "\\%"
-            )
+
         post_df = post_df.round(N_SIG_FIGS)
-        post_df.to_csv(EXPORT_PATH, index=False, sep=";")
+        post_df.to_csv(EXPORT_PATH, index=False)
         self.export_paths.append(EXPORT_PATH)
         return Table()
 
     @staticmethod
     def name() -> str:
         return EXPERIMENT_NAME
+
+
+if __name__ == "__main__":
+    DatasetSizes().run()

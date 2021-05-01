@@ -1,13 +1,12 @@
 {
 	"artifacts": {
-		"0": "Originals/testcases/TestCases.csv",
-		"1": "Originals/Requirements/Requirements.csv",
+		"0": "Originals/Requirements/Requirements.csv",
+		"1": "Originals/testcases/TestCases.csv",
 		"2": "Originals/sourcecode/SourceCode.csv"
-
 	},
 	"traces": {
-		"1-2": "Originals/AnswerReq2CC.txt",
-		"0-2": "",
-		"1-0": "Originals/AnswersRequirements2Testcases.txt"
+		"0-2": "Originals/AnswerReq2CC.txt",
+		"0-1": "Originals/AnswersRequirements2Testcases.txt",
+		"1-2": ""
 	}
 }

@@ -1,12 +1,12 @@
 ﻿Open(
-	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/individual_queries/individual_queries.jmp"
+	"/Users/albertorodriguez/Projects/LeveragingIntermediateArtifacts/graphs/best_overall/best_overall.jmp"
 );
 Graph Builder(
-	Size( 801, 910 ),
+	Size( 693, 910 ),
 	Legend Position( "Bottom" ),
 	Variables(
 		X( :Datasets ),
-		Y( :MetricScore ),
+		Y( :metric_score ),
 		Group Y( :Metrics ),
 		Overlay( :Technique Family )
 	),
@@ -14,7 +14,7 @@ Graph Builder(
 		Box Plot(
 			X,
 			Y,
-			Legend( 7 ),
+			Legend( 10 ),
 			Outliers( 0 ),
 			Box Type( "Quantile" ),
 			Box Style( "Solid" )
@@ -24,15 +24,29 @@ Graph Builder(
 		Dispatch( {}, "Datasets", ScaleBox, {Label Row( Set Font Size( 18 ) )} ),
 		Dispatch(
 			{},
-			"MetricScore",
+			"metric_score",
 			ScaleBox,
 			{Min( 0 ), Max( 1 ), Inc( 0.2 ), Minor Ticks( 1 ),
 			Add Ref Line( 0, "Solid", "Black", "", 1 ),
 			Label Row( Set Font Size( 18 ) )}
 		),
+		Dispatch(
+			{},
+			"400",
+			ScaleBox,
+			{Legend Model(
+				10,
+				Properties( 1, {Fill Color( -3449654 )}, Item ID( "Hybrid", 1 ) )
+			)}
+		),
 		Dispatch( {}, "graph title", TextEditBox, {Set Text( "" )} ),
 		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 24 )} ),
-		Dispatch( {}, "Y title", TextEditBox, {Set Font Size( 24 )} ),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 24 ), Set Text( "Metric Score" )}
+		),
 		Dispatch(
 			{},
 			"400",

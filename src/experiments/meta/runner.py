@@ -13,43 +13,27 @@ from api.tables.table import Table
 from experiments.calculate_individual_queries import (
     CalculateIndividualQueries,
 )
-from experiments.calculate_percent_best import (
-    CreateBestTechnique,
-)
-from experiments.create_correlation_table import (
-    CalculateCorrelation,
-)
 from experiments.create_datasets import CreateDatasets
-from experiments.create_gain_correlation_table import (
-    GainCorrelationTable,
-)
 from experiments.create_gain_table import (
     CalculateGain,
 )
 from experiments.create_metric_table import (
     CreateMetricTable,
 )
-from experiments.create_sampled_table import (
-    CreateSampledTable,
-)
 from experiments.dataset_sizes import DatasetSizes
 from experiments.evaluate_paths import EvaluatePaths
-from experiments.find_best_ranked_techniques import (
+from experiments.find_best_techniques import (
     FindBestRankedTechniques,
 )
 from experiments.meta.experiment import Experiment
 
 REGISTERED_EXPERIMENTS: List[Type[Experiment]] = [
-    CreateDatasets,
     CreateMetricTable,
-    CreateBestTechnique,
     CalculateGain,
-    CreateSampledTable,
-    CalculateCorrelation,
-    GainCorrelationTable,
+    EvaluatePaths,
     CalculateIndividualQueries,
     FindBestRankedTechniques,
-    EvaluatePaths,
+    CreateDatasets,
     DatasetSizes,
 ]
 

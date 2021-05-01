@@ -1,0 +1,14 @@
+VariationPoint,Technique,PercentBest
+TechniqueAggregation,SUM,100\%
+TechniqueAggregation,PCA,0\%
+TechniqueAggregation,MAX,0\%
+TransitiveAggregation,SUM,60\%
+TransitiveAggregation,PCA,0\%
+TransitiveScaling,GLOBAL,60\%
+TransitiveScaling,INDEPENDENT,60\%
+TransitiveAlgebraicModel,LSI,60\%
+TransitiveAlgebraicModel,VSM,40\%
+DirectAlgebraicModel,LSI,0\%
+DirectAlgebraicModel,VSM,100\%
+TransitiveAggregation,MAX,40\%
+,0,100\%
