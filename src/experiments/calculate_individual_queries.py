@@ -18,6 +18,7 @@ from utilities.constants import (
     DATASET_COLUMN_ORDER,
     PATH_TO_INDIVIDUAL_QUERIES,
     PATH_TO_INDIVIDUAL_QUERIES_AGG,
+    PATH_TO_INDIVIDUAL_QUERIES_UNMELTED,
 )
 from utilities.prompts import prompt_for_dataset
 from utilities.technique_extractors import (
@@ -99,6 +100,15 @@ class CalculateIndividualQueries(Experiment):
             .col_values_to_upper(METRIC_COLNAME)
             .to_title_case(exclude=METRIC_COLNAME)
             .save(PATH_TO_INDIVIDUAL_QUERIES_AGG)
+        )
+
+        individual_queries_aggregate = (
+            MetricTable(
+                Table.aggregate_intermediate_files(PATH_TO_INDIVIDUAL_QUERIES).table
+            )
+            .create_lag_norm_inverted(drop_old=True)
+            .sort(DATASET_COLUMN_ORDER)
+            .save(PATH_TO_INDIVIDUAL_QUERIES_UNMELTED)
         )
 
         # aggregate_table

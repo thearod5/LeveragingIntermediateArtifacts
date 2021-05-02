@@ -6,7 +6,7 @@ PATH_TO_DATA = os.path.join(PATH_TO_ROOT, "..", "data")
 PATH_TO_METRIC_TABLES = os.path.join(PATH_TO_DATA, "metric_tables")
 PATH_TO_SAMPLED_METRIC_TABLES = os.path.join(PATH_TO_DATA, "sampled_metric_tables")
 PATH_TO_INDIVIDUAL_QUERIES = os.path.join(PATH_TO_DATA, "individual_queries")
-
+PATH_TO_EXPLORATORY = os.path.join(PATH_TO_DATA, "exploratory")
 """
 AGGREGATES
 """
@@ -30,16 +30,21 @@ PATH_TO_BEST_RANKS = os.path.join(PATH_TO_AGGREGATE_TABLES, "best_ranks.csv")
 PATH_TO_INDIVIDUAL_QUERIES_AGG = os.path.join(
     PATH_TO_AGGREGATE_TABLES, "individual_queries.csv"
 )
+PATH_TO_INDIVIDUAL_QUERIES_UNMELTED = os.path.join(
+    PATH_TO_AGGREGATE_TABLES, "individual_queries_umelted.csv"
+)
 
 """
 PRESENTATION
 
 contains the path to tables that are used directly in the paper
 """
+PATH_TO_GAIN = os.path.join(PATH_TO_DATA, "gain")
 PATH_TO_PRESENTATION = os.path.join(PATH_TO_DATA, "presentation")
 PATH_TO_RQ1_BEST = os.path.join(PATH_TO_PRESENTATION, "rq1_best.csv")
-PATH_TO_RQ1_GAIN = os.path.join(PATH_TO_PRESENTATION, "rq1_gain.csv")
-PATH_TO_RQ2_GAIN = os.path.join(PATH_TO_PRESENTATION, "rq2_gain.csv")
+PATH_TO_RQ1_GAIN = os.path.join(PATH_TO_GAIN, "rq1_gain.csv")
+PATH_TO_RQ2_GAIN = os.path.join(PATH_TO_GAIN, "rq2_gain.csv")
+
 PATH_TO_RQ1_CORRELATION = os.path.join(PATH_TO_PRESENTATION, "rq1_correlation.csv")
 PATH_TO_RQ2_CORRELATION = os.path.join(PATH_TO_PRESENTATION, "rq2_correlation.csv")
 PATH_TO_RQ1_GAIN_CORRELATION = os.path.join(

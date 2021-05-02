@@ -17,7 +17,7 @@ from api.technique.definitions.sampled.definition import SAMPLED_COMMAND_SYMBOL
 from api.technique.definitions.transitive.definition import TRANSITIVE_COMMAND_SYMBOL
 from api.technique.definitions.transitive.technique import TransitiveTechnique
 from api.technique.parser.itechnique import ITechnique
-from utilities.constants import DATASET_COLUMN_ORDER, PATH_TO_METRIC_TABLE_AGGREGATE
+from utilities.constants import PATH_TO_METRIC_TABLE_AGGREGATE
 
 AGGREGATE_METRIC_TABLE = MetricTable(path_to_table=PATH_TO_METRIC_TABLE_AGGREGATE)
 
@@ -139,23 +139,3 @@ def get_simplest_technique(best_technique_query: Union[str, List[str]]):
     best_technique_index = np.array(points).argmax()
 
     return best_technique_query[best_technique_index]
-
-
-def create_comparison_dict() -> dict:
-    """
-    Creates a dictionary containing dataset names as keys and tuples as values of the technique definition
-    of the best direct and hybrid techniques. This dictionary can be used to calculate the gain between
-    techniques within metric tables.
-    :return:
-    """
-    comparison_dict = {}
-    for dataset in DATASET_COLUMN_ORDER:
-        comparison_dict.update(
-            {
-                dataset: (
-                    get_best_direct_technique(dataset),
-                    get_best_hybrid_technique(dataset),
-                )
-            }
-        )
-    return comparison_dict

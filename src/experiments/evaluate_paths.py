@@ -4,7 +4,7 @@ direct technique.
 """
 import os
 import re
-from typing import Dict
+from typing import Dict, List
 
 import pandas as pd
 
@@ -42,12 +42,16 @@ def path_iterator():
             yield path, dataset_name
 
 
-def create_template(text: str, rep: Dict[str, str]):
+def change_paths_in_technique(text: str, new_paths: List[int]):
     # use these three lines to do the replacement
-    rep = dict((re.escape(k), v) for k, v in rep.items())
-    # Python 3 renamed dict.iteritems to dict.items so use rep.items() for latest versions
+    replacement_dictionary = create_path_replacement_dictionary(new_paths)
+    rep = dict((re.escape(k), v) for k, v in replacement_dictionary.items())
     pattern = re.compile("|".join(rep.keys()))
     return pattern.sub(lambda m: rep[re.escape(m.group(0))], text)
+
+
+def create_path_replacement_dictionary(new_paths: List[int]) -> Dict[str, str]:
+    return {root_path: new_p for root_path, new_p in zip(["0", "1", "2"], new_paths)}
 
 
 class EvaluatePaths(Experiment):
@@ -85,15 +89,11 @@ class EvaluatePaths(Experiment):
                 intermediate_index = str(path[1])
                 target_index = str(path[2])
 
-                path_replacement_dict = {
-                    "0": source_index,
-                    "1": intermediate_index,
-                    "2": target_index,
-                }
+                new_path = [source_index, intermediate_index, target_index]
 
                 # direct
-                direct_technique_def = create_template(
-                    get_best_direct_technique(dataset_name), path_replacement_dict
+                direct_technique_def = change_paths_in_technique(
+                    get_best_direct_technique(dataset_name), new_path
                 )
                 add_metrics(
                     dataset_name,
@@ -103,8 +103,8 @@ class EvaluatePaths(Experiment):
                 )
 
                 # transitive
-                transitive_technique_def = create_template(
-                    get_best_transitive_technique(dataset_name), path_replacement_dict
+                transitive_technique_def = change_paths_in_technique(
+                    get_best_transitive_technique(dataset_name), new_path
                 )
                 add_metrics(
                     dataset_name,
@@ -114,8 +114,8 @@ class EvaluatePaths(Experiment):
                 )
 
                 # HYBRID
-                hybrid_technique_definition = create_template(
-                    get_best_hybrid_technique(dataset_name), path_replacement_dict
+                hybrid_technique_definition = change_paths_in_technique(
+                    get_best_hybrid_technique(dataset_name), new_path
                 )
                 add_metrics(
                     dataset_name,

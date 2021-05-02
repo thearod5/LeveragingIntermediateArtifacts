@@ -1,0 +1,6 @@
+dataset,ap,auc,lag
+Drone,0.17,0.11,0.171
+TrainController,0.119,0.163,0.181
+EasyClinic,0.092,0.051,0.158
+EBT,0.11,0.078,0.177
+WARC,0.111,0.07,0.341
