@@ -78,22 +78,22 @@ class EvaluatePaths(Experiment):
         for path in POSSIBLE_PATHS:
             metric_table = MetricTable()
             comparison_dict = {}
+            path_name = path_to_str(path)
+
             for dataset_name in DATASET_COLUMN_ORDER:
                 source_index = str(path[0])
                 intermediate_index = str(path[1])
                 target_index = str(path[2])
 
-                replacement_dict = {
+                path_replacement_dict = {
                     "0": source_index,
                     "1": intermediate_index,
                     "2": target_index,
                 }
 
-                path_name = path_to_str(path)
-
                 # direct
                 direct_technique_def = create_template(
-                    get_best_direct_technique(dataset_name), replacement_dict
+                    get_best_direct_technique(dataset_name), path_replacement_dict
                 )
                 add_metrics(
                     dataset_name,
@@ -104,7 +104,7 @@ class EvaluatePaths(Experiment):
 
                 # transitive
                 transitive_technique_def = create_template(
-                    get_best_transitive_technique(dataset_name), replacement_dict
+                    get_best_transitive_technique(dataset_name), path_replacement_dict
                 )
                 add_metrics(
                     dataset_name,
@@ -115,7 +115,7 @@ class EvaluatePaths(Experiment):
 
                 # HYBRID
                 hybrid_technique_definition = create_template(
-                    get_best_hybrid_technique(dataset_name), replacement_dict
+                    get_best_hybrid_technique(dataset_name), path_replacement_dict
                 )
                 add_metrics(
                     dataset_name,

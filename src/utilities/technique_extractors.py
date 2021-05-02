@@ -68,7 +68,6 @@ def get_best_hybrid_technique(dataset_name: str):
     best_df = AGGREGATE_METRIC_TABLE.find_best_hybrid_techniques().table.set_index(
         DATASET_COLNAME
     )
-    print(best_df["name"]["EBT"])
     if dataset_name not in best_df.index:
         raise Exception(
             f"Expected {dataset_name} to have metrics in {PATH_TO_METRIC_TABLE_AGGREGATE}"
@@ -134,7 +133,7 @@ def get_simplest_technique(best_technique_query: Union[str, List[str]]):
         if "MAX" in candidate_technique:
             points[t_index] = points[t_index] + candidate_technique.count("MAX")
 
-        if "INDEPENDENT" in candidate_technique:
+        if "GLOBAL" in candidate_technique:
             points[t_index] = points[t_index] + 1
 
     best_technique_index = np.array(points).argmax()
@@ -159,5 +158,4 @@ def create_comparison_dict() -> dict:
                 )
             }
         )
-    print(comparison_dict["EBT"])
     return comparison_dict

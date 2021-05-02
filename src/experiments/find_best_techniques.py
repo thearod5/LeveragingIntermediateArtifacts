@@ -51,6 +51,15 @@ class FindBestRankedTechniques(Experiment):
             ]
         )
 
+        for title, df in [("name", best_df), ("worst", worst_df)]:
+            print(f"{title}-----------")
+            for i in range(len(df)):
+                entry = df.iloc[i]
+                print(
+                    "%20s %10s %10s"
+                    % (entry["dataset"], entry["technique_type"], entry["name"])
+                )
+
         def get_latex_row(data_df):
             metric_values = []
             for dataset_name in DATASET_COLUMN_ORDER:
@@ -59,7 +68,6 @@ class FindBestRankedTechniques(Experiment):
                     & (data_df[TECHNIQUE_TYPE_COLNAME] == HYBRID_ID)
                 ]
                 entry = dataset_entries.iloc[0]
-                print(dataset_name, entry["name"])
                 for metric_name in BEST_TECHNIQUE_AGGREGATE_METRICS:
                     metric_value = entry[metric_name]
                     metric_values.append(str(round(metric_value, 3)))
