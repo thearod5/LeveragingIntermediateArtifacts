@@ -5,7 +5,6 @@ metrics.
 """
 
 import pandas as pd
-from api.technique.variationpoints.scalers.ScalingMethod import ScalingMethod
 from sklearn.metrics import precision_recall_curve
 
 from api.extension.experiment_types import ExperimentTraceType
@@ -13,17 +12,25 @@ from api.technique.variationpoints.aggregation.aggregation_method import (
     AggregationMethod,
 )
 from api.technique.variationpoints.algebraicmodel.models import AlgebraicModel
+from api.technique.variationpoints.scalers.scaling_method import ScalingMethod
 from api.tracer import Tracer
-from experiments.create_metric_table import create_combined_definition
+from experiments.create_metric_table import create_transitive_definition
 
 if __name__ == "__main__":
     dataset_name = "EasyClinic"
-    technique_name = create_combined_definition(
-        AlgebraicModel.VSM,
+    # technique_id: TechniqueID = (
+    #     # AlgebraicModel.VSM,
+    #     #  ExperimentTraceType.NONE,
+    #     AlgebraicModel.VSM,
+    #     ScalingMethod.INDEPENDENT,
+    #     AggregationMethod.MAX,
+    #     ExperimentTraceType.NONE,
+    #     # AggregationMethod.SUM,
+    # )
+    technique_name = create_transitive_definition(
         AlgebraicModel.VSM,
         ScalingMethod.INDEPENDENT,
         AggregationMethod.MAX,
-        AggregationMethod.SUM,
         ExperimentTraceType.NONE,
     )
 
@@ -44,9 +51,10 @@ if __name__ == "__main__":
     metrics_df.to_csv("metrics.csv", index=False)
 
     # get precision at some level or higher
-    recall_value = 0.72
+    recall_value = 0.165
     recall_delta = 0.01
     above_base = metrics_df["recall"] <= recall_value + recall_delta
-    below_base = metrics_df["recall"] >= recall_value
+    below_base = metrics_df["recall"] >= recall_value - recall_delta
 
-    print(metrics_df[above_base & below_base]["precision"].max())
+    print("Recall: ", metrics_df[above_base & below_base]["recall"].mean())
+    print("Precision: ", metrics_df[above_base & below_base]["precision"].mean())
