@@ -83,8 +83,8 @@ class CreateMetricTable(Experiment):
         # export metric table
         aggregate_metric_table = MetricTable(
             Table.aggregate_intermediate_files(PATH_TO_METRIC_TABLES)
-            .sort(DATASET_COLUMN_ORDER)
-            .table
+                .sort(DATASET_COLUMN_ORDER)
+                .table
         ).save(PATH_TO_METRIC_TABLE_AGGREGATE)
 
         # create graphable metrics and export table
@@ -107,6 +107,47 @@ class CreateMetricTable(Experiment):
         return RETRIEVAL_TECHNIQUES_ID
 
 
+def technique_iterator():
+    # direct
+    for t_am in AlgebraicModel:
+        t_id = (t_am, ExperimentTraceType.DIRECT, None, None, None, None)
+        yield create_direct_definition(t_am), t_id
+
+    for t_am in AlgebraicModel:
+        for t_scaling in ScalingMethod:
+            for transitive_aggregation in AggregationMethod:
+                t_id = (
+                    None,
+                    ExperimentTraceType.NONE,
+                    t_am,
+                    t_scaling,
+                    transitive_aggregation,
+                    None,
+                )
+                yield create_transitive_definition(
+                    t_am,
+                    t_scaling,
+                    transitive_aggregation,
+                    ExperimentTraceType.NONE,
+                ), t_id
+
+    # combined
+    for direct_am in AlgebraicModel:
+        for t_am in AlgebraicModel:
+            for t_scaling in ScalingMethod:
+                for transitive_aggregation in AggregationMethod:
+                    for technique_aggregation in AggregationMethod:
+                        t_id = (
+                            direct_am,
+                            ExperimentTraceType.NONE,
+                            t_am,
+                            t_scaling,
+                            transitive_aggregation,
+                            technique_aggregation,
+                        )
+                        yield create_combined_definition(t_id), t_id
+
+
 class RetrievalTechniques:
     """
     Defines the main experiment loop for calculating a metric table for each direct, transitive, and combined
@@ -114,44 +155,8 @@ class RetrievalTechniques:
     """
 
     def __iter__(self) -> Tuple[str, str]:
-        # direct
-        for t_am in AlgebraicModel:
-            t_id = (t_am, ExperimentTraceType.DIRECT, None, None, None, None)
-            yield create_direct_definition(t_am), create_entry(t_id)
-
-        for t_am in AlgebraicModel:
-            for t_scaling in ScalingMethod:
-                for transitive_aggregation in AggregationMethod:
-                    t_id = (
-                        None,
-                        ExperimentTraceType.NONE,
-                        t_am,
-                        t_scaling,
-                        transitive_aggregation,
-                        None,
-                    )
-                    yield create_transitive_definition(
-                        t_am,
-                        t_scaling,
-                        transitive_aggregation,
-                        ExperimentTraceType.NONE,
-                    ), create_entry(t_id)
-
-        # combined
-        for direct_am in AlgebraicModel:
-            for t_am in AlgebraicModel:
-                for t_scaling in ScalingMethod:
-                    for transitive_aggregation in AggregationMethod:
-                        for technique_aggregation in AggregationMethod:
-                            t_id = (
-                                direct_am,
-                                ExperimentTraceType.NONE,
-                                t_am,
-                                t_scaling,
-                                transitive_aggregation,
-                                technique_aggregation,
-                            )
-                            yield create_combined_definition(t_id), create_entry(t_id)
+        for t_def, t_id in technique_iterator():
+            yield t_def, create_entry(t_id)
 
     def __len__(self):
         return get_n_direct() + get_n_transitive() + get_n_combined()
@@ -169,7 +174,7 @@ def calculate_technique_metric_table(dataset: str) -> Table:
 
     techniques = RetrievalTechniques()
     with create_loading_bar(
-        EXPERIMENT_LOADING_MESSAGE, techniques, length=len(techniques)
+            EXPERIMENT_LOADING_MESSAGE, techniques, length=len(techniques)
     ) as techniques:
         for t_name, t_entry in techniques:
             t_entry.update({NAME_COLNAME: t_name})
@@ -184,11 +189,11 @@ def get_n_combined():
     :return: int - the number of combined techniques
     """
     return (
-        len(AlgebraicModel)
-        * len(AlgebraicModel)
-        * len(ScalingMethod)
-        * len(AggregationMethod)
-        * len(AggregationMethod)
+            len(AlgebraicModel)
+            * len(AlgebraicModel)
+            * len(ScalingMethod)
+            * len(AggregationMethod)
+            * len(AggregationMethod)
     )
 
 
@@ -229,10 +234,10 @@ def create_direct_definition(algebraic_model: AlgebraicModel):
 
 
 def create_transitive_definition(
-    transitive_algebraic_model: AlgebraicModel,
-    scaling_method: ScalingMethod,
-    transitive_aggregation: AggregationMethod,
-    trace_type: ExperimentTraceType,
+        transitive_algebraic_model: AlgebraicModel,
+        scaling_method: ScalingMethod,
+        transitive_aggregation: AggregationMethod,
+        trace_type: ExperimentTraceType,
 ):
     """
     Creates code for transitive technique by embedding direct components between top/middle
